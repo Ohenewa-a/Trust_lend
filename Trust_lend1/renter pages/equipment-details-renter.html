@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrustLend - Equipment Details</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: { brand: '#132F6B', brandLight: '#1A3D7D', accent: '#F59E0B', surface: '#F6F8FD' },
+        },
+      },
+    }
+  </script>
+</head>
+<body>
+    <section class="flex flex-col md:flex-row">
+
+        <!-- SIDEBAR -->
+        <div class="bg-brand flex flex-col shrink-0 w-full md:w-auto">
+            <div class="flex px-3 pb-2 pt-5 md:ml-6 items-center w-full justify-between md:justify-start">
+                <div class="flex items-center">
+                    <img src="images/logo.png" alt="logo" class="w-8">
+                    <h2 class="font-semibold text-2xl text-white whitespace-nowrap">Trust<span class="text-[#e8a325]">Lend</span></h2>
+                </div>
+                <button onclick="document.getElementById('mobileNav').classList.toggle('hidden')" class="md:hidden text-white px-3">
+                    <i class="fa-solid fa-bars fa-lg"></i>
+                </button>
+            </div>
+            <div class="hidden md:block h-px bg-slate-500 ml-6"></div>
+
+            <div id="mobileNav" class="hidden md:flex mt-5 text-neutral-100 my-1 gap-6 text-sm font-['system-ui'] font-light w-full">
+               942601
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="flex flex-col flex-1 min-w-0 min-h-screen bg-blue-100/20">
+
+            <!-- HEADER -->
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-center bg-white w-full text-sm rounded-2xl gap-3 md:gap-0">
+                <div class="flex flex-col px-4 md:px-8 py-4">
+                    <h3 class="font-bold text-[#1a1a1a]">My Equipments</h3>
+                    <p class="text-sm text-[#1a1a1a]">View and update equipments</p>
+                </div>
+                <div class="flex flex-row px-4 md:px-8 py-4 gap-3 items-center w-full md:w-auto">
+                    <input type="text" class="rounded-2xl border w-full md:w-76 h-10 px-4 py-3" placeholder="Search">
+                    <button class="hover:text-slate-600 text-black relative shrink-0">
+                        <i class="fa-regular fa-bell fa-2x"></i>
+                        <span class="absolute bg-red-500 text-white rounded-full flex items-center justify-center w-3.5 h-3.5 -top-1 -right-1 text-xs">5</span>
+                    </button>
+                    <div class="w-8 h-8 overflow-hidden rounded-full shrink-0">
+                        <img src="images/woman-profile.png" alt="profile picture" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </header>
+
+            <!-- MAIN + ASIDE -->
+            <div class="flex flex-col lg:flex-row flex-1 p-4 gap-4">
+
+                <!-- MAIN -->
+                <main class="flex-1 min-w-0">
+
+                    <!-- PHOTO GALLERY -->
+                    <div class="grid grid-cols-3 gap-2 mb-4">
+                        <img src="images/arri-1.png" alt="ARRI Alexa 35" class="col-span-2 row-span-2 w-full h-64 object-cover rounded-2xl">
+                        <img src="images/arri-2.png" alt="ARRI Alexa 35 detail" class="w-full h-32 object-cover rounded-2xl">
+                        <img src="images/arri-3.png" alt="ARRI Alexa 35 mounted" class="w-full h-32 object-cover rounded-2xl">
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-4 mb-4">
+                        <h2 class="font-bold text-xl">ARRI Alexa 35 Cinema Package</h2>
+                        <p class="text-amber-500 text-sm">★ 4.98 (32 rented) &nbsp; <span class="text-slate-400">Lagos, NG</span></p>
+
+                        <h3 class="font-semibold text-brand mt-4 mb-1">About The Equipment</h3>
+                        <p class="text-sm text-slate-600">The ARRI ALEXA 35 is a 4K Super 35 camera that raises the bar for digital cinematography to unprecedented heights. This full production package includes everything needed for high-end narrative or commercial work, trusted by industry professionals and calibrated monthly.</p>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 text-center text-xs">
+                            <div>
+                                <i class="fa-solid fa-video text-xl text-brand"></i>
+                                <p class="font-medium mt-1">Sensor</p>
+                                <p class="text-slate-400">Super 35 4K</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-circle-half-stroke text-xl text-brand"></i>
+                                <p class="font-medium mt-1">Dynamic Range</p>
+                                <p class="text-slate-400">17 Stops</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-microchip text-xl text-brand"></i>
+                                <p class="font-medium mt-1">Mount</p>
+                                <p class="text-slate-400">LPL/PL</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-gauge-high text-xl text-brand"></i>
+                                <p class="font-medium mt-1">Frame Rate</p>
+                                <p class="text-slate-400">Up to 120fps</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-4 mb-4">
+                        <h3 class="font-semibold text-brand mb-2">Specifications</h3>
+                        <table class="w-full text-sm">
+                            <tr class="border-b"><td class="py-2 text-slate-500">Recording Media</td><td class="py-2">Codex Compact Drives, XR Capsules included</td></tr>
+                            <tr class="border-b"><td class="py-2 text-slate-500">Sensitivity</td><td class="py-2">EI 160 - 6400</td></tr>
+                            <tr class="border-b"><td class="py-2 text-slate-500">Power</td><td class="py-2">Anton Bauer Battery System</td></tr>
+                            <tr><td class="py-2 text-slate-500">Connectivity</td><td class="py-2">Ethernet, USB-C, HDMI</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                        <img src="images/owner.png" alt="Jay Alowade" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-sm">Jay Alowade</p>
+                            <p class="text-xs text-slate-400">Verified Owner Since 2022</p>
+                        </div>
+                    </div>
+
+                </main>
+
+                <!-- BOOKING SUMMARY ASIDE -->
+                <aside class="w-full lg:w-80 shrink-0">
+                    <div class="bg-white rounded-2xl p-4 sticky top-4">
+                        <p class="text-lg font-bold text-brand">₦10,000/day</p>
+
+                        <div class="grid grid-cols-2 gap-2 mt-3 text-sm">
+                            <div>
+                                <p class="text-xs text-slate-400">Start Date</p>
+                                <p class="font-medium">30-07-2026</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400">End Date</p>
+                                <p class="font-medium">05-08-2026</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <p class="text-xs text-slate-400">Delivery</p>
+                            <p class="text-sm font-medium">Self Pickup (Lagos)</p>
+                        </div>
+
+                        <div class="border-t mt-4 pt-3 text-sm">
+                            <div class="flex flex-row justify-between mb-1">
+                                <span class="text-slate-500">₦10,000 x 5 days</span>
+                                <span>₦50,000</span>
+                            </div>
+                            <div class="flex flex-row justify-between mb-1">
+                                <span class="text-slate-500">Discount (10%)</span>
+                                <span>-₦5,000</span>
+                            </div>
+                            <div class="flex flex-row justify-between mb-1">
+                                <span class="text-slate-500">Service Fee</span>
+                                <span>₦2,400</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-400 mt-3">Refundable Security Deposit required, held via secure escrow, released after inspection.</p>
+
+                        <button class="bg-brand text-white w-full py-3 rounded-2xl mt-4 text-sm">Book Now</button>
+                        <p class="text-xs text-slate-400 text-center mt-2">You won't be charged yet</p>
+
+                        <div class="border-t mt-4 pt-3">
+                            <p class="text-xs font-semibold text-brand mb-2">Secure Marketplace</p>
+                            <p class="text-xs text-slate-500 mb-1"><i class="fa-solid fa-shield-halved mr-1"></i> Full Insurance Coverage Included</p>
+                            <p class="text-xs text-slate-500 mb-1"><i class="fa-solid fa-circle-check mr-1"></i> ID-Verified Owners Only</p>
+                            <p class="text-xs text-slate-500"><i class="fa-solid fa-lock mr-1"></i> Secure Escrow Protection</p>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand text-white pt-10 pb-6 mt-6 -mx-6 -mb-6 px-6">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div class="flex items-center gap-2 mb-2"><img src="images/logo.png" class="w-7" alt="TrustLend" onerror="this.style.display='none'" /><span class="font-bold text-base">Trust<span class="text-accent">Lend</span></span></div>
+              <p class="text-white/70 text-xs font-medium mb-2">Borrow with Confidence. Lend with Trust</p>
+              <p class="text-white/40 text-[11px] leading-relaxed">TrustLend is a secure marketplace connecting people and businesses to rent and lend equipment with confidence.</p>
+              <div class="flex gap-3 mt-4">
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+              </div>
+            </div>
+            <div><h4 class="font-semibold text-xs uppercase tracking-wider mb-3">Quick Links</h4><ul class="space-y-2 text-[11px] text-white/60"><li><a href="#" class="hover:text-accent transition">Browse Equipments</a></li><li><a href="#" class="hover:text-accent transition">List Your Equipments</a></li><li><a href="#" class="hover:text-accent transition">How It Works</a></li><li><a href="#" class="hover:text-accent transition">Trust & Safety</a></li><li><a href="#" class="hover:text-accent transition">Pricing</a></li></ul></div>
+            <div><h4 class="font-semibold text-xs uppercase tracking-wider mb-3">Company</h4><ul class="space-y-2 text-[11px] text-white/60"><li><a href="#" class="hover:text-accent transition">About</a></li><li><a href="#" class="hover:text-accent transition">Careers</a></li><li><a href="#" class="hover:text-accent transition">Blog</a></li><li><a href="#" class="hover:text-accent transition">Contact</a></li></ul></div>
+            <div><h4 class="font-semibold text-xs uppercase tracking-wider mb-3">Support</h4><ul class="space-y-2 text-[11px] text-white/60"><li><a href="#" class="hover:text-accent transition">Help Center</a></li><li><a href="#" class="hover:text-accent transition">FAQs</a></li><li><a href="#" class="hover:text-accent transition">Terms of Service</a></li><li><a href="#" class="hover:text-accent transition">Privacy Policy</a></li></ul></div>
+          </div>
+          <div class="border-t border-white/10 pt-5 text-center"><p class="text-[11px] text-white/40">© 2026 TrustLend Technologies Ltd. All rights reserved</p></div>
+        </div>
+      </footer>
+
+</body>
+</html>
