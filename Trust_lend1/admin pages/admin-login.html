@@ -1,3 +1,182 @@
+<<<<<<< HEAD:admin pages/admin-login.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrustLend - Admin Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: { brand: '#132F6B', brandHover: '#0D234F', accent: '#F59E0B' },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+  <!-- Card Container -->
+  <div class="w-full max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[600px]">
+
+    <!-- ============ LEFT: Images ============ -->
+    <div class="w-full md:w-5/12 relative bg-gray-900 flex flex-col">
+
+      <!-- Logo overlay -->
+      <div class="absolute top-6 left-6 flex items-center gap-2 z-10">
+        <img src="/images/logo.png" class="w-8" alt="TrustLend" onerror="this.style.display='none'" />
+        <span class="font-bold text-lg text-white">Trust<span class="text-accent">Lend</span></span>
+      </div>
+
+      <!-- Top image -->
+      <div class="flex-1 overflow-hidden">
+        <img src="/images/login(renter & owner).png" alt="Equipment" class="w-full h-full object-cover opacity-80"
+          onerror="this.parentElement.classList.add('bg-gray-800')">
+      </div>
+    </div>
+
+    <!-- ============ RIGHT: Form ============ -->
+    <div class="w-full md:w-7/12 bg-white flex items-center justify-center p-8 sm:p-12">
+      <div class="w-full max-w-sm">
+
+        <!-- Heading -->
+        <div class="text-center mb-8">
+          <h1 class="text-2xl font-bold text-brand">Admin Login</h1>
+          <p class="text-sm text-gray-400 mt-2">Enter your credentials to access the Admin Dashboard</p>
+        </div>
+
+        <!-- Form -->
+        <form onsubmit="handleLogin(event)" class="space-y-4">
+
+          <!-- Username -->
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+              <i class="fa-regular fa-user text-sm"></i>
+            </span>
+            <input
+              type="text"
+              id="username"
+              required
+              placeholder="Admin Username"
+              class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand transition"
+            />
+          </div>
+
+          <!-- Password -->
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+              <i class="fa-solid fa-lock text-sm"></i>
+            </span>
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="Admin Password"
+              class="w-full pl-11 pr-12 py-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand transition"
+            />
+            <button
+              type="button"
+              onclick="togglePassword()"
+              class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            >
+              <i id="pwIcon" class="fa-regular fa-eye-slash text-sm"></i>
+            </button>
+          </div>
+
+          <!-- Login Button -->
+          <button
+            type="submit"
+            class="w-full bg-brand hover:bg-brandHover text-white font-semibold py-3 rounded-lg text-sm shadow-md transition duration-200"
+          >
+            Login
+          </button>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+  <style>.shake{animation:shake .4s ease-in-out}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}</style>
+
+  <!-- Global Error -->
+  <div id="globalErr" class="hidden max-w-sm mx-auto -mt-2 mb-2 bg-red-50 border border-red-200 rounded-lg p-3 text-center" style="animation:fadeIn .3s ease-out"><p id="globalErrText" class="text-xs text-red-600 font-medium"></p></div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand text-white text-xs font-semibold px-6 py-3 rounded-lg shadow-lg z-50 hidden"></div>
+
+  <!-- Lockout Modal -->
+  <div id="lockModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 text-center" style="animation:fadeIn .3s ease-out">
+      <div class="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4"><i class="fa-solid fa-lock text-red-600 text-xl"></i></div>
+      <h3 class="text-base font-bold text-gray-900 mb-2">Account Locked</h3>
+      <p class="text-sm text-gray-500 mb-2">Too many failed attempts.</p>
+      <p class="text-sm text-gray-500 mb-6">Try again in <span id="lockTimer" class="font-bold text-red-600">30</span>s</p>
+      <button id="lockBtn" disabled class="w-full bg-gray-200 text-gray-500 font-semibold py-2.5 rounded-lg text-sm cursor-not-allowed">Please wait...</button>
+    </div>
+  </div>
+
+  <script>
+    const $=id=>document.getElementById(id);
+    let attempts=0,locked=false;
+
+    function togglePassword(){
+      const i=$('password'),ic=$('pwIcon');
+      if(i.type==='password'){i.type='text';ic.classList.remove('fa-eye-slash');ic.classList.add('fa-eye');}
+      else{i.type='password';ic.classList.remove('fa-eye');ic.classList.add('fa-eye-slash');}
+    }
+
+    function handleLogin(e){
+      e.preventDefault();
+      if(locked)return;
+      const u=$('username'),p=$('password');
+      let ok=true;
+      if(!u.value.trim()){u.classList.add('border-red-400');ok=false;}else u.classList.remove('border-red-400');
+      if(!p.value){p.classList.add('border-red-400');ok=false;}else p.classList.remove('border-red-400');
+      if(!ok){document.querySelector('form').classList.add('shake');setTimeout(()=>document.querySelector('form').classList.remove('shake'),400);return;}
+
+      // Loading
+      const btn=document.querySelector('[type="submit"]');
+      btn.disabled=true;btn.classList.add('opacity-70');btn.innerHTML='<i class="fa-solid fa-spinner fa-spin mr-2"></i>Verifying...';
+
+      setTimeout(()=>{
+        btn.disabled=false;btn.classList.remove('opacity-70');btn.textContent='Login';
+
+        if(u.value.trim()==='admin'&&p.value==='Admin@123'){
+          btn.innerHTML='<i class="fa-solid fa-check mr-2"></i>Success!';btn.classList.add('bg-green-600');btn.classList.remove('bg-brand','hover:bg-brandHover');
+          setTimeout(()=>window.location.href='a-dashboard.html',800);
+        }else{
+          attempts++;
+          if(attempts>=5){triggerLockout();return;}
+          $('globalErr').classList.remove('hidden');
+          $('globalErrText').textContent=`Invalid credentials. ${5-attempts} attempt${5-attempts!==1?'s':''} remaining.`;
+          u.classList.add('border-red-400');p.classList.add('border-red-400');
+          document.querySelector('form').classList.add('shake');setTimeout(()=>document.querySelector('form').classList.remove('shake'),400);
+        }
+      },1200);
+    }
+
+    function triggerLockout(){
+      locked=true;$('lockModal').classList.remove('hidden');let s=30;$('lockTimer').textContent=s;
+      const t=setInterval(()=>{s--;$('lockTimer').textContent=s;if(s<=0){clearInterval(t);locked=false;attempts=0;
+        $('lockBtn').disabled=false;$('lockBtn').textContent='Try Again';$('lockBtn').className='w-full bg-brand text-white font-semibold py-2.5 rounded-lg text-sm cursor-pointer hover:bg-brandHover transition';
+        $('lockBtn').onclick=()=>{$('lockModal').classList.add('hidden');$('globalErr').classList.add('hidden');document.querySelector('form').reset();[$('username'),$('password')].forEach(el=>el.classList.remove('border-red-400'));};}},1000);
+    }
+
+    $('username').addEventListener('input',()=>{$('globalErr').classList.add('hidden');$('username').classList.remove('border-red-400');});
+    $('password').addEventListener('input',()=>{$('globalErr').classList.add('hidden');$('password').classList.remove('border-red-400');});
+  </script>
+
+</body>
+=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,4 +306,5 @@
   </script>
 
 </body>
+>>>>>>> 5aa2c9a125e0239749b61d52d4d7465a25502174:Trust_lend1/admin pages/admin-login.html
 </html>
