@@ -1,0 +1,640 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrustLend - My Equipment</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: { brand: '#132F6B', brandLight: '#1A3D7D', accent: '#F59E0B', surface: '#F6F8FD' },
+        },
+      },
+    }
+  </script>
+</head>
+<body>
+    <section class="flex flex-col md:flex-row">
+
+        <!-- SIDEBAR -->
+        <aside class="w-full lg:w-64 bg-[#0B2545] text-white flex-shrink-0">
+      <div class="p-6">
+        <!-- Logo -->
+        <div class="flex items-center gap-2 mb-8">
+          <div class=" flex items-center justify-center ">
+            <div >
+              <img src="images/SVG 2.png" alt="logo">
+            </div>
+          </div>
+          <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
+        </div>
+
+        <hr class="border-white/10 mb-6" />
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-6 text-xs font-medium">
+          <!-- MANAGE -->
+          <div>
+            <!-- <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Manage</p> -->
+            <ul class="space-y-1">
+              <li>
+                <a href="o-dashboard.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="my-equipment.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                  My Equipment
+                </a>
+              </li>
+               <li>
+                <a href="booking-r.html" class="flex items-center justify-between px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <span class="flex items-center gap-2.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                    Bookings
+                  </span>
+                  <span class="bg-amber-400 text-[#0B2545] text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">2</span>
+                </a>
+              </li>
+              <li>
+                <a href="rental-inspection.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                  Return Inspection
+                </a>
+              </li>
+            </ul>
+        
+
+          <!-- FINANCE -->
+          
+            <!-- <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Finance</p> -->
+            <ul class="space-y-1">
+              <li>
+                <a href="owner-wallet.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                  Wallet
+                </a>
+              </li>
+            </ul>
+
+          <!-- ACTIVITY -->
+          <!--<div>
+            <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Activity</p>
+            <ul class="space-y-1">
+              <li>
+                <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                  Messages
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <span class="flex items-center gap-2.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                    Notifications
+                  </span>
+                  <span class="bg-amber-400 text-[#0B2545] text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">5</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                  Reviews
+                </a>
+              </li>
+            </ul>
+          </div>--!
+
+          <!-- ACCOUNT -->
+            <!-- <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Account</p> -->
+            <ul class="space-y-1">
+              <li>
+                <a href="profile.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                  Profile
+                </a>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </aside>
+
+        <!-- RIGHT COLUMN -->
+        <div class="flex flex-col flex-1 min-w-0 min-h-screen bg-blue-100/20">
+
+            <!-- HEADER -->
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-center bg-white w-full text-sm rounded-2xl gap-3 md:gap-0">
+                <div class="flex flex-col px-4 md:px-8 py-4">
+                    <h3 class="font-bold text-[#1a1a1a]">My Equipment</h3>
+                    <p class="text-sm text-[#1a1a1a]">View and manage your equipment, earnings and availability</p>
+                </div>
+                <div class="flex flex-row px-4 md:px-8 py-4 gap-3 items-center w-full md:w-auto">
+                    <input type="text" class="rounded-2xl border w-full md:w-76 h-10 px-4 py-3" placeholder="Search">
+                    <button class="hover:text-slate-600 text-black relative shrink-0">
+                        <i class="fa-regular fa-bell fa-2x"></i>
+                        <span class="absolute bg-red-500 text-white rounded-full flex items-center justify-center w-3.5 h-3.5 -top-1 -right-1 text-xs">5</span>
+                    </button>
+                    <div class="w-8 h-8 overflow-hidden rounded-full shrink-0">
+                        <img src="images/woman-profile.png" alt="profile picture" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </header>
+
+            <!-- MAIN -->
+            <main class="flex flex-col flex-1 min-w-0 p-4">
+
+                <a href="add-equipment.html" class="bg-brand text-white px-4 py-2 rounded-2xl text-sm w-fit mb-4">
+                    <i class="fa-solid fa-plus mr-1"></i> Add New Equipment
+                </a>
+
+                <!-- STAT CARDS -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                            <i class="fa-solid fa-toolbox"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-brand">24</p>
+                            <p class="text-xs text-slate-500">Total Equipment</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-500">
+                            <i class="fa-solid fa-ban"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-brand">18</p>
+                            <p class="text-xs text-slate-500">Active Listings</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-brand">6</p>
+                            <p class="text-xs text-slate-500">On Rent</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-brand">132</p>
+                            <p class="text-xs text-slate-500">Completed Rentals</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FILTER ROW -->
+                <div class="flex flex-col sm:flex-row gap-3 mt-4">
+                    <input type="text" placeholder="Search equipment" class="rounded-2xl border px-4 py-2 flex-1">
+                    <select class="rounded-2xl border px-4 py-2">
+                        <option>All Categories</option>
+                        <option>Cameras</option>
+                        <option>Power Tools</option>
+                        <option>Construction</option>
+                    </select>
+                    <select class="rounded-2xl border px-4 py-2">
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>On Rent</option>
+                        <option>Unavailable</option>
+                    </select>
+                    <select class="rounded-2xl border px-4 py-2">
+                        <option>Sort by Newest</option>
+                        <option>Sort by Price</option>
+                    </select>
+                </div>
+
+                <!-- TABLE -->
+                <div class="bg-white rounded-2xl p-4 mt-4 overflow-x-auto">
+                    <table class="w-full text-sm min-w-[700px]">
+                        <thead>
+                            <tr class="text-left text-slate-500 text-xs border-b">
+                                <th class="py-2">Equipment</th>
+                                <th>Category</th>
+                                <th>Price/Day</th>
+                                <th>Status</th>
+                                <th>Availability</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/Background+Border.png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Concrete Mixer 350L
+                                </td>
+                                <td>Construction</td>
+                                <td>₦25,000</td>
+                                <td><span class="text-green-600 text-xs font-medium">● Active</span></td>
+                                <td class="text-xs text-slate-500">Available</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/Background+Border (1).png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Generator 5KVA SK
+                                </td>
+                                <td>Power Tools</td>
+                                <td>₦25,000</td>
+                                <td><span class="text-amber-500 text-xs font-medium">● On Rent</span></td>
+                                <td class="text-xs text-slate-500">Booked 3 days</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/Background+Border (2).png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Canon EOS R50
+                                </td>
+                                <td>Camera</td>
+                                <td>₦25,000</td>
+                                <td><span class="text-amber-500 text-xs font-medium">● On Rent</span></td>
+                                <td class="text-xs text-slate-500">Booked 3 days</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/Background+Border (3).png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Nikon Z30
+                                </td>
+                                <td>Camera</td>
+                                <td>₦20,000</td>
+                                <td><span class="text-green-600 text-xs font-medium">● Active</span></td>
+                                <td class="text-xs text-slate-500">Available</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/Background+Border (4).png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Sony FX3
+                                </td>
+                                <td>Camera</td>
+                                <td>₦20,000</td>
+                                <td><span class="text-slate-400 text-xs font-medium">● Unavailable</span></td>
+                                <td class="text-xs text-slate-500">Unlisted</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-xs text-slate-400 mt-3">Showing 1 to 5 of 24 results</p>
+                </div>
+
+            </main>
+        </div>
+    </section>
+    
+   <footer class="bg-[#102A4A] text-white pt-12 pb-8 px-6 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+      
+      <!-- Brand Info -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="flex items-center gap-2">
+          <div class="flex items-center justify-center">
+            <div>
+              <img src="images/SVG 2.png" alt="logo">
+            </div>
+          </div>
+          <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
+        </div>
+        
+        <h3 class="text-sm font-semibold text-slate-100">Borrow with Confidence. Lend with Trust</h3>
+        
+        <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+          TrustLend is a secure marketplace connecting people and businesses to rent and lend equipment with confidence.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="flex items-center gap-3 pt-2">
+          <a href="#" class="w-6 h-6 rounded-md bg-pink-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
+            <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+          </a>
+          <a href="#" class="w-6 h-6 rounded-md bg-slate-800 flex items-center justify-center text-xs text-white hover:bg-slate-700 transition">
+            <i data-lucide="twitter" class="w-3.5 h-3.5"></i>
+          </a>
+          <a href="#" class="w-6 h-6 rounded-md bg-blue-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
+            <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
+          </a>
+          <a href="#" class="w-6 h-6 rounded-md bg-sky-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
+            <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">Quick Links</h4>
+        <ul class="space-y-2 text-xs text-slate-300">
+          <li><a href="#" class="hover:text-amber-400 transition">Browse Equipments</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">List Your Equipments</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">How It Works</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Trust & Safety</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Pricing</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">Company</h4>
+        <ul class="space-y-2 text-xs text-slate-300">
+          <li><a href="#" class="hover:text-amber-400 transition">About</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Careers</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Blog</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Support Links -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">Support</h4>
+        <ul class="space-y-2 text-xs text-slate-300">
+          <li><a href="#" class="hover:text-amber-400 transition">Help Center</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">FAQs</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800/60 text-xs text-slate-400">
+      © 2026 TrustLend Technologies Ltd. All rights reserved
+    </div>
+  </footer>
+
+
+</body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrustLend - My Equipment</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: { brand: '#132F6B', brandLight: '#1A3D7D', accent: '#F59E0B', surface: '#F6F8FD' },
+        },
+      },
+    }
+  </script>
+</head>
+<body>
+    <section class="flex flex-col md:flex-row">
+
+        <!-- SIDEBAR -->
+        <div class="bg-brand flex flex-col shrink-0 w-full md:w-auto">
+            <div class="flex px-3 pb-2 pt-5 md:ml-6 items-center w-full justify-between md:justify-start">
+                <div class="flex items-center">
+                    <img src="images/logo.png" alt="logo" class="w-8">
+                    <h2 class="font-semibold text-2xl text-white whitespace-nowrap">Trust<span class="text-[#e8a325]">Lend</span></h2>
+                </div>
+                <button onclick="document.getElementById('mobileNav').classList.toggle('hidden')" class="md:hidden text-white px-3">
+                    <i class="fa-solid fa-bars fa-lg"></i>
+                </button>
+            </div>
+            <div class="hidden md:block h-px bg-slate-500 ml-6"></div>
+
+            <div id="mobileNav" class="hidden md:flex mt-5 text-neutral-100 my-1 gap-6 text-sm font-['system-ui'] font-light w-full">
+                <nav class="w-full ml-6 mr-5 text-xs">
+                    <p class="text-[#bdbdbd]">Manage</p>
+                    <a href="#" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition"> <span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Dashboard</a>
+
+                    <a href="#" class="flex items-center my-2 h-8 pr-1 transition text-brand font-medium rounded-lg bg-accent">
+                        <span class="w-1 h-1 rounded-full bg-white inline-block mr-2"></span>My Equipment</a>
+
+                    <a href="#" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition justify-between">
+                        <span class="flex items-center"><span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Bookings</span>
+                        <span class="bg-brand text-white font-semibold w-5 h-5 rounded-full flex justify-center items-center bg-[#C49A1A]">2</span>
+                    </a>
+
+                    <a href="#" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition"> <span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Return Inspection</a>
+
+                    <p class="text-[#bdbdbd] mt-2">Finance</p>
+                    <a href="#" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition"> <span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Wallet</a>
+
+                    <p class="text-[#bdbdbd] mt-2">Account</p>
+                    <a href="#" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition"> <span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Profile</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="flex flex-col flex-1 min-w-0 min-h-screen bg-blue-100/20">
+
+            <!-- HEADER -->
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-center bg-white w-full text-sm rounded-2xl gap-3 md:gap-0">
+                <div class="flex flex-col px-4 md:px-8 py-4">
+                    <h3 class="font-bold text-[#1a1a1a]">My Equipment</h3>
+                    <p class="text-sm text-[#1a1a1a]">View and manage your equipment, earnings and availability</p>
+                </div>
+                <div class="flex flex-row px-4 md:px-8 py-4 gap-3 items-center w-full md:w-auto">
+                    <input type="text" class="rounded-2xl border w-full md:w-76 h-10 px-4 py-3" placeholder="Search">
+                    <button class="hover:text-slate-600 text-black relative shrink-0">
+                        <i class="fa-regular fa-bell fa-2x"></i>
+                        <span class="absolute bg-red-500 text-white rounded-full flex items-center justify-center w-3.5 h-3.5 -top-1 -right-1 text-xs">5</span>
+                    </button>
+                    <div class="w-8 h-8 overflow-hidden rounded-full shrink-0">
+                        <img src="images/woman-profile.png" alt="profile picture" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </header>
+
+            <!-- MAIN -->
+            <main class="flex flex-col flex-1 min-w-0 p-4">
+
+                <a href="add-equipment.html" class="bg-brand text-white px-4 py-2 rounded-2xl text-sm w-fit mb-4">
+                    <i class="fa-solid fa-plus mr-1"></i> Add New Equipment
+                </a>
+
+                <!-- STAT CARDS -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
+                            <i class="fa-solid fa-toolbox"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-brand">24</p>
+                            <p class="text-xs text-slate-500">Total Equipment</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-500">
+                            <i class="fa-solid fa-ban"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-brand">18</p>
+                            <p class="text-xs text-slate-500">Active Listings</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-brand">6</p>
+                            <p class="text-xs text-slate-500">On Rent</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-brand">132</p>
+                            <p class="text-xs text-slate-500">Completed Rentals</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FILTER ROW -->
+                <div class="flex flex-col sm:flex-row gap-3 mt-4">
+                    <input type="text" placeholder="Search equipment" class="rounded-2xl border px-4 py-2 flex-1">
+                    <select class="rounded-2xl border px-4 py-2">
+                        <option>All Categories</option>
+                        <option>Cameras</option>
+                        <option>Power Tools</option>
+                        <option>Construction</option>
+                    </select>
+                    <select class="rounded-2xl border px-4 py-2">
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>On Rent</option>
+                        <option>Unavailable</option>
+                    </select>
+                    <select class="rounded-2xl border px-4 py-2">
+                        <option>Sort by Newest</option>
+                        <option>Sort by Price</option>
+                    </select>
+                </div>
+
+                <!-- TABLE -->
+                <div class="bg-white rounded-2xl p-4 mt-4 overflow-x-auto">
+                    <table class="w-full text-sm min-w-[700px]">
+                        <thead>
+                            <tr class="text-left text-slate-500 text-xs border-b">
+                                <th class="py-2">Equipment</th>
+                                <th>Category</th>
+                                <th>Price/Day</th>
+                                <th>Status</th>
+                                <th>Availability</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/concrete-mixer.png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Concrete Mixer 350L
+                                </td>
+                                <td>Construction</td>
+                                <td>₦25,000</td>
+                                <td><span class="text-green-600 text-xs font-medium">● Active</span></td>
+                                <td class="text-xs text-slate-500">Available</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/generator.png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Generator 5KVA SK
+                                </td>
+                                <td>Power Tools</td>
+                                <td>₦25,000</td>
+                                <td><span class="text-amber-500 text-xs font-medium">● On Rent</span></td>
+                                <td class="text-xs text-slate-500">Booked 3 days</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/canon.png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Canon EOS R50
+                                </td>
+                                <td>Camera</td>
+                                <td>₦25,000</td>
+                                <td><span class="text-amber-500 text-xs font-medium">● On Rent</span></td>
+                                <td class="text-xs text-slate-500">Booked 3 days</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/nikon.png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Nikon Z30
+                                </td>
+                                <td>Camera</td>
+                                <td>₦20,000</td>
+                                <td><span class="text-green-600 text-xs font-medium">● Active</span></td>
+                                <td class="text-xs text-slate-500">Available</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 flex items-center gap-2">
+                                    <img src="images/sony-fx3.png" alt="" class="w-10 h-10 rounded-lg object-cover">
+                                    Sony FX3
+                                </td>
+                                <td>Camera</td>
+                                <td>₦20,000</td>
+                                <td><span class="text-slate-400 text-xs font-medium">● Unavailable</span></td>
+                                <td class="text-xs text-slate-500">Unlisted</td>
+                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-xs text-slate-400 mt-3">Showing 1 to 5 of 24 results</p>
+                </div>
+
+            </main>
+        </div>
+    </section>
+    
+    <footer class="bg-brand text-white pt-10 pb-6 mt-6 -mx-6 -mb-6 px-6">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div class="flex items-center gap-2 mb-2"><img src="images/logo.png" class="w-7" alt="TrustLend" onerror="this.style.display='none'" /><span class="font-bold text-base">Trust<span class="text-accent">Lend</span></span></div>
+              <p class="text-white/70 text-xs font-medium mb-2">Borrow with Confidence. Lend with Trust</p>
+              <p class="text-white/40 text-[11px] leading-relaxed">TrustLend is a secure marketplace connecting people and businesses to rent and lend equipment with confidence.</p>
+              <div class="flex gap-3 mt-4">
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+              </div>
+            </div>
+            <div><h4 class="font-semibold text-xs uppercase tracking-wider mb-3">Quick Links</h4><ul class="space-y-2 text-[11px] text-white/60"><li><a href="#" class="hover:text-accent transition">Browse Equipments</a></li><li><a href="#" class="hover:text-accent transition">List Your Equipments</a></li><li><a href="#" class="hover:text-accent transition">How It Works</a></li><li><a href="#" class="hover:text-accent transition">Trust & Safety</a></li><li><a href="#" class="hover:text-accent transition">Pricing</a></li></ul></div>
+            <div><h4 class="font-semibold text-xs uppercase tracking-wider mb-3">Company</h4><ul class="space-y-2 text-[11px] text-white/60"><li><a href="#" class="hover:text-accent transition">About</a></li><li><a href="#" class="hover:text-accent transition">Careers</a></li><li><a href="#" class="hover:text-accent transition">Blog</a></li><li><a href="#" class="hover:text-accent transition">Contact</a></li></ul></div>
+            <div><h4 class="font-semibold text-xs uppercase tracking-wider mb-3">Support</h4><ul class="space-y-2 text-[11px] text-white/60"><li><a href="#" class="hover:text-accent transition">Help Center</a></li><li><a href="#" class="hover:text-accent transition">FAQs</a></li><li><a href="#" class="hover:text-accent transition">Terms of Service</a></li><li><a href="#" class="hover:text-accent transition">Privacy Policy</a></li></ul></div>
+          </div>
+          <div class="border-t border-white/10 pt-5 text-center"><p class="text-[11px] text-white/40">© 2026 TrustLend Technologies Ltd. All rights reserved</p></div>
+        </div>
+      </footer>
+
+
+</body>
+>>>>>>> rent-source/main
+</html>

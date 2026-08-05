@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | TrustLend</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: #f5f7fb;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden relative">
+
+        <!-- Banner -->
+        <div>
+            <img src="images/banner-login.jpg"
+                 class="w-full h-56 object-cover"
+                 alt="Banner">
+        </div>
+
+        <!-- Logo -->
+        <div class="absolute top-8 left-8">
+            <img src="images/logo.png"
+                 class="h-10"
+                 alt="Logo">
+        </div>
+
+        <!-- Content -->
+        <div class="py-10 px-8">
+
+            <!-- Heading -->
+            <h1 class="text-4xl font-bold text-center text-[#0E2B63]">
+                Welcome
+                <span class="text-yellow-500">back!</span>
+            </h1>
+
+            <p class="text-center text-gray-500 mt-2">
+                Choose your account type to continue
+            </p>
+
+            <div class="w-40 h-2 bg-[#0E2B63] rounded-full mx-auto mt-3"></div>
+
+            <!-- Login Cards -->
+            <div class="grid md:grid-cols-2 gap-10 mt-16">
+
+                <!-- Renter -->
+                <div class="text-center">
+
+                    <img src="images/sewing-machine.png"
+                         class="h-32 mx-auto mb-5"
+                         alt="Renter">
+
+                    <div
+                        onclick="loginRole('renter')"
+                        class="card bg-yellow-400 rounded-xl p-6 shadow-lg cursor-pointer transition duration-300">
+
+                        <div class="flex justify-between items-center">
+
+                            <div class="text-left">
+
+                                <h2 class="text-3xl font-bold text-[#0E2B63]">
+                                    I'm a
+                                </h2>
+
+                                <h3 class="text-3xl font-bold text-[#0E2B63]">
+                                    Renter
+                                </h3>
+
+                                <p class="text-sm text-gray-700 mt-2">
+                                    Rent equipment safely and
+                                    conveniently.
+                                </p>
+
+                            </div>
+
+                            <div class="text-3xl text-[#0E2B63]">
+                                →
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Owner -->
+                <div class="text-center">
+
+                    <img src="images/excavator.png"
+                         class="h-32 mx-auto mb-5"
+                         alt="Owner">
+
+                    <div
+                        onclick="loginRole('owner')"
+                        class="card bg-yellow-400 rounded-xl p-6 shadow-lg cursor-pointer transition duration-300">
+
+                        <div class="flex justify-between items-center">
+
+                            <div class="text-left">
+
+                                <h2 class="text-3xl font-bold text-[#0E2B63]">
+                                    I'm an
+                                </h2>
+
+                                <h3 class="text-3xl font-bold text-[#0E2B63]">
+                                    Owner
+                                </h3>
+
+                                <p class="text-sm text-gray-700 mt-2">
+                                    Manage your equipment
+                                    and rentals.
+                                </p>
+
+                            </div>
+
+                            <div class="text-3xl text-[#0E2B63]">
+                                →
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Signup Link -->
+            <div class="text-center mt-14">
+
+                <p class="text-gray-500">
+                    Don't have an account?
+
+                    <a href="create-account.html"
+                       class="text-yellow-500 font-semibold hover:underline">
+                        Sign Up
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<script>
+function loginRole(role) {
+    localStorage.setItem("role", role);
+    window.location.href = `auth.html?role=${role}`;
+}
+</script>
+
+</body>
+</html>
