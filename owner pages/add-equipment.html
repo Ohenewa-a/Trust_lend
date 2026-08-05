@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrustLend - Add Equipment</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: { brand: '#132F6B', brandLight: '#1A3D7D', accent: '#F59E0B', surface: '#F6F8FD' },
+        },
+      },
+    }
+  </script>
+</head>
+<body>
+    <section class="flex flex-col md:flex-row">
+
+        <!-- sidebar-->
+        <div class="bg-brand flex flex-col shrink-0 w-full md:w-auto">
+            <div class="flex px-3 pb-2 pt-5 md:ml-6 items-center w-full justify-between md:justify-start">
+                <div class="flex items-center">
+                    <img src="images/logo.png" alt="logo" class="w-8">
+                    <h2 class="font-semibold text-2xl text-white whitespace-nowrap">Trust<span class="text-[#e8a325]">Lend</span></h2>
+                </div>
+                <button onclick="document.getElementById('mobileNav').classList.toggle('hidden')" class="md:hidden text-white px-3">
+                    <i class="fa-solid fa-bars fa-lg"></i>
+                </button>
+            </div>
+            <div class="hidden md:block h-px bg-slate-500 ml-6"></div>
+
+            <div id="mobileNav" class="hidden md:flex mt-5 text-neutral-100 my-1 gap-6 text-sm font-['system-ui'] font-light w-full">
+                <nav class="w-full ml-6 mr-5 text-xs">
+                    <p class="text-[#bdbdbd]">Manage</p>
+                    <a href="#" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition"> <span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Dashboard</a>
+
+                    <a href="#" class="flex items-center my-2 h-8 pr-1 transition text-brand font-medium rounded-lg bg-accent">
+                        <span class="w-1 h-1 rounded-full bg-white inline-block mr-2"></span>My Equipment</a>
+
+                    <a href="#" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition justify-between">
+                        <span class="flex items-center"><span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Bookings</span>
+                        <span class="bg-brand text-white font-semibold w-5 h-5 rounded-full flex justify-center items-center bg-[#C49A1A]">2</span>
+                    </a>
+
+                    <a href="#" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition"> <span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Return Inspection</a>
+
+                    <p class="text-[#bdbdbd] mt-2">Finance</p>
+                    <a href=" owner-wallet.html" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition"> <span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Wallet</a>
+
+                    <p class="text-[#bdbdbd] mt-2">Account</p>
+                    <a href="#" class="block flex items-center my-2 h-8 hover:bg-white/10 pr-1 rounded-lg hover:font-medium hover:text-white transition"> <span class="w-1 h-1 rounded-full bg-[#e0e0e0] mr-2"></span>Profile</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- right col -->
+        <div class="flex flex-col flex-1 min-w-0 min-h-screen bg-blue-100/20">
+
+            <!-- Header -->
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-center bg-white w-full text-sm rounded-2xl gap-3 md:gap-0">
+                <div class="flex flex-col px-4 md:px-8 py-4">
+                    <h3 class="font-bold text-[#1a1a1a]">My Equipment</h3>
+                    <p class="text-sm text-[#1a1a1a]">Add New Equipment</p>
+                </div>
+                <div class="flex flex-row px-4 md:px-8 py-4 gap-3 items-center w-full md:w-auto">
+                    <input type="text" class="rounded-2xl border w-full md:w-76 h-10 px-4 py-3" placeholder="Search">
+                    <button class="hover:text-slate-600 text-black relative shrink-0">
+                        <i class="fa-regular fa-bell fa-2x"></i>
+                        <span class="absolute bg-red-500 text-white rounded-full flex items-center justify-center w-3.5 h-3.5 -top-1 -right-1 text-xs">5</span>
+                    </button>
+                    <div class="w-8 h-8 overflow-hidden rounded-full shrink-0">
+                        <img src="images/woman-profile.png" alt="profile picture" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </header>
+
+            <!-- MAIN -->
+            <main class="flex flex-col flex-1 min-w-0 p-4">
+
+                <!-- steps -->
+                <div class="flex flex-row justify-between max-w-xl mx-auto w-full mb-6 text-xs text-center">
+                    <button onclick="showStep(1)" id="tabBtn1" class="step-btn flex flex-col items-center gap-1">
+                        <span class="step-circle w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center">1</span>
+                        Details
+                    </button>
+                    <button onclick="showStep(2)" id="tabBtn2" class="step-btn flex flex-col items-center gap-1">
+                        <span class="step-circle w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center">2</span>
+                        Photos
+                    </button>
+                    <button onclick="showStep(3)" id="tabBtn3" class="step-btn flex flex-col items-center gap-1">
+                        <span class="step-circle w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center">3</span>
+                        Pricing
+                    </button>
+                    <button onclick="showStep(4)" id="tabBtn4" class="step-btn flex flex-col items-center gap-1">
+                        <span class="step-circle w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center">4</span>
+                        Availability
+                    </button>
+                </div>
+
+                <!-- Details -->
+                <div id="step1" class="step-content">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+                        <div class="bg-white rounded-2xl p-4">
+                            <h3 class="font-semibold text-brand mb-3">General Information</h3>
+                            <label class="text-xs text-slate-500">Equipment Title</label>
+                            <input type="text" placeholder="e.g. Canon EOS R50 DSLR Camera" class="w-full rounded-2xl border px-4 py-2 mt-1 mb-3">
+
+                            <label class="text-xs text-slate-500">Category</label>
+                            <select class="w-full rounded-2xl border px-4 py-2 mt-1 mb-3">
+                                <option>Cameras</option>
+                                <option>Power Tools</option>
+                                <option>Construction</option>
+                            </select>
+
+                            <label class="text-xs text-slate-500">Detailed Description</label>
+                            <textarea class="w-full rounded-2xl border px-4 py-2 mt-1 h-28" placeholder="Describe the equipment's condition, specs, and what's included..."></textarea>
+                            <p class="text-xs text-slate-400 mt-1">0/500 characters</p>
+                        </div>
+
+                        <div class="bg-white rounded-2xl p-4">
+                            <h3 class="font-semibold text-brand mb-3"><i class="fa-solid fa-tag"></i> Rental rates</h3>
+                            <label class="text-xs text-slate-500">Daily Rate (₦)</label>
+                            <input type="number" placeholder="15,000" class="w-full rounded-2xl border px-4 py-2 mt-1 mb-3">
+
+                            <label class="text-xs text-slate-500">Weekly Rate (₦)</label>
+                            <input type="number" placeholder="90,000" class="w-full rounded-2xl border px-4 py-2 mt-1 mb-3">
+
+                            <div class="flex flex-row justify-between items-center">
+                                <div>
+                                    <p class="text-sm font-medium">Allow Security Deposit</p>
+                                    <p class="text-xs text-slate-400">Require renters to pay a refundable deposit</p>
+                                </div>
+                                <input type="checkbox" checked class="w-5 h-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  Photos -->
+                <div id="step2" class="step-content hidden">
+                    <div class="bg-white rounded-2xl p-4">
+                        <h3 class="font-semibold text-brand mb-1">Media Library</h3>
+                        <p class="text-xs text-slate-400 mb-3">High-quality photos increase rental probability by 60%</p>
+
+                        <div class="grid grid-cols-3 gap-3 max-w-md">
+                            <label class="border-2 border-dashed rounded-2xl h-24 flex flex-col items-center justify-center text-slate-400 cursor-pointer col-span-1">
+                                <input type="file" class="hidden">
+                                <i class="fa-solid fa-camera"></i>
+                                <span class="text-xs mt-1">Add Cover Photo</span>
+                            </label>
+                            <label class="border-2 border-dashed rounded-2xl h-24 flex items-center justify-center text-slate-400 cursor-pointer">
+                                <input type="file" class="hidden"><i class="fa-solid fa-plus"></i>
+                            </label>
+                            <label class="border-2 border-dashed rounded-2xl h-24 flex items-center justify-center text-slate-400 cursor-pointer">
+                                <input type="file" class="hidden"><i class="fa-solid fa-plus"></i>
+                            </label>
+                            <label class="border-2 border-dashed rounded-2xl h-24 flex items-center justify-center text-slate-400 cursor-pointer">
+                                <input type="file" class="hidden"><i class="fa-solid fa-plus"></i>
+                            </label>
+                            <label class="border-2 border-dashed rounded-2xl h-24 flex items-center justify-center text-slate-400 cursor-pointer">
+                                <input type="file" class="hidden"><i class="fa-solid fa-plus"></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pticing -->
+                <div id="step3" class="step-content hidden">
+                    <div class="bg-white rounded-2xl p-4 max-w-md">
+                        <h3 class="font-semibold text-brand mb-3">Pricing</h3>
+                        <label class="text-xs text-slate-500">Daily Rate (₦)</label>
+                        <input type="number" placeholder="15,000" class="w-full rounded-2xl border px-4 py-2 mt-1 mb-3">
+                        <label class="text-xs text-slate-500">Weekly Rate (₦)</label>
+                        <input type="number" placeholder="90,000" class="w-full rounded-2xl border px-4 py-2 mt-1">
+                    </div>
+                </div>
+
+                <!-- availability -->
+                <div id="step4" class="step-content hidden">
+                    <div class="bg-white rounded-2xl p-4 max-w-md">
+                        <h3 class="font-semibold text-brand mb-3">Availability</h3>
+                        <label class="flex items-center gap-3 mb-2">
+                            <input type="checkbox" checked>
+                            <span class="text-sm">Available on schedule</span>
+                        </label>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox">
+                            <span class="text-sm">Readily available</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- action butn -->
+                <div class="flex flex-row justify-end gap-3 mt-6">
+                    <button class="bg-brand text-white px-6 py-3 rounded-2xl text-sm">Publish</button>
+                    <button class="bg-accent text-white px-6 py-3 rounded-2xl text-sm">Save Draft</button>
+                </div>
+
+            </main>
+        </div>
+    </section>
+
+    <footer class="bg-brand text-white pt-10 pb-6 mt-6 -mx-6 -mb-6 px-6">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div class="flex items-center gap-2 mb-2"><img src="images/logo.png" class="w-7" alt="TrustLend" onerror="this.style.display='none'" /><span class="font-bold text-base">Trust<span class="text-accent">Lend</span></span></div>
+              <p class="text-white/70 text-xs font-medium mb-2">Borrow with Confidence. Lend with Trust</p>
+              <p class="text-white/40 text-[11px] leading-relaxed">TrustLend is a secure marketplace connecting people and businesses to rent and lend equipment with confidence.</p>
+              <div class="flex gap-3 mt-4">
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fab fa-x-twitter text-sm"></i></a>
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                <a href="#" class="text-white/50 hover:text-accent transition"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+              </div>
+            </div>
+            <div><h4 class="font-semibold text-xs uppercase tracking-wider mb-3">Quick Links</h4><ul class="space-y-2 text-[11px] text-white/60"><li><a href="#" class="hover:text-accent transition">Browse Equipments</a></li><li><a href="#" class="hover:text-accent transition">List Your Equipments</a></li><li><a href="#" class="hover:text-accent transition">How It Works</a></li><li><a href="#" class="hover:text-accent transition">Trust & Safety</a></li><li><a href="#" class="hover:text-accent transition">Pricing</a></li></ul></div>
+            <div><h4 class="font-semibold text-xs uppercase tracking-wider mb-3">Company</h4><ul class="space-y-2 text-[11px] text-white/60"><li><a href="#" class="hover:text-accent transition">About</a></li><li><a href="#" class="hover:text-accent transition">Careers</a></li><li><a href="#" class="hover:text-accent transition">Blog</a></li><li><a href="#" class="hover:text-accent transition">Contact</a></li></ul></div>
+            <div><h4 class="font-semibold text-xs uppercase tracking-wider mb-3">Support</h4><ul class="space-y-2 text-[11px] text-white/60"><li><a href="#" class="hover:text-accent transition">Help Center</a></li><li><a href="#" class="hover:text-accent transition">FAQs</a></li><li><a href="#" class="hover:text-accent transition">Terms of Service</a></li><li><a href="#" class="hover:text-accent transition">Privacy Policy</a></li></ul></div>
+          </div>
+          <div class="border-t border-white/10 pt-5 text-center"><p class="text-[11px] text-white/40">© 2026 TrustLend Technologies Ltd. All rights reserved</p></div>
+        </div>
+      </footer>
+
+    
+
+    <script>
+        
+        function showStep(stepNumber) {
+            
+            document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
+            
+            document.getElementById('step' + stepNumber).classList.remove('hidden');
+
+            document.querySelectorAll('.step-circle').forEach(el => {
+                el.classList.remove('bg-brand', 'text-white');
+                el.classList.add('bg-slate-200', 'text-slate-500');
+            });
+        
+            const activeCircle = document.querySelector('#tabBtn' + stepNumber + ' .step-circle');
+            activeCircle.classList.remove('bg-slate-200', 'text-slate-500');
+            activeCircle.classList.add('bg-brand', 'text-white');
+        }
+    </script>
+</body>
+</html>
