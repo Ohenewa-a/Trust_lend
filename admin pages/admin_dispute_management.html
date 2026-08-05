@@ -42,7 +42,7 @@
     <div class="flex items-center space-x-2">
       <div class="flex items-center justify-center">
         <div>
-          <img src="images/SVG 2.png" alt="logo" class="h-6">
+          <img src="/images/logo.png" alt="logo" class="h-6">
         </div>
       </div>
       <span class="font-bold text-xl tracking-tight text-white">Trust<span class="text-brand-gold">Lend</span></span>
@@ -63,7 +63,7 @@
     <div class="px-6 py-6 flex items-center space-x-3 border-b border-gray-800/50">
       <div class="flex items-center justify-center">
         <div>
-          <img src="images/SVG 2.png" alt="logo">
+          <img src="/images/logo.png" alt="logo" class="h-6">
         </div>
       </div>
       <span class="font-bold text-2xl tracking-tight text-white">Trust<span class="text-brand-gold">Lend</span></span>
@@ -259,10 +259,10 @@
               <p class="text-xs font-medium text-gray-500 mb-2">Owner's evidence</p>
               <div class="grid grid-cols-3 gap-2 mb-3">
                 <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
-                  <img src="images/canon eos r50 2 1.png" alt="Evidence" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<i class=\"fa-solid fa-camera text-gray-300\"></i>'">
+                  <img src="/images/canon eos r50 2 1.png" alt="Evidence" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<i class=\"fa-solid fa-camera text-gray-300\"></i>'">
                 </div>
                 <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
-                  <img src="images/canon eos r50 3 1.png" alt="Evidence" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<i class=\"fa-solid fa-camera text-gray-300\"></i>'">
+                  <img src="/images/canon eos r50 3 1.png" alt="Evidence" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<i class=\"fa-solid fa-camera text-gray-300\"></i>'">
                 </div>
                 <div class="aspect-square bg-gray-50 border border-dashed border-gray-300 rounded-lg flex items-center justify-center text-[10px] font-medium text-brand-navy cursor-pointer">
                   +2 more
@@ -278,10 +278,10 @@
               <p class="text-xs font-medium text-gray-500 mb-2">Renter's evidence</p>
               <div class="grid grid-cols-3 gap-2 mb-3">
                 <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
-                  <img src="images/canon eos r50 2 1.png" alt="Evidence" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<i class=\"fa-solid fa-camera text-gray-300\"></i>'">
+                  <img src="/images/canon eos r50 2 1.png" alt="Evidence" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<i class=\"fa-solid fa-camera text-gray-300\"></i>'">
                 </div>
                 <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
-                  <img src="images/canon eos r50 3 1.png" alt="Evidence" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<i class=\"fa-solid fa-camera text-gray-300\"></i>'">
+                  <img src="/images/canon eos r50 3 1.png" alt="Evidence" class="w-full h-full object-cover" onerror="this.parentElement.classList.add('flex','items-center','justify-center'); this.parentElement.innerHTML='<i class=\"fa-solid fa-camera text-gray-300\"></i>'">
                 </div>
                 <div class="aspect-square bg-gray-50 border border-dashed border-gray-300 rounded-lg flex items-center justify-center text-[10px] font-medium text-brand-navy cursor-pointer">
                   +2 more
@@ -412,26 +412,115 @@
     </div>
   </main>
 
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand-navy text-white text-xs font-semibold px-6 py-3 rounded-lg shadow-lg z-50 hidden" style="animation:fadeIn .3s ease-out"></div>
+
+  <!-- Confirm Modal -->
+  <div id="modal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 text-center" style="animation:fadeIn .3s ease-out">
+      <div class="w-14 h-14 rounded-full bg-brand-navy/10 flex items-center justify-center mx-auto mb-4"><i class="fa-solid fa-gavel text-brand-navy text-xl"></i></div>
+      <h3 class="text-base font-bold text-gray-900 mb-2">Submit Resolution?</h3>
+      <p id="modalText" class="text-sm text-gray-500 mb-6"></p>
+      <div class="flex gap-3">
+        <button onclick="document.getElementById('modal').classList.add('hidden')" class="flex-1 border border-gray-300 text-gray-600 font-semibold py-2.5 rounded-lg text-sm hover:bg-gray-50 transition">Cancel</button>
+        <button id="modalBtn" onclick="confirmSubmit()" class="flex-1 bg-brand-navy text-white font-semibold py-2.5 rounded-lg text-sm transition flex items-center justify-center gap-2">
+          <span id="modalBtnTxt">Confirm</span><i id="modalSpin" class="fa-solid fa-spinner fa-spin hidden"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}</style>
+
   <script>
-    // Responsive Mobile Sidebar Toggle Logic
-    const toggleBtn = document.getElementById('sidebar-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
+    // Sidebar toggle
+    const toggleBtn=document.getElementById('sidebar-toggle'),sidebar=document.getElementById('sidebar'),overlay=document.getElementById('sidebar-overlay');
+    if(toggleBtn&&sidebar&&overlay){toggleBtn.addEventListener('click',()=>{sidebar.classList.remove('-translate-x-full');overlay.classList.remove('hidden');});overlay.addEventListener('click',()=>{sidebar.classList.add('-translate-x-full');overlay.classList.add('hidden');});}
 
-    if (toggleBtn && sidebar && overlay) {
-      function openSidebar() {
-        sidebar.classList.remove('-translate-x-full');
-        overlay.classList.remove('hidden');
-      }
+    const $=id=>document.getElementById(id);
+    function toast(m){const t=$('toast');t.textContent=m;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),2500);}
 
-      function closeSidebar() {
-        sidebar.classList.add('-translate-x-full');
-        overlay.classList.add('hidden');
-      }
+    // --- Tab Filtering ---
+    const tabs=document.querySelectorAll('.flex.items-center.gap-1\\.5 button');
+    const cards=document.querySelectorAll('.space-y-3 > div[class*="cursor-pointer"]');
+    const statusMap={'All':null,'Opened':'Opened','Under Review':'Under Review','Resolved':'Resolved','Closed':'Closed'};
 
-      toggleBtn.addEventListener('click', openSidebar);
-      overlay.addEventListener('click', closeSidebar);
+    tabs.forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        tabs.forEach(t=>{t.className='px-3 py-1.5 rounded text-xs font-medium text-gray-600 bg-white hover:bg-gray-100 transition';});
+        tab.className='px-3 py-1.5 rounded text-xs font-semibold bg-brand-navy text-white';
+        const filter=tab.textContent.trim();
+        cards.forEach(card=>{
+          if(filter==='All'){card.style.display='';return;}
+          const badge=card.querySelector('span[class*="rounded-full"]');
+          const status=badge?.textContent?.trim()||'';
+          card.style.display=status===filter?'':'none';
+        });
+      });
+    });
+
+    // --- Card Selection ---
+    cards.forEach(card=>{
+      card.addEventListener('click',()=>{
+        cards.forEach(c=>{c.classList.remove('border-2','border-brand-navy/10');c.classList.add('border','border-gray-200');});
+        card.classList.remove('border','border-gray-200');card.classList.add('border-2','border-brand-navy/10');
+        const id=card.querySelector('.font-bold')?.textContent?.trim();
+        toast(`Selected dispute ${id}`);
+      });
+    });
+
+    // --- Radio Resolution Styling ---
+    const radios=document.querySelectorAll('[name="resolution"]');
+    radios.forEach(r=>{
+      r.addEventListener('change',()=>{
+        document.querySelectorAll('[name="resolution"]').forEach(radio=>{
+          const lbl=radio.closest('label');
+          lbl.classList.remove('border-2','border-brand-navy');lbl.classList.add('border','border-gray-200');
+        });
+        const lbl=r.closest('label');
+        lbl.classList.remove('border','border-gray-200');lbl.classList.add('border-2','border-brand-navy');
+      });
+    });
+
+    // --- Submit Resolution ---
+    const submitBtn=document.querySelector('button.bg-brand-navy.text-white.font-semibold');
+    const saveDraftBtn=document.querySelector('button.bg-brand-gold');
+    const textarea=document.querySelector('textarea');
+
+    submitBtn?.addEventListener('click',()=>{
+      if(!textarea.value.trim()){toast('Written explanation is required');textarea.classList.add('border-red-400');textarea.focus();return;}
+      textarea.classList.remove('border-red-400');
+      const res=document.querySelector('[name="resolution"]:checked')?.closest('label')?.querySelector('.font-bold')?.textContent?.trim()||'selected resolution';
+      $('modalText').textContent=`You are about to submit "${res}" for dispute #D-0041. This cannot be undone.`;
+      $('modal').classList.remove('hidden');
+    });
+
+    function confirmSubmit(){
+      $('modalBtn').disabled=true;$('modalBtnTxt').textContent='Submitting...';$('modalSpin').classList.remove('hidden');
+      setTimeout(()=>{
+        $('modalBtn').disabled=false;$('modalBtnTxt').textContent='Confirm';$('modalSpin').classList.add('hidden');
+        $('modal').classList.add('hidden');
+        toast('Resolution submitted successfully!');
+        localStorage.removeItem('disputeDraft_D0041');
+      },1500);
     }
+
+    // --- Save Draft ---
+    saveDraftBtn?.addEventListener('click',()=>{
+      const res=document.querySelector('[name="resolution"]:checked')?.value||'';
+      localStorage.setItem('disputeDraft_D0041',JSON.stringify({resolution:res,explanation:textarea.value}));
+      toast('Draft saved!');
+    });
+
+    // Restore draft
+    const draft=localStorage.getItem('disputeDraft_D0041');
+    if(draft){try{const d=JSON.parse(draft);if(d.explanation)textarea.value=d.explanation;if(d.resolution){const r=document.querySelector(`[name="resolution"][value="${d.resolution}"]`);if(r){r.checked=true;r.dispatchEvent(new Event('change'));}}}catch(e){}}
+
+    // --- Export ---
+    document.querySelector('button.bg-brand-navy.text-white.text-xs.font-semibold.rounded.shrink-0')?.addEventListener('click',()=>{window.print();toast('Exporting...');});
+
+    // --- Escape closes modal ---
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')$('modal').classList.add('hidden');});
   </script>
 
 </body>

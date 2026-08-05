@@ -36,7 +36,7 @@
       <!-- TrustLend Logo -->
       <div class=" flex items-center justify-center">
         <div>
-          <img src="images/SVG 2.png" alt="logo">
+          <img src="/images/logo.png" alt="logo">
         </div>
       </div>
       <span class="font-bold text-xl tracking-tight text-white">Trust<span class="text-brand-gold">Lend</span></span>
@@ -58,7 +58,7 @@
     <div class="px-6 py-6 flex items-center space-x-3 border-b border-gray-800/50">
       <div class="flex items-center justify-center">
         <div>
-          <img src="images/SVG 2.png" alt="logo">
+          <img class="" src="/images/logo.png" alt="logo" style="height: 32px; width: 32px;">
         </div>
       </div>
       <span class="font-bold text-2xl tracking-tight text-white">Trust<span class="text-brand-gold">Lend</span></span>
@@ -180,7 +180,7 @@
             <!-- Item 1 -->
             <div class="flex items-center justify-between text-xs py-1">
               <div class="flex items-center space-x-3">
-                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=80&auto=format&fit=crop&q=60" class="w-10 h-10 rounded-full object-cover" alt="Loader">
+                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=80&auto=format&fit=crop&q=60" class="w-10 h-10 rounded-full object-cover" alt="Loader">
                 <div>
                   <h3 class="font-bold text-slate-800">JCB 3CX Eco Backhoe Loader</h3>
                   <p class="text-slate-400 mt-0.5">Owner: <span class="text-slate-600 font-medium">Ngeze Victory</span></p>
@@ -514,68 +514,70 @@
 
   </main>
 
-  <!-- JavaScript Functionality -->
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-brand-dark text-white text-xs font-semibold px-6 py-3 rounded-lg shadow-lg z-50 hidden" style="animation:fadeIn .3s ease-out"></div>
+  <style>@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}</style>
+
   <script>
-    // --- 1. Responsive Sidebar Toggle Logic ---
-    const sidebar = document.getElementById('sidebar');
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const $=id=>document.getElementById(id);
+    function toast(m){const t=$('toast');t.textContent=m;t.classList.remove('hidden');setTimeout(()=>t.classList.add('hidden'),2500);}
 
-    function toggleSidebar() {
-      const isHidden = sidebar.classList.contains('-translate-x-full');
-      if (isHidden) {
-        sidebar.classList.remove('-translate-x-full');
-        sidebarOverlay.classList.remove('hidden');
-      } else {
-        sidebar.classList.add('-translate-x-full');
-        sidebarOverlay.classList.add('hidden');
+    // --- Sidebar Toggle ---
+    const sidebar=$('sidebar'),sidebarToggle=$('sidebar-toggle'),sidebarOverlay=$('sidebar-overlay');
+    function toggleSidebar(){const h=sidebar.classList.contains('-translate-x-full');if(h){sidebar.classList.remove('-translate-x-full');sidebarOverlay.classList.remove('hidden');}else{sidebar.classList.add('-translate-x-full');sidebarOverlay.classList.add('hidden');}}
+    sidebarToggle.addEventListener('click',toggleSidebar);
+    sidebarOverlay.addEventListener('click',toggleSidebar);
+
+    // --- Dispute Alert ---
+    let openDisputeCount=5;
+    const disputeAlert=$('dispute-alert'),dismissBtn=$('dismiss-alert'),disputeCounter=$('open-disputes-count');
+    function checkAlert(){disputeAlert.classList.toggle('hidden',openDisputeCount<=2);}
+    dismissBtn.addEventListener('click',()=>disputeAlert.classList.add('hidden'));
+    $('trigger-multi-dispute').addEventListener('click',()=>{openDisputeCount=5;disputeCounter.textContent='05';checkAlert();toast('Simulated: 5 open disputes');});
+    $('reset-disputes').addEventListener('click',()=>{openDisputeCount=1;disputeCounter.textContent='01';checkAlert();toast('Reset to 1 dispute');});
+    checkAlert();
+
+    // --- Review Buttons (Active Bookings) ---
+    document.querySelectorAll('button').forEach(btn=>{
+      if(btn.textContent.trim()==='Review'){
+        btn.addEventListener('click',()=>{
+          const item=btn.closest('.flex.items-center.justify-between');
+          const name=item?.querySelector('h3')?.textContent?.trim()||'item';
+          toast(`Reviewing: ${name}`);
+        });
       }
-    }
-
-    sidebarToggle.addEventListener('click', toggleSidebar);
-    sidebarOverlay.addEventListener('click', toggleSidebar);
-
-    // --- 2. Dynamic Red Alert Response Logic ---
-    let openDisputeCount = 5; // Default initial count shown in UI
-    const DISPUTE_ALERT_THRESHOLD = 2; // Threshold for multiple dispute error state
-
-    const disputeAlertBanner = document.getElementById('dispute-alert');
-    const dismissAlertBtn = document.getElementById('dismiss-alert');
-    const openDisputesCounterEl = document.getElementById('open-disputes-count');
-    
-    const triggerMultiDisputeBtn = document.getElementById('trigger-multi-dispute');
-    const resetDisputesBtn = document.getElementById('reset-disputes');
-
-    // Function to check and update banner visibility based on dispute count
-    function checkDisputeAlertState() {
-      if (openDisputeCount > DISPUTE_ALERT_THRESHOLD) {
-        disputeAlertBanner.classList.remove('hidden');
-      } else {
-        disputeAlertBanner.classList.add('hidden');
+      if(btn.textContent.trim()==='Resolve'){
+        btn.addEventListener('click',()=>{
+          const item=btn.closest('.flex.items-start.justify-between');
+          const id=item?.querySelector('.font-bold')?.textContent?.trim()||'dispute';
+          window.location.href='admin_dispute_management.html';
+        });
       }
-    }
-
-    // Dismiss button hides the banner directly
-    dismissAlertBtn.addEventListener('click', () => {
-      disputeAlertBanner.classList.add('hidden');
     });
 
-    // Button 1: Simulate Multiple Dispute Error State
-    triggerMultiDisputeBtn.addEventListener('click', () => {
-      openDisputeCount = 5;
-      openDisputesCounterEl.textContent = '05';
-      checkDisputeAlertState();
+    // --- View All Links ---
+    document.querySelectorAll('a').forEach(a=>{
+      if(a.textContent.trim().includes('View all')){
+        a.addEventListener('click',e=>{e.preventDefault();toast('Loading full list...');});
+      }
     });
 
-    // Button 2: Reset to normal state
-    resetDisputesBtn.addEventListener('click', () => {
-      openDisputeCount = 1;
-      openDisputesCounterEl.textContent = '01';
-      checkDisputeAlertState();
+    // --- Chart Bar Tooltips ---
+    document.querySelectorAll('.h-32 > div, .h-28 > div').forEach((bar,i)=>{
+      bar.style.cursor='pointer';bar.title=`Bar ${i+1}`;
+      bar.addEventListener('mouseenter',()=>{bar.style.opacity='0.7';});
+      bar.addEventListener('mouseleave',()=>{bar.style.opacity='1';});
+      bar.addEventListener('click',()=>toast(`Data point ${i+1} selected`));
     });
 
-    // Initialize state on page load (Starts with 5 disputes -> triggers the alert)
-    checkDisputeAlertState();
+    // --- Chart Period Toggle ---
+    document.querySelectorAll('.flex.bg-slate-100 button').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.flex.bg-slate-100 button').forEach(b=>{b.className='px-2.5 py-1 text-slate-500 font-medium rounded-md';});
+        btn.className='px-2.5 py-1 bg-brand-dark text-white font-medium rounded-md shadow-sm';
+        toast(`Showing ${btn.textContent} data`);
+      });
+    });
   </script>
 </body>
 </html>
