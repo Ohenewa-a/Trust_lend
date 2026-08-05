@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TrustLend - Equipment Details</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body class="bg-[#f4f6fb] text-[#556587]">
+    <!--
+      Same shell as the other pages: sidebar is fixed, main is offset by its
+      width, and the footer sits outside the row so it spans the full page.
+
+      Everything in the listing below is filled in from TL_CATALOGUE for
+      whichever ?id= brought you here. The markup carries one listing's worth
+      of placeholder text so the page is never blank while scripts load.
+    -->
+    <div class="flex">
+      <!-- ================= Sidebar ================= -->
+
+      <aside
+        id="sidebar"
+        class="invisible fixed left-0 top-0 z-[90] flex h-screen w-[200px] shrink-0 -translate-x-full flex-col overflow-y-auto bg-[#0b2555] px-4 pb-9 pt-4 text-white transition-transform duration-300 md:visible md:z-[60] md:translate-x-0"
+      >
+        <div class="mb-8 flex items-center gap-2">
+          <img
+            src="../images/SVG 2.png"
+            alt="TrustLend logo"
+            class="h-8 w-8 object-contain"
+          />
+          <span class="text-xl font-bold tracking-tight"
+            >Trust<span class="text-amber-400">Lend</span></span
+          >
+          <button
+            id="closeSidebar"
+            type="button"
+            aria-label="Close menu"
+            class="ml-auto text-lg text-white/70 transition hover:text-white md:hidden"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-1.5">
+          <a
+            href="dashboard.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Dashboard
+          </a>
+
+          <a
+            href="equipment.html"
+            aria-current="page"
+            class="relative flex items-center justify-between rounded-2xl bg-[#ffc43d] py-2 pl-[30px] pr-2.5 text-[11px] font-semibold text-[#10265e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            My Equipment
+          </a>
+
+          <a
+            href="dashboard.html#booking-history"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Bookings
+            <span
+              class="grid h-5 w-5 place-items-center rounded-full bg-[#ffc43d] text-[10px] font-bold text-[#10265e]"
+              >2</span
+            >
+          </a>
+
+          <a
+            href="dashboard.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Return Inspection
+          </a>
+
+          <a
+            href="wallet.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Wallet
+          </a>
+
+          <a
+            href="rentalProfile.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Profile
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Backdrop for the off-canvas menu; tapping it closes the sidebar. -->
+      <div
+        id="sidebarOverlay"
+        class="fixed inset-0 z-[85] hidden bg-black/40 md:hidden"
+      ></div>
+
+      <!-- ================= Main ================= -->
+
+      <main class="min-w-0 flex-1 bg-white p-5 md:ml-[200px] md:p-6">
+        <!-- Top bar -->
+
+        <header
+          class="mb-5 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center"
+        >
+          <div class="flex items-center gap-3">
+            <button
+              id="menuButton"
+              type="button"
+              aria-label="Open menu"
+              aria-controls="sidebar"
+              aria-expanded="false"
+              class="text-lg text-[#10265e] md:hidden"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div>
+              <!-- The trail back to the listing you came from. -->
+              <a
+                href="equipment.html"
+                class="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#8a97ad] transition hover:text-[#10265e]"
+              >
+                <i class="fa-solid fa-arrow-left text-[9px]"></i> Back to
+                equipment
+              </a>
+              <h1
+                id="pageTitle"
+                class="mt-1 text-[22px] font-bold text-[#10265e]"
+              >
+                Equipment Details
+              </h1>
+            </div>
+          </div>
+
+          <div class="flex w-full items-center gap-4 lg:w-auto">
+            <button
+              type="button"
+              aria-label="Notifications"
+              class="relative ml-auto text-lg text-[#555] lg:ml-0"
+            >
+              <i class="fa-regular fa-bell"></i>
+              <span
+                class="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-red-500"
+              ></span>
+            </button>
+
+            <img
+              src="../images/Profile Pic.png"
+              alt="Your profile"
+              class="h-9 w-9 shrink-0 rounded-full object-cover"
+            />
+          </div>
+        </header>
+
+        <!-- Shown when ?id= names something the catalogue does not have. -->
+        <p
+          id="unknownNotice"
+          style="display: none"
+          class="mb-4 rounded-[8px] bg-[#fff3d4] px-3 py-2 text-[10px] text-[#b47f06]"
+        >
+          That listing could not be found, so the first one in the catalogue is
+          shown instead.
+        </p>
+
+        <!-- ================= Listing ================= -->
+
+        <section
+          class="grid items-start gap-6 bg-[#f7f9ff] p-4 md:p-5 xl:grid-cols-[minmax(0,1fr)_290px]"
+        >
+          <!-- ============ Left column ============ -->
+
+          <div class="min-w-0">
+            <!-- ---------- Photo ---------- -->
+
+            <!-- One photo, because one photo is what a listing carries. The
+                 mock's three-up gallery would mean inventing two more angles
+                 of gear there are no other shots of. -->
+            <img
+              id="heroImage"
+              src="../images/hero-camera.png"
+              alt=""
+              class="h-[240px] w-full rounded-[10px] object-cover sm:h-[300px]"
+            />
+
+            <!-- ---------- Title + rating ---------- -->
+
+            <h2 id="itemName" class="mt-4 text-[15px] font-bold text-[#10265e]">
+              &nbsp;
+            </h2>
+
+            <div class="mt-2 flex flex-wrap items-center gap-3">
+              <span class="text-[22px] leading-none text-[#ffc43d]">
+                <i class="fa-solid fa-star"></i>
+              </span>
+              <span class="text-[11px] font-medium text-[#10265e]">
+                <span id="itemRating">—</span>
+                <span id="itemReviews" class="text-[#8a97ad]"></span>
+              </span>
+              <span id="itemCity" class="text-[11px] text-[#8a97ad]"></span>
+              <span
+                id="itemAvailability"
+                class="inline-flex items-center gap-1 rounded-full bg-[#e5f7ee] px-2.5 py-1 text-[10px] font-semibold text-[#12764a]"
+              >
+                <i class="fa-solid fa-circle-check"></i> AVAILABLE
+              </span>
+              <span
+                id="itemCategory"
+                class="inline-flex items-center rounded-full bg-[#edf2fb] px-2.5 py-1 text-[10px] font-semibold text-[#2f5bd0]"
+              ></span>
+            </div>
+
+            <!-- ---------- About ---------- -->
+
+            <h3 class="mt-5 text-[13px] font-bold text-[#10265e]">
+              About The Equipment
+            </h3>
+            <p
+              id="itemAbout"
+              class="mt-2 max-w-[620px] text-[11px] leading-relaxed text-[#8a97ad]"
+            ></p>
+
+            <!-- ---------- Key specs ---------- -->
+
+            <!-- Four tiles, filled from the category's detail copy. -->
+            <div
+              id="highlights"
+              class="mt-4 grid gap-6 rounded-[10px] border border-[#e7edf9] bg-white px-6 py-7 sm:grid-cols-2"
+            ></div>
+
+            <!-- ---------- Specifications ---------- -->
+
+            <div class="mt-5 rounded-[10px] border border-[#e7edf9] bg-white">
+              <h3 class="px-5 pt-4 text-[13px] font-bold text-[#10265e]">
+                Specifications
+              </h3>
+
+              <div class="overflow-x-auto px-2 pb-2">
+                <table
+                  class="w-full min-w-[420px] border-collapse text-left text-[11px]"
+                >
+                  <thead>
+                    <tr class="bg-[#f0f2f5]">
+                      <th class="px-3 py-2 font-semibold text-[#10265e]">
+                        Feature
+                      </th>
+                      <th
+                        class="px-3 py-2 text-right font-semibold text-[#10265e]"
+                      >
+                        Detail
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="specsBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- ---------- Owner ---------- -->
+
+            <div
+              class="mt-5 inline-flex w-full max-w-[330px] items-center gap-3 rounded-[10px] border border-[#e7edf9] bg-white p-4 shadow-[0_4px_14px_rgba(16,38,94,0.06)]"
+            >
+              <img
+                src="../images/dp.png"
+                alt=""
+                class="h-11 w-11 shrink-0 rounded-full object-cover"
+              />
+
+              <div class="min-w-0">
+                <p id="ownerName" class="text-[12px] font-bold text-[#10265e]">
+                  &nbsp;
+                </p>
+                <p class="text-[10px] text-[#8a97ad]">
+                  Verified owner · Member since 2021
+                </p>
+
+                <div class="mt-2.5 flex items-center gap-6">
+                  <div>
+                    <p
+                      id="ownerRentals"
+                      class="text-[11px] font-bold text-[#10265e]"
+                    >
+                      —
+                    </p>
+                    <p class="text-[9px] text-[#8a97ad]">Total Rentals</p>
+                  </div>
+                  <div>
+                    <p class="text-[11px] font-bold text-[#10265e]">100%</p>
+                    <p class="text-[9px] text-[#8a97ad]">Response Rate</p>
+                  </div>
+                  <div>
+                    <p class="text-[11px] font-bold text-[#10265e]">1h</p>
+                    <p class="text-[9px] text-[#8a97ad]">Avg. Response</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------- More from this category ---------- -->
+
+            <!-- Closes the loop: listing to detail and back out to another
+                 listing, without a trip through the browser's back button. -->
+            <section id="relatedSection" class="mt-6" style="display: none">
+              <h3 id="relatedHeading" class="text-[13px] font-bold text-[#10265e]">
+                More equipment
+              </h3>
+              <div
+                id="related"
+                class="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+              ></div>
+            </section>
+          </div>
+
+          <!-- ============ Right column ============ -->
+
+          <aside class="xl:sticky xl:top-6">
+            <!-- ---------- Booking card ---------- -->
+
+            <div
+              class="rounded-[10px] bg-white p-4 shadow-[0_4px_14px_rgba(16,38,94,0.08)]"
+            >
+              <div class="flex items-center justify-between gap-2">
+                <p class="text-[13px] font-bold text-[#10265e]">
+                  <span id="itemRate">—</span>
+                  <span class="text-[10px] font-normal text-[#8a97ad]"
+                    >/day</span
+                  >
+                </p>
+                <span
+                  class="rounded-full bg-[#fff3d4] px-2.5 py-1 text-[9px] font-semibold text-[#b47f06]"
+                  >High Demand</span
+                >
+              </div>
+
+              <!-- Dates drive every figure below. -->
+              <div
+                class="mt-4 grid grid-cols-2 gap-3 border-b border-[#eef1f6] pb-3"
+              >
+                <div>
+                  <label
+                    for="startDate"
+                    class="block text-[9px] font-semibold uppercase tracking-[0.06em] text-[#8a97ad]"
+                    >Start Date</label
+                  >
+                  <input
+                    id="startDate"
+                    type="date"
+                    value="2026-07-30"
+                    class="mt-1 w-full border-none bg-transparent p-0 text-[11px] font-semibold text-[#10265e] outline-none"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="endDate"
+                    class="block text-[9px] font-semibold uppercase tracking-[0.06em] text-[#8a97ad]"
+                    >End Date</label
+                  >
+                  <input
+                    id="endDate"
+                    type="date"
+                    value="2026-08-02"
+                    class="mt-1 w-full border-none bg-transparent p-0 text-[11px] font-semibold text-[#10265e] outline-none"
+                  />
+                </div>
+              </div>
+
+              <div class="border-b border-[#eef1f6] py-3">
+                <p
+                  class="text-[9px] font-semibold uppercase tracking-[0.06em] text-[#8a97ad]"
+                >
+                  Delivery
+                </p>
+                <p
+                  id="deliveryLine"
+                  class="mt-1 text-[11px] font-semibold text-[#10265e]"
+                >
+                  Self Pickup
+                </p>
+              </div>
+
+              <!-- Every amount below is recalculated from the dates above. -->
+              <div class="space-y-2.5 border-b border-[#eef1f6] py-3">
+                <div class="flex items-center justify-between gap-2">
+                  <span id="priceRateLine" class="text-[10px] text-[#8a97ad]"
+                    >—</span
+                  >
+                  <span
+                    id="priceSubtotal"
+                    class="text-[10px] font-semibold text-[#10265e]"
+                    >—</span
+                  >
+                </div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[10px] text-[#8a97ad]">Discount (10%)</span>
+                  <span
+                    id="priceDiscount"
+                    class="text-[10px] font-semibold text-[#10265e]"
+                    >—</span
+                  >
+                </div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[10px] text-[#8a97ad]">Service Fee</span>
+                  <span
+                    id="priceServiceFee"
+                    class="text-[10px] font-semibold text-[#10265e]"
+                    >—</span
+                  >
+                </div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[10px] text-[#8a97ad]"
+                    >Refundable Deposit</span
+                  >
+                  <span
+                    id="priceDeposit"
+                    class="text-[10px] font-semibold text-[#10265e]"
+                    >—</span
+                  >
+                </div>
+                <div
+                  class="flex items-center justify-between gap-2 border-t border-[#eef1f6] pt-2.5"
+                >
+                  <span class="text-[10px] font-bold text-[#10265e]"
+                    >Total due today</span
+                  >
+                  <span
+                    id="priceTotal"
+                    class="text-[11px] font-bold text-[#10265e]"
+                    >—</span
+                  >
+                </div>
+              </div>
+
+              <div class="mt-3 flex gap-2 rounded-[8px] bg-[#f0f2f5] p-3">
+                <i
+                  class="fa-solid fa-shield-halved mt-0.5 text-[10px] text-[#10265e]"
+                ></i>
+                <p id="depositNote" class="text-[9px] leading-relaxed text-[#8a97ad]">
+                  Held securely and released 24 hours after gear return.
+                  Insurance coverage included.
+                </p>
+              </div>
+
+              <p id="dateError" class="tl-error mt-3" style="display: none"></p>
+
+              <button
+                id="bookNowButton"
+                type="button"
+                class="mt-4 w-full rounded-[8px] bg-[#10265e] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.06em] text-white transition hover:bg-[#173a86]"
+              >
+                Book Now
+              </button>
+
+              <p class="mt-2.5 text-center text-[9px] text-[#8a97ad]">
+                You won't be charged yet
+              </p>
+            </div>
+
+            <!-- ---------- Trust signals ---------- -->
+
+            <div class="mt-5 px-1">
+              <h3 class="text-[12px] font-bold text-[#10265e]">
+                Secure Marketplace
+              </h3>
+
+              <ul class="mt-3 space-y-2.5">
+                <li class="flex items-center gap-2">
+                  <i
+                    class="fa-solid fa-shield-halved text-[10px] text-[#2f5bd0]"
+                  ></i>
+                  <span class="text-[9px] text-[#556587]"
+                    >P2P Insurance Payment Included</span
+                  >
+                </li>
+                <li class="flex items-center gap-2">
+                  <i
+                    class="fa-solid fa-user-check text-[10px] text-[#2f5bd0]"
+                  ></i>
+                  <span class="text-[9px] text-[#556587]"
+                    >Identity Verified Owners Only</span
+                  >
+                </li>
+                <li class="flex items-center gap-2">
+                  <i class="fa-solid fa-lock text-[10px] text-[#2f5bd0]"></i>
+                  <span class="text-[9px] text-[#556587]"
+                    >Secure Escrow Protection</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <!--
+      Booking confirmation. Written out here rather than built in JavaScript:
+      Tailwind's browser build only generates CSS for class names present in
+      the markup, so a dialog assembled at runtime would render unstyled.
+    -->
+    <div
+      id="bookingModal"
+      style="display: none"
+      class="fixed inset-0 z-[120] flex items-center justify-center px-4"
+    >
+      <div data-modal-backdrop class="absolute inset-0 bg-black/40"></div>
+
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="bookingTitle"
+        class="relative w-full max-w-[340px] rounded-[12px] bg-white p-5 text-center shadow-[0_20px_50px_rgba(16,38,94,0.3)]"
+      >
+        <span
+          class="mx-auto grid h-11 w-11 place-items-center rounded-full bg-[#e5f7ee] text-[16px] text-[#12764a]"
+        >
+          <i class="fa-solid fa-circle-check"></i>
+        </span>
+
+        <h2 id="bookingTitle" class="mt-3 text-[14px] font-bold text-[#10265e]">
+          Booking confirmed
+        </h2>
+        <p id="bookingSummary" class="mt-1.5 text-[11px] text-[#8a97ad]"></p>
+        <p id="bookingTotal" class="mt-3 text-[18px] font-bold text-[#10265e]">
+          —
+        </p>
+        <p class="mt-1 text-[9px] text-[#8a97ad]">
+          The owner has been notified and will confirm pickup details.
+        </p>
+
+        <button
+          type="button"
+          data-modal-close
+          class="mt-5 w-full rounded-[8px] bg-[#10265e] px-4 py-2.5 text-[11px] font-semibold text-white transition hover:bg-[#173a86]"
+        >
+          Done
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= Footer ================= -->
+
+    <footer
+      class="relative z-[80] bg-[#0b2555] px-6 pb-7 pt-12 text-white sm:px-10"
+    >
+      <div
+        class="grid gap-8 pb-9 sm:grid-cols-2 lg:grid-cols-[1.8fr_1fr_1fr_1fr] lg:gap-x-12"
+      >
+        <div>
+          <img
+            src="../images/SVG 2.png"
+            alt="TrustLend logo"
+            class="mb-3 h-9 w-9 object-contain"
+          />
+          <p class="mb-3 text-base font-bold text-white">
+            Borrow with Confidence. Lend with Trust
+          </p>
+          <p class="max-w-[320px] text-sm leading-relaxed text-white/70">
+            TrustLend is a secure marketplace connecting people and businesses
+            to rent and lend equipment with confidence.
+          </p>
+
+          <div class="mt-5 flex items-center gap-2.5">
+            <a
+              href="#"
+              aria-label="Instagram"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="X"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-x-twitter"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-full bg-[#1877f2] text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md bg-[#0a66c2] text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-[15px] font-bold text-[#ffc43d]">QUICK LINKS</h4>
+          <a
+            href="equipment.html"
+            class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Browse Equipments</a
+          >
+          <a
+            href="equipment.html"
+            class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >List Your Equipments</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >How It Works</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Trust &amp; Safety</a
+          >
+          <a href="#" class="block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Pricing</a
+          >
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-[15px] font-bold text-[#ffc43d]">COMPANY</h4>
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >About</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Careers</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Blog</a
+          >
+          <a href="#" class="block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Contact</a
+          >
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-[15px] font-bold text-[#ffc43d]">SUPPORT</h4>
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Help Center</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >FAQs</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Terms of Service</a
+          >
+          <a href="#" class="block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Privacy Policy</a
+          >
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 text-[13px] text-white/60">
+        <small>© 2026 TrustLend Technologies Ltd. All rights reserved</small>
+        <!-- Demo affordance: wipes saved state and reseeds. -->
+        <button
+          type="button"
+          data-action="reset-demo"
+          class="text-[11px] text-white/40 underline transition hover:text-white/70"
+        >
+          Reset demo data
+        </button>
+      </div>
+    </footer>
+
+    <!--
+      Plain deferred scripts, not modules: `type="module"` is blocked by CORS
+      when a page is opened straight from disk, and these need to work both
+      ways. Order matters — data, then store, then shared UI, then the page.
+    -->
+    <script defer src="js/tl-data.js"></script>
+    <script defer src="js/tl-store.js"></script>
+    <script defer src="js/tl-ui.js"></script>
+    <script defer src="js/page-equipment-details.js"></script>
+  </body>
+</html>

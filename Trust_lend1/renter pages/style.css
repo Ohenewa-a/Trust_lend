@@ -1,0 +1,459 @@
+:root {
+  color-scheme: light;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --surface-soft: #f7faff;
+  --surface-muted: #edf2fb;
+  --text: #10265e;
+  --muted: #5f728f;
+  --primary: #10265e;
+  --accent: #ffd54f;
+  --accent-strong: #f4c542;
+  --border: #dce6f5;
+  --shadow: 0 14px 40px rgba(16, 38, 94, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.card-soft {
+  background: var(--surface-soft);
+}
+
+.tag {
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.sidebar {
+  background: #102a5a;
+}
+
+.sidebar a {
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: rgba(255, 213, 79, 0.14);
+  color: #ffffff;
+}
+
+/* ============================================================
+   Interactive pieces.
+
+   These live here rather than as Tailwind utilities because the
+   browser build only emits CSS for classes it can find in the
+   markup — anything JS switches on at runtime has to be styled
+   from a real stylesheet.
+   ============================================================ */
+
+/* Filter chips. Selection rides on aria-pressed so the state is
+   announced to screen readers and styleable without class swaps. */
+.tl-chip {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--muted);
+  padding: 0.25rem 0.875rem;
+  font-size: 11px;
+  font-weight: 500;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.tl-chip:hover {
+  background: #f5f8ff;
+}
+
+.tl-chip[aria-pressed="true"] {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.tl-chip:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+/* Wallet uses a smaller squared chip. */
+.tl-chip--sq {
+  border-radius: 6px;
+  padding: 0.25rem 0.625rem;
+  font-size: 10px;
+}
+
+/* Squared chip used by the search page's category and rating filters. */
+.tl-chip--box {
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  font-size: 11px;
+  color: var(--text);
+}
+
+/* Custom checkbox for the filter popup. accent-color paints the box in the
+   brand navy without replacing the native control, so keyboard and screen
+   reader behaviour is untouched. */
+.tl-checkbox {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* Dual-handle price range.
+
+   Two range inputs stacked on one drawn track. The inputs themselves are
+   transparent and pointer-events:none so clicks fall through to whichever
+   thumb is under the cursor; only the thumbs take pointer events back. */
+.tl-range-wrap {
+  position: relative;
+  height: 20px;
+}
+
+.tl-range-track,
+.tl-range-fill {
+  position: absolute;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.tl-range-track {
+  left: 0;
+  right: 0;
+  background: var(--surface-muted);
+}
+
+.tl-range-fill {
+  left: 0;
+  width: 100%;
+  background: var(--primary);
+}
+
+.tl-range {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.tl-range::-webkit-slider-runnable-track {
+  height: 20px;
+  background: transparent;
+}
+
+.tl-range::-moz-range-track {
+  height: 20px;
+  background: transparent;
+}
+
+.tl-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  height: 14px;
+  width: 14px;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+}
+
+.tl-range::-moz-range-thumb {
+  pointer-events: auto;
+  height: 14px;
+  width: 14px;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+}
+
+.tl-range:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.tl-range:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+/* Toast for placeholder links and confirmations. */
+.tl-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 200;
+  transform: translate(-50%, 16px);
+  max-width: min(90vw, 420px);
+  border-radius: 10px;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 0.75rem 1.15rem;
+  font-size: 12px;
+  box-shadow: 0 12px 30px rgba(16, 38, 94, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+}
+
+.tl-toast--on {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* Inputs inside the pre-seeded modals. */
+.tl-field {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 0.6rem 0.75rem;
+  font-size: 12px;
+  color: var(--text);
+  outline: none;
+}
+
+.tl-field:focus {
+  border-color: #2f5bd0;
+}
+
+.tl-error {
+  color: #c0362c;
+  font-size: 10px;
+}
+
+/* ============================================================
+   Marketplace search results.
+
+   The result cards and the pager buttons are built by JavaScript from
+   TL_CATALOGUE — there are three dozen listings and they move between
+   pages, so printing them by hand is not on. Same rule as the chips
+   above applies: everything they need is defined here, because the
+   browser build cannot emit CSS for utilities it never parsed.
+   ============================================================ */
+
+/* The whole card is the link through to the details page — picking a listing
+   should not mean hunting for a small target inside it. */
+.tl-product {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #ffffff;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+a.tl-product:hover {
+  border-color: #c3d4ee;
+  box-shadow: 0 10px 24px rgba(16, 38, 94, 0.1);
+  transform: translateY(-2px);
+}
+
+a.tl-product:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.tl-product__image {
+  height: 105px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.tl-product__body {
+  padding: 0.55rem 0.6rem 0.7rem;
+}
+
+.tl-product__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tl-product__row + .tl-product__row {
+  margin-top: 0.3rem;
+}
+
+/* Names run long and cities must not be pushed off the card, so the name
+   is the part that gets truncated. */
+.tl-product__name {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.tl-product__city {
+  flex: none;
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.tl-product__price {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tl-product__per {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.tl-product__pill {
+  flex: none;
+  border: 1px solid #f0dcae;
+  border-radius: 999px;
+  background: #fff8e6;
+  padding: 0.1rem 0.4rem;
+  font-size: 8px;
+  font-weight: 600;
+  color: #b47f06;
+}
+
+.tl-product__pill--sched {
+  border-color: #cfe0f7;
+  background: #eef4ff;
+  color: #2f5bd0;
+}
+
+.tl-product__stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 0.4rem;
+  font-size: 9px;
+  color: var(--accent-strong);
+}
+
+.tl-star--off {
+  color: #dde5f1;
+}
+
+/* The star glyphs are decorative, so the rating is announced once through
+   one of these instead of five times as "star star star". */
+.tl-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Pager. Current page rides on aria-current so the styling and the
+   announcement come from the same attribute. */
+.tl-page {
+  min-width: 26px;
+  height: 26px;
+  padding: 0 0.4rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  transition: background 0.15s ease;
+}
+
+.tl-page:hover:not(:disabled) {
+  background: var(--surface-muted);
+}
+
+.tl-page[aria-current="page"] {
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.tl-page:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.tl-page:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-chip,
+  .tl-toast,
+  .tl-page,
+  .tl-product {
+    transition: none;
+  }
+
+  a.tl-product:hover {
+    transform: none;
+  }
+}
