@@ -25,10 +25,12 @@
 <body class="bg-[#F4F7FB] text-[#0F172A] antialiased flex flex-col min-h-screen">
 
   <!-- MOBILE OVERLAY BACKDROP -->
- <div class="flex flex-col lg:flex-row flex-1">
+  <div id="sidebar-overlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-slate-900/50 z-40 lg:hidden"></div>
+
+  <div class="flex flex-col lg:flex-row flex-1">
 
     <!-- SIDEBAR -->
-    <aside id="sidebar" class="hidden lg:block w-full lg:w-64 bg-[#0B2545] text-white flex-shrink-0">
+    <aside id="sidebar" class="hidden lg:block w-full lg:w-64 bg-[#0B2545] text-white flex-shrink-0 z-50">
       <div class="p-6">
         <!-- Logo -->
         <div class="flex items-center gap-2 mb-8">
@@ -65,7 +67,7 @@
                     <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                     Bookings
                   </span>
-                  <span class="bg-amber-400 text-[#0B2545] text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">2</span>
+                  <span id="booking-badge" class="bg-amber-400 text-[#0B2545] text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">2</span>
                 </a>
               </li>
               <li>
@@ -118,21 +120,32 @@
           <!-- Search Bar -->
           <div class="relative w-full md:w-64">
             <input 
+              id="dashboardSearch"
               type="text" 
-              placeholder="Search" 
+              placeholder="Search table items..." 
+              onkeyup="filterTableBySearch()"
               class="w-full bg-slate-50 text-xs text-slate-800 placeholder-slate-400 pl-4 pr-9 py-2 rounded-full border border-slate-200 focus:outline-none focus:border-[#0B2545]"
             />
             <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2"></i>
           </div>
 
           <!-- Notification Bell -->
-          <button class="relative p-2 text-slate-600 hover:bg-slate-100 rounded-full transition">
-            <i data-lucide="bell" class="w-5 h-5"></i>
-            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
-          </button>
+          <div class="relative">
+            <button onclick="toggleNotifications()" class="relative p-2 text-slate-600 hover:bg-slate-100 rounded-full transition">
+              <i data-lucide="bell" class="w-5 h-5"></i>
+              <span id="notification-dot" class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+            </button>
+            <div id="notification-popover" class="hidden absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-slate-100 p-3 z-50 text-xs">
+              <p class="font-bold text-[#0B2545] border-b pb-2 mb-2">Notifications</p>
+              <ul class="space-y-2 text-slate-600">
+                <li class="p-1.5 hover:bg-slate-50 rounded"><strong>Mary O.</strong> requested Canon EOS R50</li>
+                <li class="p-1.5 hover:bg-slate-50 rounded"><strong>Emeka A.</strong> requested DJI Mini 3</li>
+              </ul>
+            </div>
+          </div>
 
           <!-- User Avatar -->
-          <div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 flex-shrink-0">
+          <div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 flex-shrink-0 cursor-pointer" onclick="window.location.href='profile.html'">
             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Profile" class="w-full h-full object-cover" />
           </div>
         </div>
@@ -188,41 +201,47 @@
             <div>
               <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Pending Booking Requests</h2>
               
-              <!-- Item 1 -->
-              <div class="border-b border-slate-100 pb-4 mb-4 space-y-3">
-                <div class="flex gap-3">
-                  <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=150&q=80" class="w-12 h-12 rounded-lg object-cover bg-slate-100" />
-                  <div>
-                    <h3 class="text-xs font-bold text-[#0B2545]">Canon EOS R50</h3>
-                    <p class="text-[11px] text-slate-500">Requested by <span class="font-semibold text-slate-800">Mary O.</span></p>
-                    <p class="text-[10px] text-slate-400">Jul 26 - Jul 29 · 3 days</p>
+              <div id="pending-requests-container">
+                <!-- Item 1 -->
+                <div id="request-item-1" class="border-b border-slate-100 pb-4 mb-4 space-y-3">
+                  <div class="flex gap-3">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=150&q=80" class="w-12 h-12 rounded-lg object-cover bg-slate-100" />
+                    <div>
+                      <h3 class="text-xs font-bold text-[#0B2545]">Canon EOS R50</h3>
+                      <p class="text-[11px] text-slate-500">Requested by <span class="font-semibold text-slate-800">Mary O.</span></p>
+                      <p class="text-[10px] text-slate-400">Jul 26 - Jul 29 · 3 days</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button onclick="handleBookingAction('request-item-1', 'accepted', 'Canon EOS R50')" class="bg-[#0B2545] text-white px-4 py-1.5 rounded-full text-xs font-medium hover:bg-slate-800 transition">Accept</button>
+                    <button onclick="handleBookingAction('request-item-1', 'declined', 'Canon EOS R50')" class="bg-amber-400 text-[#0B2545] px-4 py-1.5 rounded-full text-xs font-medium hover:bg-amber-500 transition">Decline</button>
+                    <a href="booking-r.html" class="text-[11px] text-slate-500 hover:underline ml-auto">View details</a>
                   </div>
                 </div>
-                <div class="flex items-center gap-2">
-                  <button class="bg-[#0B2545] text-white px-4 py-1.5 rounded-full text-xs font-medium hover:bg-slate-800 transition">Accept</button>
-                  <button class="bg-amber-400 text-[#0B2545] px-4 py-1.5 rounded-full text-xs font-medium hover:bg-amber-500 transition">Decline</button>
-                  <a href="#" class="text-[11px] text-slate-500 hover:underline ml-auto">View details</a>
+
+                <!-- Item 2 -->
+                <div id="request-item-2" class="space-y-3">
+                  <div class="flex gap-3">
+                    <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=150&q=80" class="w-12 h-12 rounded-lg object-cover bg-slate-100" />
+                    <div class="flex-1">
+                      <div class="flex justify-between items-start">
+                        <h3 class="text-xs font-bold text-[#0B2545]">DJI Mini 3 Drone</h3>
+                        <span class="bg-amber-400 text-[#0B2545] text-[9px] font-extrabold px-1.5 py-0.5 rounded">New</span>
+                      </div>
+                      <p class="text-[11px] text-slate-500">Requested by <span class="font-semibold text-slate-800">Emeka A.</span></p>
+                      <p class="text-[10px] text-slate-400">Jul 27 - Jul 28 · 1 day</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button onclick="handleBookingAction('request-item-2', 'accepted', 'DJI Mini 3 Drone')" class="bg-[#0B2545] text-white px-4 py-1.5 rounded-full text-xs font-medium hover:bg-slate-800 transition">Accept</button>
+                    <button onclick="handleBookingAction('request-item-2', 'declined', 'DJI Mini 3 Drone')" class="bg-amber-400 text-[#0B2545] px-4 py-1.5 rounded-full text-xs font-medium hover:bg-amber-500 transition">Decline</button>
+                    <a href="booking-r.html" class="text-[11px] text-slate-500 hover:underline ml-auto">View details</a>
+                  </div>
                 </div>
               </div>
 
-              <!-- Item 2 -->
-              <div class="space-y-3">
-                <div class="flex gap-3">
-                  <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=150&q=80" class="w-12 h-12 rounded-lg object-cover bg-slate-100" />
-                  <div class="flex-1">
-                    <div class="flex justify-between items-start">
-                      <h3 class="text-xs font-bold text-[#0B2545]">DJI Mini 3 Drone</h3>
-                      <span class="bg-amber-400 text-[#0B2545] text-[9px] font-extrabold px-1.5 py-0.5 rounded">New</span>
-                    </div>
-                    <p class="text-[11px] text-slate-500">Requested by <span class="font-semibold text-slate-800">Emeka A.</span></p>
-                    <p class="text-[10px] text-slate-400">Jul 27 - Jul 28 · 1 day</p>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2">
-                  <button class="bg-[#0B2545] text-white px-4 py-1.5 rounded-full text-xs font-medium hover:bg-slate-800 transition">Accept</button>
-                  <button class="bg-amber-400 text-[#0B2545] px-4 py-1.5 rounded-full text-xs font-medium hover:bg-amber-500 transition">Decline</button>
-                  <a href="#" class="text-[11px] text-slate-500 hover:underline ml-auto">View details</a>
-                </div>
+              <div id="no-requests-msg" class="hidden text-center py-6 text-xs text-slate-400">
+                No pending requests.
               </div>
             </div>
 
@@ -230,7 +249,7 @@
             <div class="bg-[#0B2545] text-white px-4 py-2.5 rounded-lg flex items-center justify-between text-xs">
               <span class="text-[11px] text-slate-300">Auto-decline if no response after 24h</span>
               <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" checked class="sr-only peer">
+                <input id="autoDeclineToggle" type="checkbox" checked onchange="toggleAutoDecline(this)" class="sr-only peer">
                 <div class="w-8 h-4 bg-slate-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-amber-400"></div>
               </label>
             </div>
@@ -243,7 +262,7 @@
             <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
               <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Active Rentals</h2>
-                <a href="#" class="text-xs text-slate-500 hover:underline">View all →</a>
+                <a href="booking-r.html" class="text-xs text-slate-500 hover:underline">View all →</a>
               </div>
               
               <div class="space-y-3">
@@ -339,19 +358,19 @@
 
               <!-- Bar Chart Placeholder -->
               <div class="flex items-end justify-between h-16 pt-2 px-1 gap-1">
-                <div class="bg-[#0B2545] w-full h-[40%] rounded-t"></div>
-                <div class="bg-[#0B2545] w-full h-[60%] rounded-t"></div>
-                <div class="bg-[#0B2545] w-full h-[30%] rounded-t"></div>
-                <div class="bg-[#0B2545] w-full h-[80%] rounded-t"></div>
-                <div class="bg-[#0B2545] w-full h-[50%] rounded-t"></div>
-                <div class="bg-[#0B2545] w-full h-[100%] rounded-t"></div>
-                <div class="bg-[#0B2545] w-full h-[70%] rounded-t"></div>
+                <div class="bg-[#0B2545] w-full h-[40%] rounded-t hover:bg-amber-400 transition" title="Mon: ₦20,000"></div>
+                <div class="bg-[#0B2545] w-full h-[60%] rounded-t hover:bg-amber-400 transition" title="Tue: ₦30,000"></div>
+                <div class="bg-[#0B2545] w-full h-[30%] rounded-t hover:bg-amber-400 transition" title="Wed: ₦15,000"></div>
+                <div class="bg-[#0B2545] w-full h-[80%] rounded-t hover:bg-amber-400 transition" title="Thu: ₦40,000"></div>
+                <div class="bg-[#0B2545] w-full h-[50%] rounded-t hover:bg-amber-400 transition" title="Fri: ₦25,000"></div>
+                <div class="bg-[#0B2545] w-full h-[100%] rounded-t hover:bg-amber-400 transition" title="Sat: ₦50,000"></div>
+                <div class="bg-[#0B2545] w-full h-[70%] rounded-t hover:bg-amber-400 transition" title="Sun: ₦35,000"></div>
               </div>
               <div class="flex justify-between text-[9px] text-slate-400 font-bold mt-1 px-1">
                 <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
               </div>
 
-              <button class="w-full bg-[#0B2545] text-white rounded-lg py-2 mt-4 text-xs font-semibold hover:bg-slate-800 transition">
+              <button onclick="window.location.href='owner-wallet.html'" class="w-full bg-[#0B2545] text-white rounded-lg py-2 mt-4 text-xs font-semibold hover:bg-slate-800 transition">
                 Go to Wallet
               </button>
             </div>
@@ -361,10 +380,10 @@
               <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Quick Actions</h2>
               
               <div class="space-y-3">
-                <button class="w-full bg-[#0B2545] text-white py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition shadow-sm">
+                <button onclick="window.location.href='my-equipment.html'" class="w-full bg-[#0B2545] text-white py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition shadow-sm">
                   Add New Listing
                 </button>
-                <button class="w-full bg-amber-400 text-[#0B2545] py-2.5 rounded-xl text-xs font-bold hover:bg-amber-500 transition shadow-sm">
+                <button onclick="window.location.href='booking-r.html'" class="w-full bg-amber-400 text-[#0B2545] py-2.5 rounded-xl text-xs font-bold hover:bg-amber-500 transition shadow-sm">
                   View All Bookings
                 </button>
               </div>
@@ -379,18 +398,18 @@
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Booking History</h2>
             
-            <!-- Filters -->
-            <div class="flex flex-wrap gap-1 bg-slate-100 p-1 rounded-lg text-xs font-medium">
-              <button class="px-3 py-1 rounded-md text-slate-600 hover:text-black">All</button>
-              <button class="px-3 py-1 rounded-md bg-[#0B2545] text-white font-semibold">Active</button>
-              <button class="px-3 py-1 rounded-md bg-amber-400 text-[#0B2545] font-semibold">Completed</button>
-              <button class="px-3 py-1 rounded-md bg-[#0B2545] text-white font-semibold">Cancelled</button>
+            <!-- Dynamic Filters -->
+            <div id="filter-buttons-group" class="flex flex-wrap gap-1 bg-slate-100 p-1 rounded-lg text-xs font-medium">
+              <button onclick="filterTable('All', this)" class="px-3 py-1 rounded-md text-slate-600 hover:text-black transition">All</button>
+              <button onclick="filterTable('Active', this)" class="px-3 py-1 rounded-md text-slate-600 hover:text-black transition">Active</button>
+              <button onclick="filterTable('Completed', this)" class="px-3 py-1 rounded-md bg-amber-400 text-[#0B2545] font-semibold transition">Completed</button>
+              <button onclick="filterTable('Cancelled', this)" class="px-3 py-1 rounded-md text-slate-600 hover:text-black transition">Cancelled</button>
             </div>
           </div>
 
           <!-- Table -->
           <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
+            <table class="w-full text-left border-collapse" id="historyTable">
               <thead>
                 <tr class="text-[11px] font-bold text-slate-500 uppercase border-b border-slate-100">
                   <th class="pb-3">Item</th>
@@ -403,7 +422,7 @@
               </thead>
               <tbody class="text-xs divide-y divide-slate-100">
                 <!-- Row 1 -->
-                <tr>
+                <tr data-status="Active" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
                     <img src="/Trust_lend/Trust_lend1/images/Background+Border (1).png" alt="" class="w-8 h-8 rounded object-cover" />
                     <span class="font-bold text-[#0B2545]">Generator 5KVA</span>
@@ -425,7 +444,7 @@
                 </tr>
 
                 <!-- Row 2 -->
-                <tr>
+                <tr data-status="Completed" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
                     <img src="/Trust_lend/Trust_lend1/images/Background+Border.png" alt="" class="w-8 h-8 rounded object-cover" />
                     <span class="font-bold text-[#0B2545]">Concrete Mixer</span>
@@ -447,7 +466,7 @@
                 </tr>
 
                 <!-- Row 3 -->
-                <tr>
+                <tr data-status="Completed" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
                     <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=80&q=80" class="w-8 h-8 rounded object-cover" />
                     <span class="font-bold text-[#0B2545]">Canon EOS R50</span>
@@ -469,7 +488,7 @@
                 </tr>
 
                 <!-- Row 4 -->
-                <tr>
+                <tr data-status="Completed" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
                     <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=80&q=80" class="w-8 h-8 rounded object-cover" />
                     <span class="font-bold text-[#0B2545]">Nikon Z30</span>
@@ -491,7 +510,7 @@
                 </tr>
 
                 <!-- Row 5 -->
-                <tr>
+                <tr data-status="Cancelled" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
                     <img src="https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?auto=format&fit=crop&w=80&q=80" class="w-8 h-8 rounded object-cover" />
                     <span class="font-bold text-[#0B2545]">Sony FX3</span>
@@ -540,10 +559,10 @@
 
         <!-- Social Icons -->
         <div class="flex items-center gap-3 pt-2">
-                <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/instagram.png" alt="" class="w-6 h-6"></a>
-                <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/twitter.png" alt="" class="w-6 h-6"></a>
-                <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/communication.png" alt="" class="w-6 h-6"></a>
-                <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/linkedin.png" alt="" class="w-6 h-6"></a>
+                <a href="#" class="text-white/60 hover:text-amber-400 transition text-xs"><img src="/Trust_lend/Trust_lend1/images/instagram.png" alt="" class="w-6 h-6"></a>
+                <a href="#" class="text-white/60 hover:text-amber-400 transition text-xs"><img src="/Trust_lend/Trust_lend1/images/twitter.png" alt="" class="w-6 h-6"></a>
+                <a href="#" class="text-white/60 hover:text-amber-400 transition text-xs"><img src="/Trust_lend/Trust_lend1/images/communication.png" alt="" class="w-6 h-6"></a>
+                <a href="#" class="text-white/60 hover:text-amber-400 transition text-xs"><img src="/Trust_lend/Trust_lend1/images/linkedin.png" alt="" class="w-6 h-6"></a>
         </div>
       </div>
 
@@ -589,7 +608,7 @@
     </div>
   </footer>
 
-  <!-- Lucide Script initialization -->
+  <!-- Lucide Script initialization & Custom Interactive JS -->
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
@@ -599,16 +618,91 @@
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('sidebar-overlay');
       
-      const isOpen = !sidebar.classList.contains('-translate-x-full');
+      const isOpen = !sidebar.classList.contains('hidden');
 
       if (isOpen) {
-        sidebar.classList.add('-translate-x-full');
+        sidebar.classList.add('hidden');
         overlay.classList.add('hidden');
       } else {
-        sidebar.classList.remove('-translate-x-full');
+        sidebar.classList.remove('hidden');
         overlay.classList.remove('hidden');
       }
     }
+
+    // Pending Requests Accept / Decline Handlers
+    let pendingCount = 2;
+    function handleBookingAction(elementId, action, itemTitle) {
+      const elem = document.getElementById(elementId);
+      if (elem) {
+        elem.classList.add('transition-all', 'duration-300', 'opacity-0', 'scale-95');
+        setTimeout(() => {
+          elem.remove();
+          pendingCount--;
+          
+          // Update sidebar badge
+          const badge = document.getElementById('booking-badge');
+          if (badge) badge.innerText = pendingCount;
+
+          if (pendingCount <= 0) {
+            document.getElementById('no-requests-msg').classList.remove('hidden');
+          }
+        }, 300);
+      }
+    }
+
+    // Auto-Decline Switch Toggle
+    function toggleAutoDecline(checkbox) {
+      console.log("Auto-decline status:", checkbox.checked ? "Enabled" : "Disabled");
+    }
+
+    // Notifications Popover Toggle
+    function toggleNotifications() {
+      const popover = document.getElementById('notification-popover');
+      const dot = document.getElementById('notification-dot');
+      popover.classList.toggle('hidden');
+      if (dot) dot.classList.add('hidden');
+    }
+
+    // Booking History Table Filter Buttons
+    function filterTable(status, btnElement) {
+      const buttons = document.querySelectorAll('#filter-buttons-group button');
+      buttons.forEach(btn => {
+        btn.className = "px-3 py-1 rounded-md text-slate-600 hover:text-black transition font-medium";
+      });
+
+      if (status === 'Completed') {
+        btnElement.className = "px-3 py-1 rounded-md bg-amber-400 text-[#0B2545] font-semibold transition";
+      } else {
+        btnElement.className = "px-3 py-1 rounded-md bg-[#0B2545] text-white font-semibold transition";
+      }
+
+      const rows = document.querySelectorAll('.history-row');
+      rows.forEach(row => {
+        const rowStatus = row.getAttribute('data-status');
+        if (status === 'All' || rowStatus === status) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // Live Search Filter for History Table
+    function filterTableBySearch() {
+      const query = document.getElementById('dashboardSearch').value.toLowerCase();
+      const rows = document.querySelectorAll('.history-row');
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(query) ? '' : 'none';
+      });
+    }
+
+    // Initialize Default View Filter
+    document.addEventListener("DOMContentLoaded", () => {
+      const completedBtn = document.querySelectorAll('#filter-buttons-group button')[2];
+      filterTable('Completed', completedBtn);
+    });
   </script>
 </body>
 </html>

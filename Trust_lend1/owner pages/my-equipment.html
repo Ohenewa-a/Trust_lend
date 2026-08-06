@@ -89,34 +89,6 @@
               </li>
             </ul>
 
-          <!-- ACTIVITY -->
-          <!--<div>
-            <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Activity</p>
-            <ul class="space-y-1">
-              <li>
-                <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
-                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-                  Messages
-                </a>
-              </li>
-              <li>
-                <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
-                  <span class="flex items-center gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-                    Notifications
-                  </span>
-                  <span class="bg-amber-400 text-[#0B2545] text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">5</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
-                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-                  Reviews
-                </a>
-              </li>
-            </ul>
-          </div>--!
-
           <!-- ACCOUNT -->
             <!-- <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Account</p> -->
             <ul class="space-y-1">
@@ -135,19 +107,45 @@
         <div class="flex flex-col flex-1 min-w-0 min-h-screen bg-blue-100/20">
 
             <!-- HEADER -->
-            <header class="flex flex-col md:flex-row justify-between items-start md:items-center bg-white w-full text-sm rounded-2xl gap-3 md:gap-0">
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-center bg-white w-full text-sm rounded-2xl gap-3 md:gap-0 relative">
                 <div class="flex flex-col px-4 md:px-8 py-4">
                     <h3 class="font-bold text-[#1a1a1a]">My Equipment</h3>
                     <p class="text-sm text-[#1a1a1a]">View and manage your equipment, earnings and availability</p>
                 </div>
-                <div class="flex flex-row px-4 md:px-8 py-4 gap-3 items-center w-full md:w-auto">
-                    <input type="text" class="rounded-2xl border w-full md:w-76 h-10 px-4 py-3" placeholder="Search">
-                    <button class="hover:text-slate-600 text-black relative shrink-0">
-                        <i class="fa-regular fa-bell fa-2x"></i>
-                        <span class="absolute bg-red-500 text-white rounded-full flex items-center justify-center w-3.5 h-3.5 -top-1 -right-1 text-xs">5</span>
-                    </button>
-                    <div class="w-8 h-8 overflow-hidden rounded-full shrink-0">
-                        <img src="/Trust_lend/Trust_lend1/images/woman-profile.png" alt="profile picture" class="w-full h-full object-cover">
+                <div class="flex flex-row px-4 md:px-8 py-4 gap-3 items-center w-full md:w-auto relative">
+                    <input id="headerSearchInput" type="text" class="rounded-2xl border w-full md:w-76 h-10 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand" placeholder="Search">
+                    
+                    <!-- Notification Button & Popover -->
+                    <div class="relative">
+                        <button id="notificationBtn" class="hover:text-slate-600 text-black relative shrink-0 focus:outline-none">
+                            <i class="fa-regular fa-bell fa-2x"></i>
+                            <span id="notifBadge" class="absolute bg-red-500 text-white rounded-full flex items-center justify-center w-3.5 h-3.5 -top-1 -right-1 text-xs">5</span>
+                        </button>
+
+                        <div id="notificationDropdown" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-slate-100 z-50 p-3">
+                            <div class="flex justify-between items-center mb-2 pb-2 border-b">
+                                <span class="font-bold text-xs text-brand">Notifications</span>
+                                <button id="clearNotifBtn" class="text-[10px] text-amber-500 hover:underline">Mark read</button>
+                            </div>
+                            <ul class="text-xs space-y-2 text-slate-600">
+                                <li class="p-1.5 rounded hover:bg-slate-50">New booking request for Generator 5KVA</li>
+                                <li class="p-1.5 rounded hover:bg-slate-50">Canon EOS R50 due for return tomorrow</li>
+                                <li class="p-1.5 rounded hover:bg-slate-50">Payment of ₦25,000 received</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Profile Dropdown -->
+                    <div class="relative">
+                        <button id="profileMenuBtn" class="w-8 h-8 overflow-hidden rounded-full shrink-0 focus:outline-none ring-2 ring-transparent hover:ring-brand transition">
+                            <img src="/Trust_lend/Trust_lend1/images/woman-profile.png" alt="profile picture" class="w-full h-full object-cover">
+                        </button>
+                        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-100 z-50 py-2 text-xs">
+                            <a href="profile.html" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">View Profile</a>
+                            <a href="owner-wallet.html" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Wallet & Earnings</a>
+                            <hr class="my-1 border-slate-100">
+                            <button onclick="alert('Logged out successfully')" class="w-full text-left px-4 py-2 hover:bg-slate-50 text-red-600">Log Out</button>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -155,40 +153,40 @@
             <!-- MAIN -->
             <main class="flex flex-col flex-1 min-w-0 p-4">
 
-                <a href="add-equipment.html" class="bg-brand text-white px-4 py-2 rounded-2xl text-sm w-fit mb-4">
+                <a href="add-equipment.html" class="bg-brand hover:bg-brandLight transition text-white px-4 py-2 rounded-2xl text-sm w-fit mb-4 inline-flex items-center">
                     <i class="fa-solid fa-plus mr-1"></i> Add New Equipment
                 </a>
 
                 <!-- STAT CARDS -->
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:shadow transition cursor-pointer">
                         <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
                             <i class="fa-solid fa-toolbox"></i>
                         </div>
                         <div>
-                            <p class="text-xl font-bold text-brand">24</p>
+                            <p id="statTotal" class="text-xl font-bold text-brand">24</p>
                             <p class="text-xs text-slate-500">Total Equipment</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:shadow transition cursor-pointer">
                         <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-500">
                             <i class="fa-solid fa-ban"></i>
                         </div>
                         <div>
-                            <p class="text-xl font-bold text-brand">18</p>
+                            <p id="statActive" class="text-xl font-bold text-brand">18</p>
                             <p class="text-xs text-slate-500">Active Listings</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:shadow transition cursor-pointer">
                         <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600">
                             <i class="fa-solid fa-clock"></i>
                         </div>
                         <div>
-                            <p class="text-xl font-bold text-brand">6</p>
+                            <p id="statOnRent" class="text-xl font-bold text-brand">6</p>
                             <p class="text-xs text-slate-500">On Rent</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3">
+                    <div class="bg-white rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:shadow transition cursor-pointer">
                         <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-green-600">
                             <i class="fa-solid fa-circle-check"></i>
                         </div>
@@ -201,27 +199,28 @@
 
                 <!-- FILTER ROW -->
                 <div class="flex flex-col sm:flex-row gap-3 mt-4">
-                    <input type="text" placeholder="Search equipment" class="rounded-2xl border px-4 py-2 flex-1">
-                    <select class="rounded-2xl border px-4 py-2">
-                        <option>All Categories</option>
-                        <option>Cameras</option>
-                        <option>Power Tools</option>
-                        <option>Construction</option>
+                    <input id="searchInput" type="text" placeholder="Search equipment" class="rounded-2xl border px-4 py-2 flex-1 focus:outline-none focus:ring-2 focus:ring-brand text-sm">
+                    <select id="categorySelect" class="rounded-2xl border px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand">
+                        <option value="All">All Categories</option>
+                        <option value="Camera">Cameras</option>
+                        <option value="Power Tools">Power Tools</option>
+                        <option value="Construction">Construction</option>
                     </select>
-                    <select class="rounded-2xl border px-4 py-2">
-                        <option>All Status</option>
-                        <option>Active</option>
-                        <option>On Rent</option>
-                        <option>Unavailable</option>
+                    <select id="statusSelect" class="rounded-2xl border px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand">
+                        <option value="All">All Status</option>
+                        <option value="Active">Active</option>
+                        <option value="On Rent">On Rent</option>
+                        <option value="Unavailable">Unavailable</option>
                     </select>
-                    <select class="rounded-2xl border px-4 py-2">
-                        <option>Sort by Newest</option>
-                        <option>Sort by Price</option>
+                    <select id="sortSelect" class="rounded-2xl border px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand">
+                        <option value="default">Sort by Newest</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
                     </select>
                 </div>
 
                 <!-- TABLE -->
-                <div class="bg-white rounded-2xl p-4 mt-4 overflow-x-auto">
+                <div class="bg-white rounded-2xl p-4 mt-4 overflow-x-auto relative">
                     <table class="w-full text-sm min-w-[700px]">
                         <thead>
                             <tr class="text-left text-slate-500 text-xs border-b">
@@ -233,8 +232,8 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="border-b">
+                        <tbody id="equipmentTableBody">
+                            <tr class="border-b equipment-row" data-name="Concrete Mixer 350L" data-category="Construction" data-price="25000" data-status="Active">
                                 <td class="py-3 flex items-center gap-2">
                                     <img src="/Trust_lend/Trust_lend1/images/Background+Border.png" alt="" class="w-10 h-10 rounded-lg object-cover">
                                     Concrete Mixer 350L
@@ -243,9 +242,13 @@
                                 <td>₦25,000</td>
                                 <td><span class="text-green-600 text-xs font-medium">● Active</span></td>
                                 <td class="text-xs text-slate-500">Available</td>
-                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                                <td class="relative">
+                                    <button class="action-btn p-2 hover:bg-slate-100 rounded-lg transition text-slate-400 focus:outline-none">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                </td>
                             </tr>
-                            <tr class="border-b">
+                            <tr class="border-b equipment-row" data-name="Generator 5KVA SK" data-category="Power Tools" data-price="25000" data-status="On Rent">
                                 <td class="py-3 flex items-center gap-2">
                                     <img src="/Trust_lend/Trust_lend1/images/Background+Border (1).png" alt="" class="w-10 h-10 rounded-lg object-cover">
                                     Generator 5KVA SK
@@ -254,9 +257,13 @@
                                 <td>₦25,000</td>
                                 <td><span class="text-amber-500 text-xs font-medium">● On Rent</span></td>
                                 <td class="text-xs text-slate-500">Booked 3 days</td>
-                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                                <td class="relative">
+                                    <button class="action-btn p-2 hover:bg-slate-100 rounded-lg transition text-slate-400 focus:outline-none">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                </td>
                             </tr>
-                            <tr class="border-b">
+                            <tr class="border-b equipment-row" data-name="Canon EOS R50" data-category="Camera" data-price="25000" data-status="On Rent">
                                 <td class="py-3 flex items-center gap-2">
                                     <img src="/Trust_lend/Trust_lend1/images/Background+Border (2).png" alt="" class="w-10 h-10 rounded-lg object-cover">
                                     Canon EOS R50
@@ -265,9 +272,13 @@
                                 <td>₦25,000</td>
                                 <td><span class="text-amber-500 text-xs font-medium">● On Rent</span></td>
                                 <td class="text-xs text-slate-500">Booked 3 days</td>
-                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                                <td class="relative">
+                                    <button class="action-btn p-2 hover:bg-slate-100 rounded-lg transition text-slate-400 focus:outline-none">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                </td>
                             </tr>
-                            <tr class="border-b">
+                            <tr class="border-b equipment-row" data-name="Nikon Z30" data-category="Camera" data-price="20000" data-status="Active">
                                 <td class="py-3 flex items-center gap-2">
                                     <img src="/Trust_lend/Trust_lend1/images/Background+Border (3).png" alt="" class="w-10 h-10 rounded-lg object-cover">
                                     Nikon Z30
@@ -276,9 +287,13 @@
                                 <td>₦20,000</td>
                                 <td><span class="text-green-600 text-xs font-medium">● Active</span></td>
                                 <td class="text-xs text-slate-500">Available</td>
-                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                                <td class="relative">
+                                    <button class="action-btn p-2 hover:bg-slate-100 rounded-lg transition text-slate-400 focus:outline-none">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                </td>
                             </tr>
-                            <tr>
+                            <tr class="equipment-row" data-name="Sony FX3" data-category="Camera" data-price="20000" data-status="Unavailable">
                                 <td class="py-3 flex items-center gap-2">
                                     <img src="/Trust_lend/Trust_lend1/images/Background+Border (4).png" alt="" class="w-10 h-10 rounded-lg object-cover">
                                     Sony FX3
@@ -287,11 +302,30 @@
                                 <td>₦20,000</td>
                                 <td><span class="text-slate-400 text-xs font-medium">● Unavailable</span></td>
                                 <td class="text-xs text-slate-500">Unlisted</td>
-                                <td><i class="fa-solid fa-ellipsis-vertical text-slate-400"></i></td>
+                                <td class="relative">
+                                    <button class="action-btn p-2 hover:bg-slate-100 rounded-lg transition text-slate-400 focus:outline-none">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    <p class="text-xs text-slate-400 mt-3">Showing 1 to 5 of 24 results</p>
+
+                    <!-- Floating Context Menu for Action Buttons -->
+                    <div id="actionMenu" class="hidden fixed bg-white shadow-xl rounded-xl border border-slate-100 w-36 py-1 z-50 text-xs">
+                        <button class="w-full text-left px-3 py-2 hover:bg-slate-50 text-slate-700 flex items-center gap-2" onclick="handleAction('Edit')">
+                            <i class="fa-solid fa-pen text-slate-400"></i> Edit
+                        </button>
+                        <button class="w-full text-left px-3 py-2 hover:bg-slate-50 text-slate-700 flex items-center gap-2" onclick="handleAction('Toggle Availability')">
+                            <i class="fa-solid fa-toggle-on text-slate-400"></i> Toggle Status
+                        </button>
+                        <hr class="my-1 border-slate-100">
+                        <button class="w-full text-left px-3 py-2 hover:bg-slate-50 text-red-600 flex items-center gap-2" onclick="handleAction('Delete')">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </div>
+
+                    <p id="resultsCounter" class="text-xs text-slate-400 mt-3">Showing 1 to 5 of 24 results</p>
                 </div>
 
             </main>
@@ -319,7 +353,7 @@
 
         <!-- Social Icons -->
         <div class="flex items-center gap-3 pt-2">
-                          <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/instagram.png" alt="" class="w-6 h-6"></a>
+                <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/instagram.png" alt="" class="w-6 h-6"></a>
                 <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/twitter.png" alt="" class="w-6 h-6"></a>
                 <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/communication.png" alt="" class="w-6 h-6"></a>
                 <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/linkedin.png" alt="" class="w-6 h-6"></a>
@@ -368,6 +402,138 @@
     </div>
   </footer>
 
+  <!-- INTERACTIVITY SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Notification Dropdown Toggle
+      const notifBtn = document.getElementById('notificationBtn');
+      const notifDropdown = document.getElementById('notificationDropdown');
+      const clearNotifBtn = document.getElementById('clearNotifBtn');
+      const notifBadge = document.getElementById('notifBadge');
 
+      notifBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        notifDropdown.classList.toggle('hidden');
+        profileDropdown.classList.add('hidden');
+      });
+
+      clearNotifBtn.addEventListener('click', () => {
+        notifBadge.style.display = 'none';
+      });
+
+      // 2. Profile Dropdown Toggle
+      const profileMenuBtn = document.getElementById('profileMenuBtn');
+      const profileDropdown = document.getElementById('profileDropdown');
+
+      profileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        profileDropdown.classList.toggle('hidden');
+        notifDropdown.classList.add('hidden');
+      });
+
+      // Close popovers on outside click
+      document.addEventListener('click', () => {
+        notifDropdown.classList.add('hidden');
+        profileDropdown.classList.add('hidden');
+        actionMenu.classList.add('hidden');
+      });
+
+      // 3. Search & Filter Table Implementation
+      const searchInput = document.getElementById('searchInput');
+      const headerSearchInput = document.getElementById('headerSearchInput');
+      const categorySelect = document.getElementById('categorySelect');
+      const statusSelect = document.getElementById('statusSelect');
+      const sortSelect = document.getElementById('sortSelect');
+      const tableBody = document.getElementById('equipmentTableBody');
+      const rows = Array.from(document.querySelectorAll('.equipment-row'));
+      const resultsCounter = document.getElementById('resultsCounter');
+
+      // Sync header search with main search
+      headerSearchInput.addEventListener('input', (e) => {
+        searchInput.value = e.target.value;
+        filterAndSortTable();
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        headerSearchInput.value = e.target.value;
+        filterAndSortTable();
+      });
+
+      categorySelect.addEventListener('change', filterAndSortTable);
+      statusSelect.addEventListener('change', filterAndSortTable);
+      sortSelect.addEventListener('change', filterAndSortTable);
+
+      function filterAndSortTable() {
+        const query = searchInput.value.toLowerCase().trim();
+        const selectedCat = categorySelect.value;
+        const selectedStatus = statusSelect.value;
+        const sortOrder = sortSelect.value;
+
+        let visibleCount = 0;
+
+        // Filter
+        rows.forEach(row => {
+          const name = row.dataset.name.toLowerCase();
+          const cat = row.dataset.category;
+          const status = row.dataset.status;
+
+          const matchesQuery = name.includes(query);
+          const matchesCat = (selectedCat === 'All' || cat === selectedCat);
+          const matchesStatus = (selectedStatus === 'All' || status === selectedStatus);
+
+          if (matchesQuery && matchesCat && matchesStatus) {
+            row.style.display = '';
+            visibleCount++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        // Sort
+        let visibleRows = rows.filter(r => r.style.display !== 'none');
+        if (sortOrder === 'price-asc') {
+          visibleRows.sort((a, b) => Number(a.dataset.price) - Number(b.dataset.price));
+        } else if (sortOrder === 'price-desc') {
+          visibleRows.sort((a, b) => Number(b.dataset.price) - Number(a.dataset.price));
+        }
+
+        visibleRows.forEach(r => tableBody.appendChild(r));
+
+        // Update Counter
+        resultsCounter.textContent = `Showing 1 to ${visibleCount} of 24 results`;
+      }
+
+      // 4. Action Dropdown Menu per Table Row
+      const actionMenu = document.getElementById('actionMenu');
+      let selectedRow = null;
+
+      document.querySelectorAll('.action-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const rect = btn.getBoundingClientRect();
+          selectedRow = btn.closest('tr');
+          
+          actionMenu.style.top = `${rect.bottom + window.scrollY}px`;
+          actionMenu.style.left = `${rect.left + window.scrollX - 100}px`;
+          actionMenu.classList.remove('hidden');
+        });
+      });
+
+      window.handleAction = function(actionType) {
+        if (!selectedRow) return;
+        const equipmentName = selectedRow.dataset.name;
+        
+        if (actionType === 'Delete') {
+          if (confirm(`Are you sure you want to delete "${equipmentName}"?`)) {
+            selectedRow.remove();
+            filterAndSortTable();
+          }
+        } else {
+          alert(`${actionType} action clicked for: ${equipmentName}`);
+        }
+        actionMenu.classList.add('hidden');
+      };
+    });
+  </script>
 </body>
 </html>

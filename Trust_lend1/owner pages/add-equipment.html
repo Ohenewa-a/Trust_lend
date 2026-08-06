@@ -43,6 +43,34 @@
 </head>
 <body class="bg-surfaceBg font-sans text-slate-800 antialiased min-h-screen flex flex-col justify-between">
 
+    <!-- Toast / Notification Container -->
+    <div id="toastNotification" class="fixed top-5 right-5 z-50 transform translate-y-[-100px] opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white text-xs px-4 py-3 rounded-xl shadow-xl flex items-center gap-2">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMessage">Draft saved successfully!</span>
+    </div>
+
+    <!-- Guidelines Modal -->
+    <div id="guidelinesModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 relative">
+            <button onclick="toggleGuidelinesModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="flex items-center gap-2 text-brand font-bold text-base">
+                <i class="fa-regular fa-circle-question"></i>
+                <h3>Photo Guidelines</h3>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-2 list-disc pl-4">
+                <li>Use clear, well-lit photos taken from multiple angles.</li>
+                <li>Ensure serial numbers and safety markings are visible where applicable.</li>
+                <li>Avoid using heavily edited photos or stock images.</li>
+                <li>First uploaded image will serve as your primary cover photo.</li>
+            </ul>
+            <div class="text-right pt-2">
+                <button onclick="toggleGuidelinesModal()" class="bg-brand text-white text-xs px-5 py-2 rounded-xl hover:bg-brandDark transition font-medium">Got it</button>
+            </div>
+        </div>
+    </div>
+
     <div class="flex flex-col md:flex-row min-h-screen flex-1">
 
         <!-- Sidebar -->
@@ -125,12 +153,12 @@
                         <i class="fa-solid fa-magnifying-glass absolute right-3 top-2.5 text-slate-400 text-xs"></i>
                     </div>
 
-                    <button class="relative p-2 text-slate-600 hover:text-brand rounded-full hover:bg-slate-50 transition">
+                    <button onclick="showToast('You have 1 unread notification')" class="relative p-2 text-slate-600 hover:text-brand rounded-full hover:bg-slate-50 transition">
                         <i class="fa-regular fa-bell text-lg"></i>
-                        <span class="absolute top-1 right-1 bg-red-500 text-white font-bold rounded-full w-4 h-4 flex items-center justify-center text-[9px]">1</span>
+                        <span id="notifBadge" class="absolute top-1 right-1 bg-red-500 text-white font-bold rounded-full w-4 h-4 flex items-center justify-center text-[9px]">1</span>
                     </button>
 
-                    <div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200">
+                    <div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 cursor-pointer" onclick="showToast('Viewing Profile')">
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="User Profile" class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -144,25 +172,25 @@
                     <!-- Step 1 -->
                     <button onclick="goToStep(1)" id="stepBtn1" class="flex flex-col items-center gap-1.5 focus:outline-none group">
                         <span id="circle1" class="w-8 h-8 rounded-full bg-brand text-white font-medium text-xs flex items-center justify-center transition shadow-md">1</span>
-                        <span class="text-[11px] font-medium text-slate-700">Basic Info</span>
+                        <span id="label1" class="text-[11px] font-medium text-slate-700">Basic Info</span>
                     </button>
 
                     <!-- Step 2 -->
                     <button onclick="goToStep(2)" id="stepBtn2" class="flex flex-col items-center gap-1.5 focus:outline-none group">
                         <span id="circle2" class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 font-medium text-xs flex items-center justify-center transition">2</span>
-                        <span class="text-[11px] font-medium text-slate-400">Photos</span>
+                        <span id="label2" class="text-[11px] font-medium text-slate-400">Photos</span>
                     </button>
 
                     <!-- Step 3 -->
                     <button onclick="goToStep(3)" id="stepBtn3" class="flex flex-col items-center gap-1.5 focus:outline-none group">
                         <span id="circle3" class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 font-medium text-xs flex items-center justify-center transition">3</span>
-                        <span class="text-[11px] font-medium text-slate-400">Pricing</span>
+                        <span id="label3" class="text-[11px] font-medium text-slate-400">Pricing</span>
                     </button>
 
                     <!-- Step 4 -->
                     <button onclick="goToStep(4)" id="stepBtn4" class="flex flex-col items-center gap-1.5 focus:outline-none group">
                         <span id="circle4" class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 font-medium text-xs flex items-center justify-center transition">4</span>
-                        <span class="text-[11px] font-medium text-slate-400">Availability</span>
+                        <span id="label4" class="text-[11px] font-medium text-slate-400">Availability</span>
                     </button>
                 </div>
 
@@ -172,94 +200,104 @@
                     <!-- Left Container: Dynamic Form Input Steps -->
                     <div class="lg:col-span-8 space-y-6">
 
-                        <!-- STEP 1 & 2 & 3 & 4 CONTENT -->
-                        <!-- Step 1: General Info & Media Library -->
-                        <div id="stepSection1" class="space-y-6">
+                        <!-- STEP 1 CONTENT: General Info -->
+                        <div id="stepSection1" class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+                            <h3 class="font-bold text-slate-800 text-base mb-4">General Information</h3>
                             
-                            <!-- General Information Panel -->
-                            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-                                <h3 class="font-bold text-slate-800 text-base mb-4">General Information</h3>
-                                
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                                    <div>
-                                        <label class="block text-[11px] font-medium text-slate-500 mb-1">Equipment Title</label>
-                                        <input type="text" id="inputTitle" oninput="updatePreview()" placeholder="e.g. Caterpillar 305.5E2 Mini Excavator" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand text-slate-700">
-                                    </div>
-                                    <div>
-                                        <label class="block text-[11px] font-medium text-slate-500 mb-1">Category</label>
-                                        <select id="inputCategory" onchange="updatePreview()" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand text-slate-600 bg-white">
-                                            <option value="" disabled selected>Construction Tools</option>
-                                            <option value="Cameras & Photography">Cameras & Photography</option>
-                                            <option value="Construction Tools">Construction Tools</option>
-                                            <option value="Power Tools">Power Tools</option>
-                                            <option value="Audio Visual Equipment">Audio Visual Equipment</option>
-                                        </select>
-                                    </div>
-                                </div>
-
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                                 <div>
-                                    <label class="block text-[11px] font-medium text-slate-500 mb-1">Detailed Description</label>
-                                    <textarea id="inputDesc" oninput="updateDescCounter()" placeholder="Describe technical specifications, condition, and any included accessories ..." class="w-full text-xs rounded-xl border border-slate-200 p-3.5 h-28 focus:outline-none focus:border-brand text-slate-700 resize-none"></textarea>
-                                    <div class="text-right text-[10px] text-slate-400 mt-1" id="charCounter">0 / 2000 characters</div>
+                                    <label class="block text-[11px] font-medium text-slate-500 mb-1">Equipment Title</label>
+                                    <input type="text" id="inputTitle" oninput="updatePreview()" placeholder="e.g. Caterpillar 305.5E2 Mini Excavator" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand text-slate-700">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-medium text-slate-500 mb-1">Category</label>
+                                    <select id="inputCategory" onchange="updatePreview()" class="w-full text-xs rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand text-slate-600 bg-white">
+                                        <option value="" disabled selected>Construction Tools</option>
+                                        <option value="Cameras & Photography">Cameras & Photography</option>
+                                        <option value="Construction Tools">Construction Tools</option>
+                                        <option value="Power Tools">Power Tools</option>
+                                        <option value="Audio Visual Equipment">Audio Visual Equipment</option>
+                                    </select>
                                 </div>
                             </div>
 
-                            <!-- Media Library Panel -->
-                            <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-                                <div class="flex items-center justify-between mb-1">
-                                    <h3 class="font-bold text-slate-800 text-base">Media Library</h3>
-                                    <a href="#" class="text-[11px] text-brand font-medium hover:underline flex items-center gap-1">
-                                        <i class="fa-regular fa-circle-question"></i> Guidelines
-                                    </a>
-                                </div>
-                                <p class="text-[11px] text-slate-400 mb-4">High-quality photos increase rental probability by 65%.</p>
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-500 mb-1">Detailed Description</label>
+                                <textarea id="inputDesc" oninput="updateDescCounter()" placeholder="Describe technical specifications, condition, and any included accessories ..." class="w-full text-xs rounded-xl border border-slate-200 p-3.5 h-28 focus:outline-none focus:border-brand text-slate-700 resize-none"></textarea>
+                                <div class="text-right text-[10px] text-slate-400 mt-1" id="charCounter">0 / 2000 characters</div>
+                            </div>
+                        </div>
 
-                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                    <!-- Main Cover Upload Box -->
-                                    <div class="col-span-2 relative group border-2 border-dashed border-slate-200 rounded-xl h-36 flex flex-col items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
-                                        <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'coverImage')">
-                                        <div id="coverPlaceholder" class="flex flex-col items-center text-center p-2">
-                                            <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mb-1">
-                                                <i class="fa-solid fa-camera text-base"></i>
-                                            </div>
-                                            <span class="text-[11px] text-slate-500 font-medium">+ Add cover Photo</span>
+                        <!-- STEP 2 CONTENT: Media Library Panel -->
+                        <div id="stepSection2" class="hidden bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-bold text-slate-800 text-base">Media Library</h3>
+                                <button type="button" onclick="toggleGuidelinesModal()" class="text-[11px] text-brand font-medium hover:underline flex items-center gap-1 focus:outline-none">
+                                    <i class="fa-regular fa-circle-question"></i> Guidelines
+                                </button>
+                            </div>
+                            <p class="text-[11px] text-slate-400 mb-4">High-quality photos increase rental probability by 65%.</p>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                <!-- Main Cover Upload Box -->
+                                <div class="col-span-2 relative group border-2 border-dashed border-slate-200 rounded-xl h-36 flex flex-col items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
+                                    <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'coverImage')">
+                                    <div id="coverPlaceholder" class="flex flex-col items-center text-center p-2">
+                                        <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mb-1">
+                                            <i class="fa-solid fa-camera text-base"></i>
                                         </div>
-                                        <img id="coverImage" alt="cover_image" class="hidden absolute inset-0 w-full h-full object-cover">
+                                        <span class="text-[11px] text-slate-500 font-medium">+ Add cover Photo</span>
                                     </div>
+                                    <img id="coverImage" alt="cover_image" class="hidden absolute inset-0 w-full h-full object-cover">
+                                    <button onclick="removeImage('coverImage', event)" id="removeCoverBtn" class="hidden absolute top-2 right-2 z-20 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition shadow-sm">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
 
-                                    <!-- Slot 2 -->
-                                    <div class="relative border-2 border-dashed border-slate-200 rounded-xl h-36 flex items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
-                                        <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'subImage1')">
-                                        <i id="subIcon1" class="fa-solid fa-plus text-slate-400"></i>
-                                        <img id="subImage1" alt="image" class="hidden absolute inset-0 w-full h-full object-cover">
-                                    </div>
+                                <!-- Slot 2 -->
+                                <div class="relative group border-2 border-dashed border-slate-200 rounded-xl h-36 flex items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
+                                    <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'subImage1')">
+                                    <i id="subIcon1" class="fa-solid fa-plus text-slate-400"></i>
+                                    <img id="subImage1" alt="image" class="hidden absolute inset-0 w-full h-full object-cover">
+                                    <button onclick="removeImage('subImage1', event)" id="removeSub1Btn" class="hidden absolute top-2 right-2 z-20 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition shadow-sm">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
 
-                                    <!-- Slot 3 -->
-                                    <div class="relative border-2 border-dashed border-slate-200 rounded-xl h-36 flex items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
-                                        <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'subImage2')">
-                                        <i id="subIcon2" class="fa-solid fa-plus text-slate-400"></i>
-                                        <img id="subImage2" alt="image" class="hidden absolute inset-0 w-full h-full object-cover">
-                                    </div>
+                                <!-- Slot 3 -->
+                                <div class="relative group border-2 border-dashed border-slate-200 rounded-xl h-36 flex items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
+                                    <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'subImage2')">
+                                    <i id="subIcon2" class="fa-solid fa-plus text-slate-400"></i>
+                                    <img id="subImage2" alt="image" class="hidden absolute inset-0 w-full h-full object-cover">
+                                    <button onclick="removeImage('subImage2', event)" id="removeSub2Btn" class="hidden absolute top-2 right-2 z-20 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition shadow-sm">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
 
-                                    <!-- Slot 4 -->
-                                    <div class="relative border-2 border-dashed border-slate-200 rounded-xl h-36 flex items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
-                                        <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'subImage3')">
-                                        <i id="subIcon3" class="fa-solid fa-plus text-slate-400"></i>
-                                        <img id="subImage3" alt="image" class="hidden absolute inset-0 w-full h-full object-cover">
-                                    </div>
+                                <!-- Slot 4 -->
+                                <div class="relative group border-2 border-dashed border-slate-200 rounded-xl h-36 flex items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
+                                    <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'subImage3')">
+                                    <i id="subIcon3" class="fa-solid fa-plus text-slate-400"></i>
+                                    <img id="subImage3" alt="image" class="hidden absolute inset-0 w-full h-full object-cover">
+                                    <button onclick="removeImage('subImage3', event)" id="removeSub3Btn" class="hidden absolute top-2 right-2 z-20 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition shadow-sm">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
 
-                                    <!-- Slot 5 -->
-                                    <div class="relative border-2 border-dashed border-slate-200 rounded-xl h-36 flex items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
-                                        <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'subImage4')">
-                                        <i id="subIcon4" class="fa-solid fa-plus text-slate-400"></i>
-                                        <img id="subImage4" alt="image" class="hidden absolute inset-0 w-full h-full object-cover">
-                                    </div>
+                                <!-- Slot 5 -->
+                                <div class="relative group border-2 border-dashed border-slate-200 rounded-xl h-36 flex items-center justify-center bg-slate-50/50 hover:bg-slate-50 cursor-pointer transition overflow-hidden">
+                                    <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" onchange="previewImage(event, 'subImage4')">
+                                    <i id="subIcon4" class="fa-solid fa-plus text-slate-400"></i>
+                                    <img id="subImage4" alt="image" class="hidden absolute inset-0 w-full h-full object-cover">
+                                    <button onclick="removeImage('subImage4', event)" id="removeSub4Btn" class="hidden absolute top-2 right-2 z-20 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition shadow-sm">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Step 3: Rental Rates Panel -->
-                        <div id="stepSection2" class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+                        <!-- STEP 3 CONTENT: Rental Rates Panel -->
+                        <div id="stepSection3" class="hidden bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
                             <div class="flex items-center gap-2 mb-4">
                                 <i class="fa-solid fa-wallet text-brand"></i>
                                 <h3 class="font-bold text-slate-800 text-base">Rental rates</h3>
@@ -298,8 +336,8 @@
                             </div>
                         </div>
 
-                        <!-- Step 4: Availability Panel -->
-                        <div id="stepSection3" class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+                        <!-- STEP 4 CONTENT: Availability Panel -->
+                        <div id="stepSection4" class="hidden bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
                             <h3 class="font-bold text-slate-800 text-base mb-3">Availability</h3>
                             <div class="space-y-3 text-xs text-slate-600">
                                 <label class="flex items-center gap-3 cursor-pointer">
@@ -339,11 +377,14 @@
 
                 <!-- Action Button Controls -->
                 <div class="border-t border-slate-200 mt-10 pt-6 flex flex-row justify-end items-center gap-3">
+                    <button onclick="prevStep()" id="prevActionBtn" class="hidden bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium text-xs px-6 py-3 rounded-xl transition shadow-sm">
+                        Back
+                    </button>
+                    <button onclick="saveDraft()" id="draftActionBtn" class="bg-accent hover:bg-accentHover text-slate-900 font-medium text-xs px-8 py-3 rounded-xl transition shadow-md">
+                        Save as Draft
+                    </button>
                     <button onclick="nextStep()" id="mainActionBtn" class="bg-brand hover:bg-brandDark text-white font-medium text-xs px-8 py-3 rounded-xl transition shadow-md">
                         Continue
-                    </button>
-                    <button class="bg-accent hover:bg-accentHover text-slate-900 font-medium text-xs px-8 py-3 rounded-xl transition shadow-md">
-                        Save as Draft
                     </button>
                 </div>
 
@@ -412,6 +453,7 @@
     <!-- Interactive Logic Scripts -->
     <script>
         let currentStep = 1;
+        const defaultPreviewImgSrc = "https://images.unsplash.com/photo-1579412690850-bd41cd0af397?w=600";
 
         function goToStep(stepNumber) {
             currentStep = stepNumber;
@@ -423,16 +465,34 @@
                 currentStep++;
                 updateStepUI();
             } else {
-                alert('Equipment listing successfully published!');
+                showToast('Equipment listing published successfully!', 'success');
             }
         }
 
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+            }
+        }
+
+        function saveDraft() {
+            showToast('Draft saved successfully!');
+        }
+
         function updateStepUI() {
-            // Update circle active states
+            // Toggle form sections visibility
             for (let i = 1; i <= 4; i++) {
+                const section = document.getElementById('stepSection' + i);
                 const circle = document.getElementById('circle' + i);
-                const label = document.querySelector('#stepBtn' + i + ' span:last-child');
+                const label = document.getElementById('label' + i);
                 
+                if (i === currentStep) {
+                    if (section) section.classList.remove('hidden');
+                } else {
+                    if (section) section.classList.add('hidden');
+                }
+
                 if (i <= currentStep) {
                     circle.classList.remove('bg-slate-200', 'text-slate-500');
                     circle.classList.add('bg-brand', 'text-white', 'shadow-md');
@@ -446,10 +506,18 @@
                 }
             }
 
-            // Button label updates
+            // Button state updates
+            const prevBtn = document.getElementById('prevActionBtn');
             const mainBtn = document.getElementById('mainActionBtn');
+
+            if (currentStep > 1) {
+                prevBtn.classList.remove('hidden');
+            } else {
+                prevBtn.classList.add('hidden');
+            }
+
             if (currentStep === 4) {
-                mainBtn.textContent = 'Publish';
+                mainBtn.textContent = 'Publish Listing';
             } else {
                 mainBtn.textContent = 'Continue';
             }
@@ -468,6 +536,30 @@
             } else {
                 container.style.display = 'none';
             }
+        }
+
+        function toggleGuidelinesModal() {
+            const modal = document.getElementById('guidelinesModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toastNotification');
+            const toastMsg = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.textContent = message;
+            if (type === 'success') {
+                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400';
+            } else {
+                toastIcon.className = 'fa-solid fa-info-circle text-amber-400';
+            }
+
+            toast.classList.remove('translate-y-[-100px]', 'opacity-0', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-[-100px]', 'opacity-0', 'pointer-events-none');
+            }, 3000);
         }
 
         function updatePreview() {
@@ -506,14 +598,38 @@
 
                     if (targetId === 'coverImage') {
                         document.getElementById('coverPlaceholder').classList.add('hidden');
+                        document.getElementById('removeCoverBtn').classList.remove('hidden');
                         document.getElementById('previewImg').src = e.target.result;
                     } else {
-                        const iconId = 'subIcon' + targetId.replace('subImage', '');
-                        const icon = document.getElementById(iconId);
+                        const slotNum = targetId.replace('subImage', '');
+                        const icon = document.getElementById('subIcon' + slotNum);
+                        const removeBtn = document.getElementById('removeSub' + slotNum + 'Btn');
                         if (icon) icon.classList.add('hidden');
+                        if (removeBtn) removeBtn.classList.remove('hidden');
                     }
                 }
                 reader.readAsDataURL(file);
+            }
+        }
+
+        function removeImage(targetId, event) {
+            event.stopPropagation();
+            event.preventDefault();
+
+            const img = document.getElementById(targetId);
+            img.src = '';
+            img.classList.add('hidden');
+
+            if (targetId === 'coverImage') {
+                document.getElementById('coverPlaceholder').classList.remove('hidden');
+                document.getElementById('removeCoverBtn').classList.add('hidden');
+                document.getElementById('previewImg').src = defaultPreviewImgSrc;
+            } else {
+                const slotNum = targetId.replace('subImage', '');
+                const icon = document.getElementById('subIcon' + slotNum);
+                const removeBtn = document.getElementById('removeSub' + slotNum + 'Btn');
+                if (icon) icon.classList.remove('hidden');
+                if (removeBtn) removeBtn.classList.add('hidden');
             }
         }
     </script>
