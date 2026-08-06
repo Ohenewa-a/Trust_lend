@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TrustLend - Wallet</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body class="bg-[#f4f6fb] text-[#556587]">
+    <!--
+      Same shell as the other pages: sidebar is fixed, main is offset by its
+      width, and the footer sits outside the row so it spans the full page.
+    -->
+    <div class="flex">
+      <!-- ================= Sidebar ================= -->
+
+      <aside
+        id="sidebar"
+        class="invisible fixed left-0 top-0 z-[90] flex h-screen w-[200px] shrink-0 -translate-x-full flex-col overflow-y-auto bg-[#0b2555] px-4 pb-9 pt-4 text-white transition-transform duration-300 md:visible md:z-[60] md:translate-x-0"
+      >
+        <div class="mb-8 flex items-center gap-2">
+          <img
+            src="../images/SVG 2.png"
+            alt="TrustLend logo"
+            class="h-8 w-8 object-contain"
+          />
+          <span class="text-xl font-bold tracking-tight"
+            >Trust<span class="text-amber-400">Lend</span></span
+          >
+          <button
+            id="closeSidebar"
+            type="button"
+            aria-label="Close menu"
+            class="ml-auto text-lg text-white/70 transition hover:text-white md:hidden"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-1.5">
+          <a
+            href="dashboard.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Dashboard
+          </a>
+
+          <a
+            href="equipment.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            My Equipment
+          </a>
+
+          <a
+            href="dashboard.html#booking-history"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Bookings
+            <span
+              class="grid h-5 w-5 place-items-center rounded-full bg-[#ffc43d] text-[10px] font-bold text-[#10265e]"
+              >2</span
+            >
+          </a>
+
+          <a
+            href="dashboard.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Return Inspection
+          </a>
+
+          <a
+            href="wallet.html"
+            aria-current="page"
+            class="relative flex items-center justify-between rounded-2xl bg-[#ffc43d] py-2 pl-[30px] pr-2.5 text-[11px] font-semibold text-[#10265e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Wallet
+          </a>
+
+          <a
+            href="rentalProfile.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Profile
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Backdrop for the off-canvas menu; tapping it closes the sidebar. -->
+      <div
+        id="sidebarOverlay"
+        class="fixed inset-0 z-[85] hidden bg-black/40 md:hidden"
+      ></div>
+
+      <!-- ================= Main ================= -->
+
+      <main class="min-w-0 flex-1 bg-white p-5 md:ml-[200px] md:p-6">
+        <!-- Top bar -->
+
+        <header
+          class="mb-5 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center"
+        >
+          <div class="flex items-center gap-3">
+            <button
+              id="menuButton"
+              type="button"
+              aria-label="Open menu"
+              aria-controls="sidebar"
+              aria-expanded="false"
+              class="text-lg text-[#10265e] md:hidden"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div>
+              <h1 class="text-[22px] font-bold text-[#10265e]">Wallet</h1>
+              <p class="mt-0.5 text-[13px] text-[#777]">
+                Manage your earnings and payouts
+              </p>
+            </div>
+          </div>
+
+          <div class="flex w-full items-center gap-4 lg:w-auto">
+            <div
+              class="flex w-full items-center rounded-full bg-white px-4 py-2.5 shadow-[0_3px_10px_rgba(0,0,0,0.08)] lg:w-[280px]"
+            >
+              <i class="fa-solid fa-search text-[13px] text-[#8a97ad]"></i>
+              <input
+                type="text"
+                placeholder="Search"
+                aria-label="Search"
+                class="ml-2.5 w-full border-none bg-transparent text-sm outline-none"
+              />
+            </div>
+
+            <button
+              type="button"
+              aria-label="Notifications"
+              class="relative text-lg text-[#555]"
+            >
+              <i class="fa-regular fa-bell"></i>
+              <span
+                class="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-red-500"
+              ></span>
+            </button>
+
+            <img
+              src="../images/Profile Pic.png"
+              alt="Your profile"
+              class="h-9 w-9 shrink-0 rounded-full object-cover"
+            />
+          </div>
+        </header>
+
+        <div class="bg-[#f7f9ff] p-4 md:p-5">
+          <!--
+            Demo-state notice. Hidden unless the browser refuses localStorage,
+            which Safari does for pages opened straight from disk.
+          -->
+          <div
+            id="storageNotice"
+            style="display: none"
+            class="mb-4 rounded-[10px] bg-[#fff3d4] px-5 py-3 text-[11px] text-[#b47f06]"
+          >
+            Withdrawals won't be remembered in this browser — serve the folder
+            over http:// to enable saving.
+          </div>
+
+          <!-- ================= Stat cards ================= -->
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <article class="rounded-[10px] bg-[#10265e] px-5 py-4 text-white">
+              <p class="text-[11px] text-white/70">Total Balance</p>
+              <p id="statTotalBalance" class="mt-2 text-[15px] font-bold">
+                ₦110,079
+              </p>
+            </article>
+
+            <article class="rounded-[10px] bg-[#e7ebf2] px-5 py-4">
+              <p class="text-[11px] text-[#6c7f9e]">Pending Earnings</p>
+              <p id="statPending" class="mt-2 text-[15px] font-bold text-[#10265e]">
+                ₦45,000
+              </p>
+            </article>
+
+            <article
+              class="rounded-[10px] bg-[#ffc43d] px-5 py-4 text-[#10265e]"
+            >
+              <p class="text-[11px]">This Month</p>
+              <p class="mt-2 text-[15px] font-bold">₦250,000</p>
+            </article>
+
+            <article
+              class="rounded-[10px] border border-[#e7edf9] bg-white px-5 py-4"
+            >
+              <p class="text-[11px] text-[#6c7f9e]">All-time Earned</p>
+              <p class="mt-2 text-[15px] font-bold text-[#10265e]">₦550,000</p>
+            </article>
+          </section>
+
+          <section
+            class="mt-4 grid items-start gap-4 xl:grid-cols-[minmax(0,1fr)_270px]"
+          >
+            <!-- ============ Left column ============ -->
+
+            <div class="grid min-w-0 gap-4">
+              <!-- ---------- Available balance ---------- -->
+
+              <div class="rounded-[10px] bg-[#10265e] p-5 text-white">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p
+                      class="text-[10px] font-semibold uppercase tracking-[0.08em] text-white/60"
+                    >
+                      Available Balance
+                    </p>
+                    <p
+                      id="availableBalance"
+                      class="mt-2 text-[34px] font-bold leading-none"
+                    >
+                      ₦65,079.24
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    data-action="open-withdraw"
+                    class="shrink-0 rounded-full bg-[#ffc43d] px-4 py-1.5 text-[10px] font-semibold text-[#10265e] transition hover:bg-[#eeb236]"
+                  >
+                    Withdraw
+                  </button>
+                </div>
+
+                <div
+                  class="mt-6 grid grid-cols-2 gap-4 border-t border-white/10 pt-4 sm:grid-cols-4"
+                >
+                  <div>
+                    <p class="text-[10px] text-white/55">Pending</p>
+                    <p id="subPending" class="mt-1 text-[11px] font-semibold">
+                      ₦45,000
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-white/55">Processing</p>
+                    <p id="subProcessing" class="mt-1 text-[11px] font-semibold">
+                      ₦0
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-white/55">Active Rentals</p>
+                    <!-- Derived: this used to read 12 above a list of 2. -->
+                    <p id="subActiveRentals" class="mt-1 text-[11px] font-semibold">
+                      2
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-[10px] text-white/55">Held (Deposit)</p>
+                    <p id="subHeld" class="mt-1 text-[11px] font-semibold">
+                      ₦50,000
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ---------- Active rentals ---------- -->
+
+              <div
+                class="rounded-[10px] border border-[#e7edf9] bg-white p-4 shadow-sm"
+              >
+                <div class="mb-3 flex items-center justify-between gap-3">
+                  <h2
+                    class="text-[10px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+                  >
+                    Active Rentals — Earning Now
+                  </h2>
+                  <span class="text-[10px] text-[#8a97ad]">2 active</span>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <article
+                    class="flex items-center gap-3 rounded-[10px] border border-[#e7edf9] p-3"
+                  >
+                    <img
+                      src="../images/canon eos r50 2 1.png"
+                      alt="Canon EOS R50"
+                      class="h-10 w-12 shrink-0 rounded-[6px] object-cover"
+                    />
+                    <div class="min-w-0">
+                      <p class="text-[12px] font-semibold text-[#10265e]">
+                        Canon EOS R50
+                      </p>
+                      <p class="mt-0.5 text-[10px] text-[#8a97ad]">
+                        Peace O. · 3 days left
+                      </p>
+                      <p class="mt-1 text-[11px] font-bold text-[#10265e]">
+                        ₦20,000
+                      </p>
+                    </div>
+                  </article>
+
+                  <article
+                    class="flex items-center gap-3 rounded-[10px] border border-[#e7edf9] p-3"
+                  >
+                    <!-- No drone photo in the asset set — icon tile stands in. -->
+                    <span
+                      class="grid h-10 w-12 shrink-0 place-items-center rounded-[6px] bg-[#f0f2f5] text-[14px] text-[#10265e]"
+                    >
+                      <i class="fa-solid fa-helicopter"></i>
+                    </span>
+                    <div class="min-w-0">
+                      <p class="text-[12px] font-semibold text-[#10265e]">
+                        DJI Mini 3 Drone
+                      </p>
+                      <p class="mt-0.5 text-[10px] text-[#8a97ad]">
+                        Ama K. · 1 day left
+                      </p>
+                      <p class="mt-1 text-[11px] font-bold text-[#10265e]">
+                        ₦85,000
+                      </p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <!-- ---------- Transaction history ---------- -->
+
+              <div
+                class="rounded-[10px] border border-[#e7edf9] bg-white p-4 shadow-sm"
+              >
+                <div
+                  class="mb-3 flex flex-wrap items-center justify-between gap-3"
+                >
+                  <h2
+                    class="text-[10px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+                  >
+                    Transaction History
+                  </h2>
+
+                  <!-- Selection rides on aria-pressed; styled by .tl-chip. -->
+                  <div class="flex flex-wrap gap-1.5" data-filter-group="transactions">
+                    <button
+                      type="button"
+                      class="tl-chip tl-chip--sq"
+                      data-filter="all"
+                      aria-pressed="true"
+                    >
+                      All
+                    </button>
+                    <button
+                      type="button"
+                      class="tl-chip tl-chip--sq"
+                      data-filter="credit"
+                      aria-pressed="false"
+                    >
+                      Credits
+                    </button>
+                    <button
+                      type="button"
+                      class="tl-chip tl-chip--sq"
+                      data-filter="withdrawal"
+                      aria-pressed="false"
+                    >
+                      Withdrawals
+                    </button>
+                    <button
+                      type="button"
+                      class="tl-chip tl-chip--sq"
+                      data-filter="hold"
+                      aria-pressed="false"
+                    >
+                      Holds
+                    </button>
+                  </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                  <table
+                    class="w-full min-w-[600px] border-collapse text-left text-[10px]"
+                  >
+                    <thead>
+                      <tr class="bg-[#f7f9ff] text-[#8a97ad]">
+                        <th class="px-3 py-2 font-semibold">DESCRIPTION</th>
+                        <th class="px-3 py-2 font-semibold">DATE</th>
+                        <th class="px-3 py-2 font-semibold">TYPE</th>
+                        <th class="px-3 py-2 font-semibold">AMOUNT</th>
+                        <th class="px-3 py-2 font-semibold">STATUS</th>
+                      </tr>
+                    </thead>
+
+                    <!--
+                      These rows are replaced from the store on load. They stay
+                      in the markup on purpose: they are the reference for every
+                      class string the renderer reuses (Tailwind's browser build
+                      only emits CSS for classes it finds here), and they are
+                      what shows if JavaScript is unavailable.
+                    -->
+                    <tbody id="txBody">
+                      <tr class="border-b border-[#f0f4fb]">
+                        <td class="px-3 py-3">
+                          <div class="flex items-center gap-2">
+                            <span
+                              class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#e5f7ee] text-[9px] text-[#12764a]"
+                            >
+                              <i class="fa-solid fa-arrow-down"></i>
+                            </span>
+                            <span class="font-medium text-[#10265e]"
+                              >Payment received - Canon EOS R50</span
+                            >
+                          </div>
+                        </td>
+                        <td class="px-3 py-3 text-[#8a97ad]">
+                          23 Jul 2026, 10:35 AM
+                        </td>
+                        <td class="px-3 py-3 text-[#12764a]">Credit</td>
+                        <td class="px-3 py-3 font-semibold text-[#10265e]">
+                          ₦20,000
+                        </td>
+                        <td class="px-3 py-3">
+                          <span
+                            class="inline-flex items-center gap-1 rounded-full bg-[#e5f7ee] px-2 py-0.5 text-[9px] font-semibold text-[#12764a]"
+                          >
+                            <i class="fa-solid fa-circle-check"></i> Completed
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr class="border-b border-[#f0f4fb]">
+                        <td class="px-3 py-3">
+                          <div class="flex items-center gap-2">
+                            <span
+                              class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#eaf0ff] text-[9px] text-[#2f5bd0]"
+                            >
+                              <i class="fa-solid fa-arrow-up"></i>
+                            </span>
+                            <span class="font-medium text-[#10265e]"
+                              >Withdrawal to GT Bank .... 8830</span
+                            >
+                          </div>
+                        </td>
+                        <td class="px-3 py-3 text-[#8a97ad]">
+                          22 Jul 2026, 02:18 PM
+                        </td>
+                        <td class="px-3 py-3 text-[#2f5bd0]">Withdrawal</td>
+                        <td class="px-3 py-3 font-semibold text-[#10265e]">
+                          -₦65,000
+                        </td>
+                        <td class="px-3 py-3">
+                          <span
+                            class="inline-flex items-center gap-1 rounded-full bg-[#e5f7ee] px-2 py-0.5 text-[9px] font-semibold text-[#12764a]"
+                          >
+                            <i class="fa-solid fa-circle-check"></i> Completed
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr class="border-b border-[#f0f4fb]">
+                        <td class="px-3 py-3">
+                          <div class="flex items-center gap-2">
+                            <span
+                              class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#e5f7ee] text-[9px] text-[#12764a]"
+                            >
+                              <i class="fa-solid fa-arrow-down"></i>
+                            </span>
+                            <span class="font-medium text-[#10265e]"
+                              >Payment received - DJI Mini 3 Drone</span
+                            >
+                          </div>
+                        </td>
+                        <td class="px-3 py-3 text-[#8a97ad]">
+                          21 Jul 2026, 11:42 AM
+                        </td>
+                        <td class="px-3 py-3 text-[#12764a]">Credit</td>
+                        <td class="px-3 py-3 font-semibold text-[#10265e]">
+                          ₦85,000
+                        </td>
+                        <td class="px-3 py-3">
+                          <span
+                            class="inline-flex items-center gap-1 rounded-full bg-[#e5f7ee] px-2 py-0.5 text-[9px] font-semibold text-[#12764a]"
+                          >
+                            <i class="fa-solid fa-circle-check"></i> Completed
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr class="border-b border-[#f0f4fb]">
+                        <td class="px-3 py-3">
+                          <div class="flex items-center gap-2">
+                            <span
+                              class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#fff3d4] text-[9px] text-[#b47f06]"
+                            >
+                              <i class="fa-solid fa-rotate"></i>
+                            </span>
+                            <span class="font-medium text-[#10265e]"
+                              >Payout Processing to MTN Momo</span
+                            >
+                          </div>
+                        </td>
+                        <td class="px-3 py-3 text-[#8a97ad]">
+                          20 Jul 2026, 08:35 PM
+                        </td>
+                        <td class="px-3 py-3 text-[#2f5bd0]">Withdrawal</td>
+                        <td class="px-3 py-3 font-semibold text-[#10265e]">
+                          -₦20,000
+                        </td>
+                        <td class="px-3 py-3">
+                          <span
+                            class="inline-flex items-center gap-1 rounded-full bg-[#fff3d4] px-2 py-0.5 text-[9px] font-semibold text-[#b47f06]"
+                          >
+                            <i class="fa-solid fa-clock"></i> Processing
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr class="border-b border-[#f0f4fb]">
+                        <td class="px-3 py-3">
+                          <div class="flex items-center gap-2">
+                            <span
+                              class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#efeaff] text-[9px] text-[#6b46d6]"
+                            >
+                              <i class="fa-solid fa-shield-halved"></i>
+                            </span>
+                            <span class="font-medium text-[#10265e]"
+                              >Security deposit held - Generator</span
+                            >
+                          </div>
+                        </td>
+                        <td class="px-3 py-3 text-[#8a97ad]">
+                          18 Jul 2026, 04:15 PM
+                        </td>
+                        <td class="px-3 py-3 text-[#6b46d6]">Hold</td>
+                        <td class="px-3 py-3 font-semibold text-[#10265e]">
+                          -₦50,000
+                        </td>
+                        <td class="px-3 py-3">
+                          <span
+                            class="inline-flex items-center gap-1 rounded-full bg-[#efeaff] px-2 py-0.5 text-[9px] font-semibold text-[#6b46d6]"
+                          >
+                            <i class="fa-solid fa-lock"></i> Held
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="px-3 py-3">
+                          <div class="flex items-center gap-2">
+                            <span
+                              class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#e5f7ee] text-[9px] text-[#12764a]"
+                            >
+                              <i class="fa-solid fa-arrow-down"></i>
+                            </span>
+                            <span class="font-medium text-[#10265e]"
+                              >Payment received - Generator</span
+                            >
+                          </div>
+                        </td>
+                        <td class="px-3 py-3 text-[#8a97ad]">
+                          17 Jul 2026, 08:50 AM
+                        </td>
+                        <td class="px-3 py-3 text-[#12764a]">Credit</td>
+                        <td class="px-3 py-3 font-semibold text-[#10265e]">
+                          ₦30,000
+                        </td>
+                        <td class="px-3 py-3">
+                          <span
+                            class="inline-flex items-center gap-1 rounded-full bg-[#e5f7ee] px-2 py-0.5 text-[9px] font-semibold text-[#12764a]"
+                          >
+                            <i class="fa-solid fa-circle-check"></i> Completed
+                          </span>
+                        </td>
+                      </tr>
+
+                      <!-- Shown by the filter when nothing matches. -->
+                      <tr id="txEmpty" style="display: none">
+                        <td
+                          colspan="5"
+                          class="px-3 py-6 text-center text-[10px] text-[#8a97ad]"
+                        >
+                          No transactions of this type yet.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="mt-3 text-center">
+                  <a
+                    href="#"
+                    class="text-[10px] font-medium text-[#556587] hover:text-[#10265e]"
+                    >View all transactions →</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- ============ Right column ============ -->
+
+            <aside class="grid gap-4">
+              <!-- ---------- Quick actions ---------- -->
+
+              <div
+                class="rounded-[10px] border border-[#e7edf9] bg-white p-4 shadow-sm"
+              >
+                <h2
+                  class="mb-3 text-[10px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+                >
+                  Quick Actions
+                </h2>
+
+                <div class="grid gap-2.5">
+                  <button
+                    type="button"
+                    data-action="open-withdraw"
+                    class="rounded-[8px] bg-[#10265e] px-4 py-2.5 text-[11px] font-semibold text-white transition hover:bg-[#173a86]"
+                  >
+                    Withdraw Funds
+                  </button>
+                  <button
+                    type="button"
+                    data-action="open-add-account"
+                    class="rounded-[8px] bg-[#ffc43d] px-4 py-2.5 text-[11px] font-semibold text-[#10265e] transition hover:bg-[#eeb236]"
+                  >
+                    Add Payout Account
+                  </button>
+                </div>
+              </div>
+
+              <!-- ---------- Payout accounts ---------- -->
+
+              <div
+                class="rounded-[10px] border border-[#e7edf9] bg-white p-4 shadow-sm"
+              >
+                <h2
+                  class="mb-3 text-[10px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+                >
+                  Payout Accounts
+                </h2>
+
+                <!--
+                  Provider marks are CSS tiles — no bank logos in the asset set.
+                  Rows are re-rendered from the store; these two are the class
+                  reference and the no-JS fallback.
+                -->
+                <div id="payoutAccounts">
+                  <div class="flex items-center gap-2.5 border-b border-[#f0f4fb] pb-3">
+                    <span
+                      class="grid h-7 w-7 shrink-0 place-items-center rounded-[6px] bg-[#ffc43d] text-[8px] font-bold text-[#10265e]"
+                      >MTN</span
+                    >
+                    <div class="min-w-0 flex-1">
+                      <p class="text-[10px] font-semibold text-[#10265e]">
+                        MTN Mobile Money
+                      </p>
+                      <p class="text-[9px] text-[#8a97ad]">· · · · 4021</p>
+                    </div>
+                    <span
+                      class="shrink-0 rounded-full bg-[#f0f2f5] px-2 py-0.5 text-[8px] font-semibold text-[#8a97ad]"
+                      >Default</span
+                    >
+                  </div>
+
+                  <div class="flex items-center gap-2.5 pt-3">
+                    <span
+                      class="grid h-7 w-7 shrink-0 place-items-center rounded-[6px] bg-[#e34a33] text-[8px] font-bold text-white"
+                      >GTB</span
+                    >
+                    <div class="min-w-0 flex-1">
+                      <p class="text-[10px] font-semibold text-[#10265e]">
+                        GT Bank
+                      </p>
+                      <p class="text-[9px] text-[#8a97ad]">· · · · 8830</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3 text-center">
+                  <button
+                    type="button"
+                    data-action="open-add-account"
+                    class="text-[10px] font-medium text-[#556587] hover:text-[#10265e]"
+                  >
+                    Add Account
+                  </button>
+                </div>
+              </div>
+
+              <!-- ---------- Earnings chart ---------- -->
+
+              <div
+                class="rounded-[10px] border border-[#e7edf9] bg-white p-4 shadow-sm"
+              >
+                <h2
+                  class="text-[10px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+                >
+                  Earnings — Last 30 Days
+                </h2>
+
+                <!--
+                  One series, so no legend: the heading names it. Amber sits at
+                  1.55:1 on white, below the 3:1 mark, so the scale label and the
+                  per-bar hover values carry the magnitude rather than color alone.
+                  The final bar is navy to mark the most recent day.
+                -->
+                <p class="mt-1 text-[9px] text-[#8a97ad]">
+                  Peak ₦85,000 · daily payouts received
+                </p>
+
+                <div class="mt-3 flex h-[76px] items-end gap-[2px]">
+                  <div
+                    title="Jun 24 · ₦28,000"
+                    class="h-[33%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jun 26 · ₦42,000"
+                    class="h-[49%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jun 28 · ₦20,000"
+                    class="h-[24%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jun 30 · ₦55,000"
+                    class="h-[65%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 02 · ₦38,000"
+                    class="h-[45%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 04 · ₦62,000"
+                    class="h-[73%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 06 · ₦30,000"
+                    class="h-[35%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 08 · ₦48,000"
+                    class="h-[56%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 10 · ₦70,000"
+                    class="h-[82%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 12 · ₦35,000"
+                    class="h-[41%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 14 · ₦58,000"
+                    class="h-[68%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 17 · ₦44,000"
+                    class="h-[52%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 20 · ₦66,000"
+                    class="h-[78%] flex-1 rounded-t-[4px] bg-[#ffc43d]"
+                  ></div>
+                  <div
+                    title="Jul 23 · ₦85,000 (most recent)"
+                    class="h-[100%] flex-1 rounded-t-[4px] bg-[#10265e]"
+                  ></div>
+                </div>
+
+                <div
+                  class="mt-2 flex items-center justify-between text-[9px] text-[#8a97ad]"
+                >
+                  <span>Jun 24</span>
+                  <span>Jul 23</span>
+                </div>
+              </div>
+
+              <!-- ---------- Year-to-date ---------- -->
+
+              <div
+                class="rounded-[10px] border border-[#e7edf9] bg-white p-4 shadow-sm"
+              >
+                <h2
+                  class="mb-3 text-[10px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+                >
+                  Year-to-date Summary
+                </h2>
+
+                <div class="space-y-2.5">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-[10px] text-[#8a97ad]">Total earned</span>
+                    <span id="ytdEarned" class="text-[10px] font-semibold text-[#10265e]"
+                      >₦550,000</span
+                    >
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-[10px] text-[#8a97ad]"
+                      >Total withdrawn</span
+                    >
+                    <span id="ytdWithdrawn" class="text-[10px] font-semibold text-[#10265e]"
+                      >₦439,000</span
+                    >
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-[10px] text-[#8a97ad]"
+                      >Platform fee (12%)</span
+                    >
+                    <span id="ytdFee" class="text-[10px] font-semibold text-[#10265e]"
+                      >₦66,000</span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center justify-between gap-2 border-t border-[#f0f4fb] pt-2.5"
+                  >
+                    <span class="text-[10px] font-bold text-[#10265e]"
+                      >Net earnings</span
+                    >
+                    <span id="ytdNet" class="text-[10px] font-bold text-[#10265e]"
+                      >₦484,000</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!--
+      ================= Modals =================
+
+      Written out in full here rather than built in JavaScript: Tailwind's
+      browser build only generates CSS for class names present in the markup,
+      so a dialog assembled at runtime would render unstyled. The script only
+      shows/hides these and rewrites their text.
+    -->
+
+    <div
+      id="withdrawModal"
+      style="display: none"
+      class="fixed inset-0 z-[120] flex items-center justify-center px-4"
+    >
+      <div data-modal-backdrop class="absolute inset-0 bg-black/40"></div>
+
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="withdrawTitle"
+        class="relative w-full max-w-[340px] rounded-[12px] bg-white p-5 shadow-[0_20px_50px_rgba(16,38,94,0.3)]"
+      >
+        <div class="flex items-start justify-between gap-3">
+          <h2 id="withdrawTitle" class="text-[13px] font-bold text-[#10265e]">
+            Withdraw funds
+          </h2>
+          <button
+            type="button"
+            data-modal-close
+            aria-label="Close"
+            class="text-[13px] text-[#8a97ad] transition hover:text-[#10265e]"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <p id="withdrawAvailable" class="mt-1 text-[10px] text-[#8a97ad]">
+          Available: ₦65,079.24
+        </p>
+
+        <label
+          for="withdrawAmount"
+          class="mt-4 block text-[10px] font-semibold text-[#10265e]"
+          >Amount</label
+        >
+        <input
+          id="withdrawAmount"
+          type="number"
+          inputmode="decimal"
+          min="1000"
+          step="100"
+          placeholder="1000"
+          class="tl-field mt-1"
+        />
+
+        <label
+          for="withdrawAccount"
+          class="mt-3 block text-[10px] font-semibold text-[#10265e]"
+          >Payout account</label
+        >
+        <select id="withdrawAccount" class="tl-field mt-1"></select>
+
+        <p id="withdrawError" class="tl-error mt-2" style="display: none"></p>
+
+        <div class="mt-5 grid grid-cols-2 gap-2.5">
+          <button
+            type="button"
+            data-modal-close
+            class="rounded-[8px] border border-[#dce6f5] px-4 py-2.5 text-[11px] font-semibold text-[#556587] transition hover:bg-[#f5f8ff]"
+          >
+            Cancel
+          </button>
+          <button
+            id="withdrawSubmit"
+            type="button"
+            class="rounded-[8px] bg-[#10265e] px-4 py-2.5 text-[11px] font-semibold text-white transition hover:bg-[#173a86]"
+          >
+            Withdraw
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="accountModal"
+      style="display: none"
+      class="fixed inset-0 z-[120] flex items-center justify-center px-4"
+    >
+      <div data-modal-backdrop class="absolute inset-0 bg-black/40"></div>
+
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="accountTitle"
+        class="relative w-full max-w-[340px] rounded-[12px] bg-white p-5 shadow-[0_20px_50px_rgba(16,38,94,0.3)]"
+      >
+        <div class="flex items-start justify-between gap-3">
+          <h2 id="accountTitle" class="text-[13px] font-bold text-[#10265e]">
+            Add payout account
+          </h2>
+          <button
+            type="button"
+            data-modal-close
+            aria-label="Close"
+            class="text-[13px] text-[#8a97ad] transition hover:text-[#10265e]"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <label
+          for="accountBank"
+          class="mt-4 block text-[10px] font-semibold text-[#10265e]"
+          >Bank or provider</label
+        >
+        <input
+          id="accountBank"
+          type="text"
+          placeholder="e.g. Access Bank"
+          class="tl-field mt-1"
+        />
+
+        <label
+          for="accountLast4"
+          class="mt-3 block text-[10px] font-semibold text-[#10265e]"
+          >Last 4 digits</label
+        >
+        <input
+          id="accountLast4"
+          type="text"
+          inputmode="numeric"
+          maxlength="4"
+          placeholder="0000"
+          class="tl-field mt-1"
+        />
+
+        <label class="mt-3 flex items-center gap-2 text-[10px] text-[#556587]">
+          <input id="accountPrimary" type="checkbox" />
+          Make this my default payout account
+        </label>
+
+        <p id="accountError" class="tl-error mt-2" style="display: none"></p>
+
+        <div class="mt-5 grid grid-cols-2 gap-2.5">
+          <button
+            type="button"
+            data-modal-close
+            class="rounded-[8px] border border-[#dce6f5] px-4 py-2.5 text-[11px] font-semibold text-[#556587] transition hover:bg-[#f5f8ff]"
+          >
+            Cancel
+          </button>
+          <button
+            id="accountSubmit"
+            type="button"
+            class="rounded-[8px] bg-[#10265e] px-4 py-2.5 text-[11px] font-semibold text-white transition hover:bg-[#173a86]"
+          >
+            Add account
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= Footer ================= -->
+
+    <footer
+      class="relative z-[80] bg-[#0b2555] px-6 pb-7 pt-12 text-white sm:px-10"
+    >
+      <div
+        class="grid gap-8 pb-9 sm:grid-cols-2 lg:grid-cols-[1.8fr_1fr_1fr_1fr] lg:gap-x-12"
+      >
+        <div>
+          <img
+            src="../images/SVG 2.png"
+            alt="TrustLend logo"
+            class="mb-3 h-9 w-9 object-contain"
+          />
+          <p class="mb-3 text-base font-bold text-white">
+            Borrow with Confidence. Lend with Trust
+          </p>
+          <p class="max-w-[320px] text-sm leading-relaxed text-white/70">
+            TrustLend is a secure marketplace connecting people and businesses
+            to rent and lend equipment with confidence.
+          </p>
+
+          <div class="mt-5 flex items-center gap-2.5">
+            <a
+              href="#"
+              aria-label="Instagram"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="X"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-x-twitter"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-full bg-[#1877f2] text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md bg-[#0a66c2] text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-[15px] font-bold text-[#ffc43d]">QUICK LINKS</h4>
+          <a
+            href="equipment.html"
+            class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Browse Equipments</a
+          >
+          <a
+            href="equipment.html"
+            class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >List Your Equipments</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >How It Works</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Trust &amp; Safety</a
+          >
+          <a href="#" class="block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Pricing</a
+          >
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-[15px] font-bold text-[#ffc43d]">COMPANY</h4>
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >About</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Careers</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Blog</a
+          >
+          <a href="#" class="block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Contact</a
+          >
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-[15px] font-bold text-[#ffc43d]">SUPPORT</h4>
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Help Center</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >FAQs</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Terms of Service</a
+          >
+          <a href="#" class="block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Privacy Policy</a
+          >
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 text-[13px] text-white/60">
+        <small>© 2026 TrustLend Technologies Ltd. All rights reserved</small>
+        <!-- Demo affordance: wipes saved state and reseeds. -->
+        <button
+          type="button"
+          data-action="reset-demo"
+          class="text-[11px] text-white/40 underline transition hover:text-white/70"
+        >
+          Reset demo data
+        </button>
+      </div>
+    </footer>
+
+    <!--
+      Plain deferred scripts, not modules: `type="module"` is blocked by CORS
+      when a page is opened straight from disk, and these need to work both
+      ways. Order matters — data, then store, then shared UI, then the page.
+    -->
+    <script defer src="js/tl-data.js"></script>
+    <script defer src="js/tl-store.js"></script>
+    <script defer src="js/tl-ui.js"></script>
+    <script defer src="js/page-wallet.js"></script>
+  </body>
+</html>
