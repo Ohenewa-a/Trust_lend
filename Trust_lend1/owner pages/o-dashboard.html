@@ -5,13 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TrustLend - Dashboard</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   
-  <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,45 +21,38 @@
 </head>
 <body class="bg-[#F4F7FB] text-[#0F172A] antialiased flex flex-col min-h-screen">
 
-  <!-- MOBILE OVERLAY BACKDROP -->
   <div id="sidebar-overlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-slate-900/50 z-40 lg:hidden"></div>
 
   <div class="flex flex-col lg:flex-row flex-1">
 
-    <!-- SIDEBAR -->
     <aside id="sidebar" class="hidden lg:block w-full lg:w-64 bg-[#0B2545] text-white flex-shrink-0 z-50">
       <div class="p-6">
-        <!-- Logo -->
         <div class="flex items-center gap-2 mb-8">
-          <div class="flex items-center justify-center">
-            <div>
-              <img src="/Trust_lend/Trust_lend1/images/SVG 2.png" alt="logo">
-            </div>
+          <div class="w-8 h-8 rounded-full border-2 border-amber-400 flex items-center justify-center bg-[#0B2545]">
+            
           </div>
           <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
         </div>
 
         <hr class="border-white/10 mb-6" />
 
-        <!-- Navigation Menu -->
         <nav class="space-y-6 text-xs font-medium">
-          <!-- MANAGE -->
           <div>
             <ul class="space-y-1">
               <li>
-                <a href="o-dashboard.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                <a href="o-dashboard.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-400 transition">
                   <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                   Dashboard
                 </a>
               </li>
               <li>
-                <a href="my-equipment.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                <a href="my-equipment.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-400 transition">
                   <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                   My Equipment
                 </a>
               </li>
               <li>
-                <a href="booking-r.html" class="flex items-center justify-between px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                <a href="booking-r.html" class="flex items-center justify-between px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-400 transition">
                   <span class="flex items-center gap-2.5">
                     <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                     Bookings
@@ -71,23 +61,19 @@
                 </a>
               </li>
               <li>
-                <a href="rental-inspection.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                <a href="rental-inspection.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-400 transition">
                   <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                   Return Inspection
                 </a>
               </li>
-
-            <!-- FINANCE -->
               <li>
-                <a href="owner-wallet.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                <a href="owner-wallet.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-400 transition">
                   <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                   Wallet
                 </a>
               </li>
-
-            <!-- ACCOUNT -->
               <li>
-                <a href="profile.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                <a href="profile.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-400 transition">
                   <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                   Profile
                 </a>
@@ -98,40 +84,35 @@
       </div>
     </aside>
 
-    <!-- MAIN DASHBOARD CONTENT -->
     <div class="flex-1 flex flex-col min-w-0">
       
-      <!-- HEADER -->
-      <header class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <header class="bg-white border-b border-slate-200 px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
         
         <div class="flex items-center gap-3">
-          <!-- Mobile Hamburger Menu Button -->
-          <button onclick="toggleSidebar()" class="lg:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition">
+          <button onclick="toggleSidebar()" class="lg:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition focus:outline-none">
             <i data-lucide="menu" class="w-6 h-6"></i>
           </button>
 
           <div>
-            <h1 class="text-xl font-bold text-[#0B2545]">Dashboard</h1>
-            <p class="text-xs text-slate-500 font-medium">Review the returned item and confirm its condition</p>
+            <h1 class="text-lg sm:text-xl font-bold text-[#0B2545]">Dashboard</h1>
+            <p class="text-xs text-slate-500 font-medium">Review returned items and manage your listings</p>
           </div>
         </div>
 
-        <div class="flex items-center gap-4">
-          <!-- Search Bar -->
-          <div class="relative w-full md:w-64">
+        <div class="flex items-center gap-2 sm:gap-4 ml-auto lg:ml-0">
+          <div class="relative w-36 sm:w-52 md:w-64">
             <input 
               id="dashboardSearch"
               type="text" 
               placeholder="Search table items..." 
               onkeyup="filterTableBySearch()"
-              class="w-full bg-slate-50 text-xs text-slate-800 placeholder-slate-400 pl-4 pr-9 py-2 rounded-full border border-slate-200 focus:outline-none focus:border-[#0B2545]"
+              class="w-full bg-slate-50 text-xs text-slate-800 placeholder-slate-400 pl-3 sm:pl-4 pr-8 py-2 rounded-full border border-slate-200 focus:outline-none focus:border-[#0B2545]"
             />
             <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2"></i>
           </div>
 
-          <!-- Notification Bell -->
           <div class="relative">
-            <button onclick="toggleNotifications()" class="relative p-2 text-slate-600 hover:bg-slate-100 rounded-full transition">
+            <button onclick="toggleNotifications()" class="relative p-2 text-slate-600 hover:bg-slate-100 rounded-full transition focus:outline-none">
               <i data-lucide="bell" class="w-5 h-5"></i>
               <span id="notification-dot" class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
             </button>
@@ -144,19 +125,15 @@
             </div>
           </div>
 
-          <!-- User Avatar -->
           <div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 flex-shrink-0 cursor-pointer" onclick="window.location.href='profile.html'">
             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Profile" class="w-full h-full object-cover" />
           </div>
         </div>
       </header>
 
-      <!-- BODY METRICS & GRIDS -->
       <main class="p-6 space-y-6">
 
-        <!-- METRIC CARDS -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <!-- Card 1 -->
           <div class="bg-[#0B2545] text-white p-5 rounded-xl shadow-sm flex flex-col justify-between">
             <span class="text-xs font-semibold text-slate-300">Items Out</span>
             <div class="mt-4">
@@ -165,7 +142,6 @@
             </div>
           </div>
 
-          <!-- Card 2 -->
           <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
             <span class="text-xs font-semibold text-slate-500">Active Listings</span>
             <div class="mt-4">
@@ -174,7 +150,6 @@
             </div>
           </div>
 
-          <!-- Card 3 -->
           <div class="bg-amber-400/90 text-[#0B2545] p-5 rounded-xl shadow-sm flex flex-col justify-between">
             <span class="text-xs font-bold text-slate-800">Total Earnings</span>
             <div class="mt-4">
@@ -183,7 +158,6 @@
             </div>
           </div>
 
-          <!-- Card 4 -->
           <div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-sm flex flex-col justify-between">
             <span class="text-xs font-semibold text-slate-500">Total Bookings</span>
             <div class="mt-4">
@@ -193,16 +167,13 @@
           </div>
         </div>
 
-        <!-- MAIN MIDDLE SECTION -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-          <!-- LEFT COLUMN: PENDING BOOKINGS -->
           <div class="lg:col-span-5 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
             <div>
               <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Pending Booking Requests</h2>
               
               <div id="pending-requests-container">
-                <!-- Item 1 -->
                 <div id="request-item-1" class="border-b border-slate-100 pb-4 mb-4 space-y-3">
                   <div class="flex gap-3">
                     <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=150&q=80" class="w-12 h-12 rounded-lg object-cover bg-slate-100" />
@@ -219,7 +190,6 @@
                   </div>
                 </div>
 
-                <!-- Item 2 -->
                 <div id="request-item-2" class="space-y-3">
                   <div class="flex gap-3">
                     <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=150&q=80" class="w-12 h-12 rounded-lg object-cover bg-slate-100" />
@@ -245,7 +215,6 @@
               </div>
             </div>
 
-            <!-- Auto Decline Toggle Footer -->
             <div class="bg-[#0B2545] text-white px-4 py-2.5 rounded-lg flex items-center justify-between text-xs">
               <span class="text-[11px] text-slate-300">Auto-decline if no response after 24h</span>
               <label class="relative inline-flex items-center cursor-pointer">
@@ -255,10 +224,8 @@
             </div>
           </div>
 
-          <!-- CENTER COLUMN: ACTIVE RENTALS & UPCOMING -->
           <div class="lg:col-span-4 space-y-6">
             
-            <!-- ACTIVE RENTALS -->
             <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
               <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Active Rentals</h2>
@@ -295,12 +262,10 @@
               </div>
             </div>
 
-            <!-- UPCOMING PICKUPS & RETURNS -->
             <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
               <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Upcoming Pickups & Returns</h2>
               
               <div class="space-y-3.5 text-xs">
-                <!-- Event 1 -->
                 <div class="flex items-start gap-2.5">
                   <span class="w-2 h-2 rounded-full bg-[#0B2545] mt-1.5"></span>
                   <div>
@@ -309,7 +274,6 @@
                   </div>
                 </div>
 
-                <!-- Event 2 -->
                 <div class="flex items-start gap-2.5">
                   <span class="w-2 h-2 rounded-full bg-amber-400 mt-1.5"></span>
                   <div>
@@ -318,7 +282,6 @@
                   </div>
                 </div>
 
-                <!-- Event 3 -->
                 <div class="flex items-start gap-2.5">
                   <span class="w-2 h-2 rounded-full bg-[#0B2545] mt-1.5"></span>
                   <div>
@@ -327,7 +290,6 @@
                   </div>
                 </div>
 
-                <!-- Event 4 -->
                 <div class="flex items-start gap-2.5">
                   <span class="w-2 h-2 rounded-full bg-amber-400 mt-1.5"></span>
                   <div>
@@ -340,10 +302,8 @@
 
           </div>
 
-          <!-- RIGHT COLUMN: EARNINGS & QUICK ACTIONS -->
           <div class="lg:col-span-3 space-y-6">
             
-            <!-- EARNINGS SUMMARY -->
             <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
               <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Earnings Summary</h2>
               
@@ -356,15 +316,14 @@
                 </div>
               </div>
 
-              <!-- Bar Chart Placeholder -->
               <div class="flex items-end justify-between h-16 pt-2 px-1 gap-1">
-                <div class="bg-[#0B2545] w-full h-[40%] rounded-t hover:bg-amber-400 transition" title="Mon: ₦20,000"></div>
-                <div class="bg-[#0B2545] w-full h-[60%] rounded-t hover:bg-amber-400 transition" title="Tue: ₦30,000"></div>
-                <div class="bg-[#0B2545] w-full h-[30%] rounded-t hover:bg-amber-400 transition" title="Wed: ₦15,000"></div>
-                <div class="bg-[#0B2545] w-full h-[80%] rounded-t hover:bg-amber-400 transition" title="Thu: ₦40,000"></div>
-                <div class="bg-[#0B2545] w-full h-[50%] rounded-t hover:bg-amber-400 transition" title="Fri: ₦25,000"></div>
-                <div class="bg-[#0B2545] w-full h-[100%] rounded-t hover:bg-amber-400 transition" title="Sat: ₦50,000"></div>
-                <div class="bg-[#0B2545] w-full h-[70%] rounded-t hover:bg-amber-400 transition" title="Sun: ₦35,000"></div>
+                <div class="bg-[#0B2545] w-full h-[40%] rounded-t hover:bg-amber-400 transition"></div>
+                <div class="bg-[#0B2545] w-full h-[60%] rounded-t hover:bg-amber-400 transition"></div>
+                <div class="bg-[#0B2545] w-full h-[30%] rounded-t hover:bg-amber-400 transition"></div>
+                <div class="bg-[#0B2545] w-full h-[80%] rounded-t hover:bg-amber-400 transition"></div>
+                <div class="bg-[#0B2545] w-full h-[50%] rounded-t hover:bg-amber-400 transition"></div>
+                <div class="bg-[#0B2545] w-full h-[100%] rounded-t hover:bg-amber-400 transition"></div>
+                <div class="bg-[#0B2545] w-full h-[70%] rounded-t hover:bg-amber-400 transition"></div>
               </div>
               <div class="flex justify-between text-[9px] text-slate-400 font-bold mt-1 px-1">
                 <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
@@ -375,7 +334,6 @@
               </button>
             </div>
 
-            <!-- QUICK ACTIONS -->
             <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
               <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Quick Actions</h2>
               
@@ -393,12 +351,10 @@
 
         </div>
 
-        <!-- BOOKING HISTORY TABLE -->
         <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Booking History</h2>
             
-            <!-- Dynamic Filters -->
             <div id="filter-buttons-group" class="flex flex-wrap gap-1 bg-slate-100 p-1 rounded-lg text-xs font-medium">
               <button onclick="filterTable('All', this)" class="px-3 py-1 rounded-md text-slate-600 hover:text-black transition">All</button>
               <button onclick="filterTable('Active', this)" class="px-3 py-1 rounded-md text-slate-600 hover:text-black transition">Active</button>
@@ -407,7 +363,6 @@
             </div>
           </div>
 
-          <!-- Table -->
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse" id="historyTable">
               <thead>
@@ -421,10 +376,9 @@
                 </tr>
               </thead>
               <tbody class="text-xs divide-y divide-slate-100">
-                <!-- Row 1 -->
                 <tr data-status="Active" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
-                    <img src="/Trust_lend/Trust_lend1/images/Background+Border (1).png" alt="" class="w-8 h-8 rounded object-cover" />
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=80&q=80" alt="" class="w-8 h-8 rounded object-cover" />
                     <span class="font-bold text-[#0B2545]">Generator 5KVA</span>
                   </td>
                   <td class="py-3">
@@ -443,16 +397,15 @@
                   </td>
                 </tr>
 
-                <!-- Row 2 -->
                 <tr data-status="Completed" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
-                    <img src="/Trust_lend/Trust_lend1/images/Background+Border.png" alt="" class="w-8 h-8 rounded object-cover" />
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=80&q=80" alt="" class="w-8 h-8 rounded object-cover" />
                     <span class="font-bold text-[#0B2545]">Concrete Mixer</span>
                   </td>
                   <td class="py-3">
                     <div class="flex items-center gap-2">
                       <div class="w-5 h-5 rounded-full bg-slate-200 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=50&q=80" class="w-full h-full object-cover" />
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=50&q=80" alt="" class="w-full h-full object-cover" />
                       </div>
                       <span class="text-slate-700">Mary O.</span>
                     </div>
@@ -465,7 +418,6 @@
                   </td>
                 </tr>
 
-                <!-- Row 3 -->
                 <tr data-status="Completed" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
                     <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=80&q=80" class="w-8 h-8 rounded object-cover" />
@@ -474,7 +426,7 @@
                   <td class="py-3">
                     <div class="flex items-center gap-2">
                       <div class="w-5 h-5 rounded-full bg-slate-200 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=50&q=80" class="w-full h-full object-cover" />
+                        <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=50&q=80" alt="" class="w-full h-full object-cover" />
                       </div>
                       <span class="text-slate-700">Peace D.</span>
                     </div>
@@ -487,7 +439,6 @@
                   </td>
                 </tr>
 
-                <!-- Row 4 -->
                 <tr data-status="Completed" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
                     <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=80&q=80" class="w-8 h-8 rounded object-cover" />
@@ -496,7 +447,7 @@
                   <td class="py-3">
                     <div class="flex items-center gap-2">
                       <div class="w-5 h-5 rounded-full bg-slate-200 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=50&q=80" class="w-full h-full object-cover" />
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=50&q=80" alt="" class="w-full h-full object-cover" />
                       </div>
                       <span class="text-slate-700">Bukky B.</span>
                     </div>
@@ -509,7 +460,6 @@
                   </td>
                 </tr>
 
-                <!-- Row 5 -->
                 <tr data-status="Cancelled" class="history-row hover:bg-slate-50 transition">
                   <td class="py-3 flex items-center gap-3">
                     <img src="https://images.unsplash.com/photo-1512790182412-b19e6d62bc39?auto=format&fit=crop&w=80&q=80" class="w-8 h-8 rounded object-cover" />
@@ -518,7 +468,7 @@
                   <td class="py-3">
                     <div class="flex items-center gap-2">
                       <div class="w-5 h-5 rounded-full bg-slate-200 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=50&q=80" class="w-full h-full object-cover" />
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=50&q=80" alt="" class="w-full h-full object-cover" />
                       </div>
                       <span class="text-slate-700">Tunde B.</span>
                     </div>
@@ -539,16 +489,15 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="bg-[#102A4A] text-white pt-12 pb-8 px-6 border-t border-slate-800">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
       
-      <!-- Brand Info -->
       <div class="lg:col-span-2 space-y-4">
         <div class="flex items-center gap-2">
-          <div class="flex items-center justify-center">
-            <img src="/Trust_lend/Trust_lend1/images/SVG 2.png" alt="logo"/>
+          <div class="w-8 h-8 rounded-full border-2 border-amber-400 flex items-center justify-center bg-[#0B2545]">
+            <i data-lucide="key" class="w-4 h-4 text-amber-400"></i>
           </div>
+          <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
         </div>
         
         <h3 class="text-sm font-semibold text-slate-100">Borrow with Confidence. Lend with Trust</h3>
@@ -557,16 +506,22 @@
           TrustLend is a secure marketplace connecting people and businesses to rent and lend equipment with confidence.
         </p>
 
-        <!-- Social Icons -->
         <div class="flex items-center gap-3 pt-2">
-                <a href="#" class="text-white/60 hover:text-amber-400 transition text-xs"><img src="/Trust_lend/Trust_lend1/images/instagram.png" alt="" class="w-6 h-6"></a>
-                <a href="#" class="text-white/60 hover:text-amber-400 transition text-xs"><img src="/Trust_lend/Trust_lend1/images/twitter.png" alt="" class="w-6 h-6"></a>
-                <a href="#" class="text-white/60 hover:text-amber-400 transition text-xs"><img src="/Trust_lend/Trust_lend1/images/communication.png" alt="" class="w-6 h-6"></a>
-                <a href="#" class="text-white/60 hover:text-amber-400 transition text-xs"><img src="/Trust_lend/Trust_lend1/images/linkedin.png" alt="" class="w-6 h-6"></a>
+          <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-full bg-white/10 hover:bg-amber-400 hover:text-[#0B2545] flex items-center justify-center transition text-xs">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </a>
+          <a href="#" aria-label="Twitter" class="w-8 h-8 rounded-full bg-white/10 hover:bg-amber-400 hover:text-[#0B2545] flex items-center justify-center transition text-xs">
+            <i data-lucide="twitter" class="w-4 h-4"></i>
+          </a>
+          <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-full bg-white/10 hover:bg-amber-400 hover:text-[#0B2545] flex items-center justify-center transition text-xs">
+            <i data-lucide="facebook" class="w-4 h-4"></i>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-white/10 hover:bg-amber-400 hover:text-[#0B2545] flex items-center justify-center transition text-xs">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </a>
         </div>
       </div>
 
-      <!-- Quick Links -->
       <div class="space-y-3">
         <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">Quick Links</h4>
         <ul class="space-y-2 text-xs text-slate-300">
@@ -578,7 +533,6 @@
         </ul>
       </div>
 
-      <!-- Company Links -->
       <div class="space-y-3">
         <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">Company</h4>
         <ul class="space-y-2 text-xs text-slate-300">
@@ -589,7 +543,6 @@
         </ul>
       </div>
 
-      <!-- Support Links -->
       <div class="space-y-3">
         <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">Support</h4>
         <ul class="space-y-2 text-xs text-slate-300">
@@ -602,22 +555,17 @@
 
     </div>
 
-    <!-- Copyright -->
     <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800/60 text-xs text-slate-400">
       © 2026 TrustLend Technologies Ltd. All rights reserved
     </div>
   </footer>
 
-  <!-- Lucide Script initialization & Custom Interactive JS -->
   <script>
-    // Initialize Lucide icons
     lucide.createIcons();
 
-    // Toggle Sidebar visibility for mobile viewports
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('sidebar-overlay');
-      
       const isOpen = !sidebar.classList.contains('hidden');
 
       if (isOpen) {
@@ -629,7 +577,6 @@
       }
     }
 
-    // Pending Requests Accept / Decline Handlers
     let pendingCount = 2;
     function handleBookingAction(elementId, action, itemTitle) {
       const elem = document.getElementById(elementId);
@@ -638,8 +585,6 @@
         setTimeout(() => {
           elem.remove();
           pendingCount--;
-          
-          // Update sidebar badge
           const badge = document.getElementById('booking-badge');
           if (badge) badge.innerText = pendingCount;
 
@@ -650,12 +595,10 @@
       }
     }
 
-    // Auto-Decline Switch Toggle
     function toggleAutoDecline(checkbox) {
       console.log("Auto-decline status:", checkbox.checked ? "Enabled" : "Disabled");
     }
 
-    // Notifications Popover Toggle
     function toggleNotifications() {
       const popover = document.getElementById('notification-popover');
       const dot = document.getElementById('notification-dot');
@@ -663,7 +606,6 @@
       if (dot) dot.classList.add('hidden');
     }
 
-    // Booking History Table Filter Buttons
     function filterTable(status, btnElement) {
       const buttons = document.querySelectorAll('#filter-buttons-group button');
       buttons.forEach(btn => {
@@ -687,7 +629,6 @@
       });
     }
 
-    // Live Search Filter for History Table
     function filterTableBySearch() {
       const query = document.getElementById('dashboardSearch').value.toLowerCase();
       const rows = document.querySelectorAll('.history-row');
@@ -698,7 +639,6 @@
       });
     }
 
-    // Initialize Default View Filter
     document.addEventListener("DOMContentLoaded", () => {
       const completedBtn = document.querySelectorAll('#filter-buttons-group button')[2];
       filterTable('Completed', completedBtn);
