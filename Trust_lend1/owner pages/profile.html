@@ -30,13 +30,13 @@
     <div class="flex-1 flex flex-col lg:flex-row">
 
       <!-- SIDEBAR -->
-      <aside class="w-full lg:w-64 bg-[#0B2545] text-white flex-shrink-0">
+      <aside id="sidebar" class="w-full lg:w-64 bg-[#0B2545] text-white flex-shrink-0">
         <div class="p-6">
           <!-- Logo -->
           <div class="flex items-center gap-2 mb-8">
             <div class="flex items-center justify-center">
               <div>
-                <img src="images/SVG 2.png" alt="logo">
+                <img src="../images/SVG 2.png" alt="logo">
               </div>
             </div>
             <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
@@ -101,6 +101,12 @@
       <!-- ================= MAIN CONTENT AREA ================= -->
       <main class="flex-1 flex flex-col p-6 overflow-hidden">
 
+        <button
+         id="menuBtn"  
+        class="lg:hidden mb-4 w-10 h-10 rounded-lg bg-[#10265e] text-white">
+        <i class="fa-solid fa-bars"></i>
+        </button>
+
         <!-- Top Bar Header -->
         <header class="mb-6 flex flex-col items-start justify-between gap-5 lg:flex-row lg:items-center">
           <div>
@@ -114,19 +120,18 @@
             <div class="flex w-full items-center rounded-full bg-white px-[18px] py-3 shadow-[0_3px_10px_rgba(0,0,0,0.08)] lg:w-[300px]">
               <i class="fa-solid fa-search text-[#555]"></i>
               <input
+                id="searchInput"
                 type="text"
                 placeholder="Search"
                 class="ml-2.5 w-full border-none outline-none"
               />
             </div>
 
-            <i class="fa-regular fa-bell cursor-pointer text-xl text-[#555]"></i>
+            <i id="bell" class="fa-regular fa-bell cursor-pointer text-xl text-[#555]"></i>
 
             <img
-              src="https://i.pravatar.cc/45"
-              alt="Your profile"
-              class="h-[42px] w-[42px] shrink-0 rounded-full object-cover"
-            />
+              src="../images/woman-profile.png" alt="logo">
+
           </div>
         </header>
 
@@ -138,20 +143,25 @@
             <div class="flex min-w-0 flex-col gap-5">
               <!-- Identity banner -->
               <div class="flex flex-col items-start gap-7 rounded-[18px] bg-[#10265e] px-8 py-7 text-white shadow-[0_12px_30px_rgba(16,38,94,0.18)] sm:flex-row sm:items-center">
-                <div class="relative shrink-0">
-                  <img
-                    src="https://i.pravatar.cc/160?u=johndoe"
-                    alt="John Doe"
-                    class="h-[120px] w-[120px] rounded-full border-[3px] border-white/25 object-cover"
-                  />
-                  <button aria-label="Change profile photo" class="absolute bottom-1.5 right-0.5 grid h-8 w-8 place-items-center rounded-full border-2 border-[#10265e] bg-white text-[13px] text-[#10265e] transition hover:bg-[#ffc43d]">
+                <div class="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[#ffc43d]">
+                 <img src="../images/woman-profile.png"
+                  alt="profile"
+                  class="w-full h-full object-cover">
+
+                  <button id="changePhoto" aria-label="Change profile photo" class="absolute bottom-1.5 right-0.5 grid h-8 w-8 place-items-center rounded-full border-2 border-[#10265e] bg-white text-[13px] text-[#10265e] transition hover:bg-[#ffc43d]">
                     <i class="fa-solid fa-camera"></i>
                   </button>
+
+                  <input
+                    id="photoInput"
+                    type="file"
+                    accept="image/*"
+                    class="hidden">
                 </div>
 
                 <div class="min-w-0">
                   <div class="flex flex-wrap items-center gap-3">
-                    <h2 class="text-[26px] font-bold text-white">John Doe</h2>
+                    <h2 class="text-[26px] font-bold text-white">Jane Smith</h2>
                     <span class="inline-flex items-center gap-1.5 rounded-full bg-[#ffc43d] px-3.5 py-[5px] text-xs font-bold text-[#10265e]">
                       <i class="fa-solid fa-circle-check"></i> Verified Renter
                     </span>
@@ -216,54 +226,59 @@
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Billing Address</span>
                       <strong class="text-[13px] text-[#10265e]">Lagos, Nigeria</strong>
                     </div>
+
+                    <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
+                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Default Card</span>
+                      <strong class="text-[13px] text-[#10265e]">Vista</strong>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Rental information -->
+                <!-- Business information -->
                 <div class="rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)] transition hover:-translate-y-[3px] hover:shadow-[0_10px_22px_rgba(0,0,0,0.08)]">
                   <div class="mb-3.5 flex items-center justify-between">
-                    <h3 class="text-base font-bold text-[#10265e]">Rental Information</h3>
+                    <h3 class="text-base font-bold text-[#10265e]">Business Information</h3>
                     <button class="text-[13px] font-semibold text-[#2f5bd0] hover:underline">Edit</button>
                   </div>
 
                   <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div class="rounded-xl border border-[#e6ecf8] bg-[#f4f7fd] px-3.5 py-3">
-                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Preferred Equipment</span>
-                      <strong class="text-[13px] text-[#10265e]">Cameras</strong>
+                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Business Name</span>
+                      <strong class="text-[13px] text-[#10265e]">Smith Rentals Limited</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
-                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Preferred Pickup Location</span>
-                      <strong class="text-[13px] text-[#10265e]">Lekki, Lagos</strong>
+                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Address</span>
+                      <strong class="text-[13px] text-[#10265e]">12 Adekunle Street, Surulere, Lagos</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#e6ecf8] bg-[#f4f7fd] px-3.5 py-3">
-                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Rental Frequency</span>
-                      <strong class="text-[13px] text-[#10265e]">4 times / month</strong>
+                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Business Type</span>
+                      <strong class="text-[13px] text-[#10265e]">Rental Servce</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
-                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Active Rentals</span>
-                      <strong class="text-[13px] text-[#10265e]">03</strong>
+                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">CAC Number</span>
+                     <strong class="text-[13px] text-[#10265e]">RC1234567</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#e6ecf8] bg-[#f4f7fd] px-3.5 py-3">
-                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Total Rentals</span>
-                      <strong class="text-[13px] text-[#10265e]">18</strong>
+                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Year in business</span>
+                      <strong class="text-[13px] text-[#10265e]">3+ Years</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
-                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Completed Rentals</span>
-                      <strong class="text-[13px] text-[#10265e]">16</strong>
+                      <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Tax Identification Number</span>
+                      <strong class="text-[13px] text-[#10265e]">12345678901</strong>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Rental overview -->
+              <!-- business overview -->
               <div class="rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)] transition hover:-translate-y-[3px] hover:shadow-[0_10px_22px_rgba(0,0,0,0.08)]">
                 <div class="mb-3.5 flex items-center justify-between">
-                  <h3 class="text-base font-bold text-[#10265e]">Rental Overview</h3>
+                  <h3 class="text-base font-bold text-[#10265e]">Business Overview</h3>
                   <a href="#" class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#10265e] hover:text-[#2f5bd0]">
                     View All <i class="fa-solid fa-chevron-right text-[11px]"></i>
                   </a>
@@ -272,10 +287,10 @@
                 <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
                   <div class="flex items-center gap-3">
                     <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#e8effd] text-[15px] text-[#2f5bd0]">
-                      <i class="fa-solid fa-box-open"></i>
+                     <i class="fa-solid fa-rotate"></i>
                     </span>
                     <div>
-                      <strong class="block text-xl leading-tight text-[#10265e]">18</strong>
+                      <strong class="block text-xl leading-tight text-[#10265e]">27</strong>
                       <span class="block text-xs text-[#556587]">Total rentals</span>
                       <small class="block text-[11px] text-[#9aa6bf]">All time</small>
                     </div>
@@ -283,11 +298,11 @@
 
                   <div class="flex items-center gap-3">
                     <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#e5f7ee] text-[15px] text-[#1e9c63]">
-                      <i class="fa-solid fa-circle-check"></i>
+                     <i class="fa-solid fa-circle-check"></i>
                     </span>
                     <div>
-                      <strong class="block text-xl leading-tight text-[#10265e]">16</strong>
-                      <span class="block text-xs text-[#556587]">Completed Rentals</span>
+                      <strong class="block text-xl leading-tight text-[#10265e]">24</strong>
+                      <span class="block text-xs text-[#556587]">Complete Rentals</span>
                       <small class="block text-[11px] text-[#9aa6bf]">All time</small>
                     </div>
                   </div>
@@ -297,31 +312,43 @@
                       <i class="fa-solid fa-star"></i>
                     </span>
                     <div>
-                      <strong class="block text-xl leading-tight text-[#10265e]">4.5</strong>
+                      <strong class="block text-xl leading-tight text-[#10265e]">4.6</strong>
                       <span class="block text-xs text-[#556587]">Average Rating</span>
-                      <small class="block text-[11px] text-[#9aa6bf]">From 15 reviews</small>
+                      <small class="block text-[11px] text-[#9aa6bf]">From 16 reviews</small>
                     </div>
                   </div>
 
                   <div class="flex items-center gap-3">
                     <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#efeafc] text-[15px] text-[#6b46d6]">
-                      <i class="fa-regular fa-bookmark"></i>
+                     <i class="fa-solid fa-money-bill-wave"></i>
                     </span>
                     <div>
-                      <strong class="block text-xl leading-tight text-[#10265e]">24</strong>
-                      <span class="block text-xs text-[#556587]">Saved Equipment</span>
+                      <strong class="block text-xl leading-tight text-[#10265e]">#550,000</strong>
+                      <span class="block text-xs text-[#556587]">Total Earnings</span>
                       <small class="block text-[11px] text-[#9aa6bf]">All time</small>
                     </div>
                   </div>
 
                   <div class="flex items-center gap-3">
                     <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#fdeaef] text-[15px] text-[#d13a63]">
-                      <i class="fa-solid fa-camera"></i>
+                      <i class="fa-regular fa-rectangle-list"></i>
                     </span>
                     <div>
-                      <strong class="block text-xl leading-tight text-[#10265e]">03</strong>
-                      <span class="block text-xs text-[#556587]">Favorite Categories</span>
-                      <small class="block text-[11px] text-[#9aa6bf]">Active</small>
+                      <strong class="block text-xl leading-tight text-[#10265e]">04</strong>
+                      <span class="block text-xs text-[#556587]">Disputes</span>
+                      <small class="block text-[11px] text-[#9aa6bf]">All times</small>
+                    </div>
+                  </div>
+
+                     <div class="flex items-center gap-3">
+                    <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#fdeaef] text-[15px] text-[#d13a63]">
+                      <i class="fa-solid fa-location-dot"></i>
+                    </span>
+                    
+                    <div>
+                      <strong class="block text-xl leading-tight text-[#10265e]">NIL</strong>
+                      <span class="block text-xs text-[#556587]">Reports</span>
+                      <small class="block text-[11px] text-[#9aa6bf]">All times</small>
                     </div>
                   </div>
                 </div>
@@ -353,11 +380,11 @@
                           <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#e8effd] text-xs text-[#2f5bd0]">
                             <i class="fa-regular fa-file-lines"></i>
                           </span>
-                          Rental request received
+                          Return request received
                         </div>
                       </td>
                       <td class="px-3 py-4">Canon EOS R50 rental</td>
-                      <td class="px-3 py-4">20 May 2026, 10:30 AM</td>
+                      <td class="px-3 py-4">20 May 2026, 10:35 AM</td>
                       <td class="px-3 py-4">
                         <span class="inline-block rounded-full bg-[#fff4d9] px-3.5 py-1.5 text-[11px] font-bold text-[#96690a]">Pending</span>
                       </td>
@@ -369,11 +396,11 @@
                           <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#e5f7ee] text-xs text-[#1e9c63]">
                             <i class="fa-solid fa-credit-card"></i>
                           </span>
-                          Payment Made
+                          Payment Received
                         </div>
                       </td>
                       <td class="px-3 py-4">Payment for DJI Mini 3 Drone rental</td>
-                      <td class="px-3 py-4">16 May 2026, 09:20 AM</td>
+                      <td class="px-3 py-4">22 Jul 2026, 02:18 PM</td>
                       <td class="px-3 py-4">
                         <span class="inline-block rounded-full bg-[#e5f7ee] px-3.5 py-1.5 text-[11px] font-bold text-[#12764a]">Completed</span>
                       </td>
@@ -385,11 +412,11 @@
                           <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#fff4d9] text-xs text-[#b47f06]">
                             <i class="fa-regular fa-message"></i>
                           </span>
-                          New Message from Vendor
+                          New Message from Peace D.
                         </div>
                       </td>
                       <td class="px-3 py-4">Enquiry about Canon EOS R50 rental</td>
-                      <td class="px-3 py-4">10 May 2026, 11:00 AM</td>
+                      <td class="px-3 py-4">21 Jul 2026, 11:42 AM</td>
                       <td class="px-3 py-4">
                         <span class="inline-block rounded-full bg-[#fdeaef] px-3.5 py-1.5 text-[11px] font-bold text-[#b32a52]">Unread</span>
                       </td>
@@ -405,7 +432,7 @@
                         </div>
                       </td>
                       <td class="px-3 py-4">Nikon Z30 rental</td>
-                      <td class="px-3 py-4">11 May 2026, 5:15 PM</td>
+                      <td class="px-3 py-4">23 Jul 2026, 8:36 PM</td>
                       <td class="px-3 py-4">
                         <span class="inline-block rounded-full bg-[#e5f7ee] px-3.5 py-1.5 text-[11px] font-bold text-[#12764a]">Completed</span>
                       </td>
@@ -421,7 +448,7 @@
                         </div>
                       </td>
                       <td class="px-3 py-4">Generator 5KVA</td>
-                      <td class="px-3 py-4">19 Jul 2026, 04:15 PM</td>
+                      <td class="px-3 py-4">18 Jul 2026, 04:15 PM</td>
                       <td class="px-3 py-4">
                         <span class="inline-block rounded-full bg-[#efeafc] px-3.5 py-1.5 text-[11px] font-bold text-[#5738bd]">Reviewing</span>
                       </td>
@@ -453,16 +480,16 @@
                     <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">4.5</b>
                   </li>
                   <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
-                    <span>Saved Equipment</span>
-                    <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">24</b>
+                    <span>Total Earnings</span>
+                    <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">550,000</b>
                   </li>
                   <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
-                    <span>Pending Request</span>
-                    <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">01</b>
+                    <span>Disputes</span>
+                    <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">04</b>
                   </li>
                   <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
-                    <span>Favorite Categories</span>
-                    <b class="whitespace-nowrap rounded-full bg-[#ffc43d] px-3 py-[3px] text-xs font-semibold text-[#10265e]">Cameras</b>
+                    <span>Reports</span>
+                    <b class="whitespace-nowrap rounded-full bg-[#ffc43d] px-3 py-[3px] text-xs font-semibold text-[#10265e]">NIL</b>
                   </li>
                 </ul>
               </div>
@@ -477,35 +504,35 @@
                   <li>
                     <a href="#" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
                       <i class="fa-regular fa-bookmark w-4 text-center text-[#2f5bd0]"></i>
-                      <span class="flex-1">View Saved Items</span>
+                      <span class="flex-1">View My Listing</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
                     </a>
                   </li>
                   <li>
                     <a href="#" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
                       <i class="fa-regular fa-calendar-check w-4 text-center text-[#2f5bd0]"></i>
-                      <span class="flex-1">Active Bookings</span>
+                      <span class="flex-1">Payout Accounts</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
                     </a>
                   </li>
                   <li>
                     <a href="#" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
                       <i class="fa-regular fa-credit-card w-4 text-center text-[#2f5bd0]"></i>
-                      <span class="flex-1">Payment Methods</span>
+                      <span class="flex-1">Security Settings</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
                     </a>
                   </li>
                   <li>
                     <a href="#" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
                       <i class="fa-solid fa-shield-halved w-4 text-center text-[#2f5bd0]"></i>
-                      <span class="flex-1">Security Settings</span>
+                      <span class="flex-1">Verifications Centers</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
                     </a>
                   </li>
                   <li>
                     <a href="#" class="flex items-center gap-3 py-2.5 text-[13px] hover:text-[#10265e]">
                       <i class="fa-solid fa-download w-4 text-center text-[#2f5bd0]"></i>
-                      <span class="flex-1">Download Receipts</span>
+                      <span class="flex-1">Download Settings</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
                     </a>
                   </li>
@@ -568,7 +595,7 @@
           <div class="flex items-center gap-2">
             <div class="flex items-center justify-center">
               <div>
-                <img src="images/SVG 2.png" alt="logo">
+                <img src="../images/SVG 2.png" alt="logo">
               </div>
             </div>
             <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
@@ -638,6 +665,214 @@
         © 2026 TrustLend Technologies Ltd. All rights reserved
       </div>
     </footer>
+
+
+    <script>
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+const sidebar=document.getElementById("sidebar");
+const menuBtn=document.getElementById("menuBtn");
+const searchInput=document.getElementById("searchInput");
+const bell=document.getElementById("bell");
+const changePhoto=document.getElementById("changePhoto");
+const photoInput=document.getElementById("photoInput");
+const profileImage=document.querySelector(".relative img");
+
+
+
+/*=========================
+MOBILE SIDEBAR
+==========================*/
+
+if(window.innerWidth<1024){
+
+sidebar.classList.add(
+"fixed",
+"top-0",
+"left-0",
+"h-full",
+"z-50",
+"-translate-x-full",
+"transition-transform",
+"duration-300"
+);
+
+}
+
+menuBtn?.addEventListener("click",()=>{
+
+sidebar.classList.toggle("-translate-x-full");
+
+});
+
+
+window.addEventListener("resize",()=>{
+
+if(window.innerWidth>=1024){
+
+sidebar.classList.remove(
+"fixed",
+"-translate-x-full"
+);
+
+}else{
+
+sidebar.classList.add(
+"fixed",
+"-translate-x-full"
+);
+
+}
+
+});
+
+
+
+/*=========================
+SEARCH RECENT ACTIVITY
+==========================*/
+
+searchInput?.addEventListener("keyup",function(){
+
+const keyword=this.value.toLowerCase();
+
+document.querySelectorAll("tbody tr").forEach(row=>{
+
+const text=row.innerText.toLowerCase();
+
+row.style.display=text.includes(keyword)
+?"table-row"
+:"none";
+
+});
+
+});
+
+
+
+/*=========================
+NOTIFICATION
+==========================*/
+
+bell?.addEventListener("click",()=>{
+
+bell.classList.add("fa-shake");
+
+setTimeout(()=>{
+
+bell.classList.remove("fa-shake");
+
+},800);
+
+alert("No new notifications");
+
+});
+
+
+
+/*=========================
+EDIT BUTTONS
+==========================*/
+
+document.querySelectorAll("button").forEach(btn=>{
+
+if(btn.innerText==="Edit"){
+
+btn.addEventListener("click",()=>{
+
+alert("Edit feature coming soon.");
+
+});
+
+}
+
+});
+
+
+
+/*=========================
+PROFILE PHOTO
+==========================*/
+
+changePhoto?.addEventListener("click",()=>{
+
+photoInput.click();
+
+});
+
+photoInput?.addEventListener("change",function(){
+
+const file=this.files[0];
+
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+profileImage.src=e.target.result;
+
+}
+
+reader.readAsDataURL(file);
+
+});
+
+
+
+/*=========================
+CARD HOVER
+==========================*/
+
+document.querySelectorAll(".rounded-\\[14px\\]").forEach(card=>{
+
+card.addEventListener("mouseenter",()=>{
+
+card.style.transform="translateY(-4px)";
+card.style.transition=".3s";
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="translateY(0)";
+
+});
+
+});
+
+
+
+/*=========================
+SMOOTH SCROLL
+==========================*/
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+
+link.addEventListener("click",function(e){
+
+e.preventDefault();
+
+const target=document.querySelector(this.getAttribute("href"));
+
+if(target){
+
+target.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+}
+
+});
+
+});
+
+});
+
+</script>
 
   </body>
 </html>
