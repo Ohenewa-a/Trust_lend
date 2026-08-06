@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TrustLend - Dashboard</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body class="bg-[#eef2f8] text-[#556587]">
+    <!--
+      Same shell as the other pages: sidebar is fixed, main is offset by its
+      width, and the footer sits outside the row so it spans the full page.
+    -->
+    <div class="flex">
+      <!-- ================= Sidebar ================= -->
+
+      <aside
+        id="sidebar"
+        class="invisible fixed left-0 top-0 z-[90] flex h-screen w-[200px] shrink-0 -translate-x-full flex-col overflow-y-auto bg-[#0b2555] px-4 pb-9 pt-4 text-white transition-transform duration-300 md:visible md:z-[60] md:translate-x-0"
+      >
+        <div class="mb-8 flex items-center gap-2">
+          <img
+            src="../images/SVG 2.png"
+            alt="TrustLend logo"
+            class="h-8 w-8 object-contain"
+          />
+          <span class="text-xl font-bold tracking-tight"
+            >Trust<span class="text-amber-400">Lend</span></span
+          >
+          <button
+            id="closeSidebar"
+            type="button"
+            aria-label="Close menu"
+            class="ml-auto text-lg text-white/70 transition hover:text-white md:hidden"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-1.5">
+          <a
+            href="dashboard.html"
+            aria-current="page"
+            class="relative flex items-center justify-between rounded-2xl bg-[#ffc43d] py-2 pl-[30px] pr-2.5 text-[11px] font-semibold text-[#10265e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Dashboard
+          </a>
+
+          <a
+            href="equipment.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            My Equipment
+          </a>
+
+          <a
+            href="dashboard.html#booking-history"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Bookings
+            <span
+              class="grid h-5 w-5 place-items-center rounded-full bg-[#ffc43d] text-[10px] font-bold text-[#10265e]"
+              >2</span
+            >
+          </a>
+
+          <a
+            href="dashboard.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Return Inspection
+          </a>
+
+          <a
+            href="wallet.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Wallet
+          </a>
+
+          <a
+            href="rentalProfile.html"
+            class="relative flex items-center justify-between rounded-2xl py-2 pl-[30px] pr-2.5 text-[11px] font-light text-white/85 transition hover:bg-[#20458e] before:absolute before:left-3 before:h-2 before:w-2.5 before:rounded-full before:bg-white before:content-['']"
+          >
+            Profile
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Backdrop for the off-canvas menu; tapping it closes the sidebar. -->
+      <div
+        id="sidebarOverlay"
+        class="fixed inset-0 z-[85] hidden bg-black/40 md:hidden"
+      ></div>
+
+      <!-- ================= Main ================= -->
+
+      <main class="min-w-0 flex-1 bg-[#eef2f8] p-5 md:ml-[200px] md:p-6">
+        <!-- Top bar -->
+
+        <header
+          class="mb-5 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center"
+        >
+          <div class="flex items-center gap-3">
+            <button
+              id="menuButton"
+              type="button"
+              aria-label="Open menu"
+              aria-controls="sidebar"
+              aria-expanded="false"
+              class="text-lg text-[#10265e] md:hidden"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div>
+              <h1 class="text-[22px] font-bold text-[#10265e]">Dashboard</h1>
+              <p class="mt-0.5 text-[13px] text-[#777]">
+                View and manage your activities
+              </p>
+            </div>
+          </div>
+
+          <div class="flex w-full items-center gap-4 lg:w-auto">
+            <div
+              class="flex w-full items-center rounded-full bg-white px-4 py-2.5 shadow-[0_3px_10px_rgba(0,0,0,0.06)] lg:w-[280px]"
+            >
+              <i class="fa-solid fa-search text-[13px] text-[#8a97ad]"></i>
+              <input
+                type="text"
+                placeholder="Search"
+                aria-label="Search"
+                class="ml-2.5 w-full border-none bg-transparent text-sm outline-none"
+              />
+            </div>
+
+            <button
+              type="button"
+              aria-label="Notifications"
+              class="relative text-lg text-[#555]"
+            >
+              <i class="fa-regular fa-bell"></i>
+              <span
+                class="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-red-500"
+              ></span>
+            </button>
+
+            <img
+              src="../images/Profile Pic.png"
+              alt="Your profile"
+              class="h-9 w-9 shrink-0 rounded-full object-cover"
+            />
+          </div>
+        </header>
+
+        <!-- ================= Stat cards ================= -->
+
+        <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <article
+            class="rounded-[16px] bg-[#10265e] px-5 py-4 text-white shadow-[0_6px_18px_rgba(16,38,94,0.15)]"
+          >
+            <p class="text-[12px] font-medium text-white/75">Active Rentals</p>
+            <p id="statActiveRentals" class="mt-2 text-[32px] font-bold leading-none">
+              02
+            </p>
+            <p class="mt-2 text-[11px] text-white/60">Items you have now</p>
+          </article>
+
+          <article class="rounded-[16px] bg-white px-5 py-4 shadow-sm">
+            <p class="text-[12px] font-medium text-[#6c7f9e]">
+              Upcoming Pickups
+            </p>
+            <p class="mt-2 text-[32px] font-bold leading-none text-[#10265e]">
+              02
+            </p>
+            <p class="mt-2 text-[11px] text-[#8a97ad]">Pickup Schedules</p>
+          </article>
+
+          <article
+            class="rounded-[16px] bg-[#ffc43d] px-5 py-4 text-[#10265e] shadow-[0_6px_18px_rgba(255,196,61,0.35)]"
+          >
+            <p class="text-[12px] font-medium">Total Spent</p>
+            <p id="statTotalSpent" class="mt-2 text-[28px] font-bold leading-none">
+              ₦185,000
+            </p>
+            <p class="mt-2 text-[11px] text-[#10265e]/70">All time</p>
+          </article>
+
+          <article class="rounded-[16px] bg-white px-5 py-4 shadow-sm">
+            <p class="text-[12px] font-medium text-[#6c7f9e]">
+              Completed Rentals
+            </p>
+            <p
+              id="statCompletedRentals"
+              class="mt-2 text-[32px] font-bold leading-none text-[#10265e]"
+            >
+              07
+            </p>
+            <p class="mt-2 text-[11px] text-[#8a97ad]">Good job!</p>
+          </article>
+        </section>
+
+        <!-- ================= Activity band ================= -->
+
+        <section
+          class="mt-5 grid items-start gap-4 lg:grid-cols-2 xl:grid-cols-[1fr_1fr_0.75fr]"
+        >
+          <!-- ---------- Active rentals ---------- -->
+
+          <div class="rounded-[16px] bg-white p-5 shadow-sm">
+            <div class="mb-4 flex items-center justify-between gap-3">
+              <h2
+                class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+              >
+                Your Active Rentals
+              </h2>
+              <a
+                href="dashboard.html#booking-history"
+                class="text-[11px] font-medium text-[#6c7f9e] hover:text-[#10265e]"
+                >View all →</a
+              >
+            </div>
+
+            <div class="grid gap-3">
+              <article class="rounded-[12px] border border-[#e7edf9] p-3">
+                <div class="flex items-start gap-3">
+                  <img
+                    src="../images/canon eos r50 2 1.png"
+                    alt="Canon EOS R50"
+                    class="h-11 w-14 shrink-0 rounded-[8px] object-cover"
+                  />
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-start justify-between gap-2">
+                      <p class="text-[13px] font-semibold text-[#10265e]">
+                        Canon EOS R50
+                      </p>
+                      <span
+                        class="shrink-0 rounded-full bg-[#e5f7ee] px-2.5 py-0.5 text-[10px] font-semibold text-[#12764a]"
+                        >Active</span
+                      >
+                    </div>
+                    <p class="mt-0.5 text-[11px] text-[#8a97ad]">
+                      Owner: Tunde A.
+                    </p>
+                    <p class="mt-1 text-[11px] text-[#556587]">
+                      Jul 25 - Aug 02 · 2 days left
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="mt-3 w-full rounded-[8px] bg-[#10265e] px-4 py-2 text-[11px] font-semibold text-white transition hover:bg-[#173a86]"
+                >
+                  View details
+                </button>
+              </article>
+
+              <article class="rounded-[12px] border border-[#e7edf9] p-3">
+                <div class="flex items-start gap-3">
+                  <img
+                    src="../images/generator 1.png"
+                    alt="Generator 5KVA"
+                    class="h-11 w-14 shrink-0 rounded-[8px] object-cover"
+                  />
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-start justify-between gap-2">
+                      <p class="text-[13px] font-semibold text-[#10265e]">
+                        Generator 5KVA
+                      </p>
+                      <span
+                        class="shrink-0 rounded-full bg-[#e5f7ee] px-2.5 py-0.5 text-[10px] font-semibold text-[#12764a]"
+                        >Active</span
+                      >
+                    </div>
+                    <p class="mt-0.5 text-[11px] text-[#8a97ad]">
+                      Owner: Ama K.
+                    </p>
+                    <p class="mt-1 text-[11px] text-[#556587]">
+                      Jul 24 - Aug 05 · 4 days left
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="mt-3 w-full rounded-[8px] bg-[#10265e] px-4 py-2 text-[11px] font-semibold text-white transition hover:bg-[#173a86]"
+                >
+                  View details
+                </button>
+              </article>
+            </div>
+          </div>
+
+          <!-- ---------- Upcoming pickups & returns ---------- -->
+
+          <div class="rounded-[16px] bg-white p-5 shadow-sm">
+            <h2
+              class="mb-4 text-[11px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+            >
+              Upcoming Pickups &amp; Returns
+            </h2>
+
+            <ul class="space-y-4">
+              <li class="flex gap-3">
+                <span
+                  class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#10265e]"
+                ></span>
+                <div class="min-w-0">
+                  <p class="text-[11px]">
+                    <span class="font-bold uppercase text-[#10265e]"
+                      >Pickup</span
+                    >
+                    <span class="ml-1.5 font-semibold text-[#10265e]"
+                      >DJI Mini Drone</span
+                    >
+                  </p>
+                  <p class="mt-1 text-[11px] text-[#8a97ad]">
+                    Tunde A. (Owner) · Tomorrow · 10:00 AM
+                  </p>
+                </div>
+              </li>
+
+              <li class="flex gap-3">
+                <span
+                  class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#ffc43d]"
+                ></span>
+                <div class="min-w-0">
+                  <p class="text-[11px]">
+                    <span class="font-bold uppercase text-[#b47f06]"
+                      >Return</span
+                    >
+                    <span class="ml-1.5 font-semibold text-[#10265e]"
+                      >Canon EOS R50</span
+                    >
+                  </p>
+                  <p class="mt-1 text-[11px] text-[#8a97ad]">
+                    Tao T. (Owner) · Aug 04 · 11:00 AM
+                  </p>
+                </div>
+              </li>
+
+              <li class="flex gap-3">
+                <span
+                  class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#ffc43d]"
+                ></span>
+                <div class="min-w-0">
+                  <p class="text-[11px]">
+                    <span class="font-bold uppercase text-[#b47f06]"
+                      >Return</span
+                    >
+                    <span class="ml-1.5 font-semibold text-[#10265e]"
+                      >Generator 5KVA</span
+                    >
+                  </p>
+                  <p class="mt-1 text-[11px] text-[#8a97ad]">
+                    Emmanuel A. (Owner) · Aug 06 · 03:00 PM
+                  </p>
+                </div>
+              </li>
+
+              <li class="flex gap-3">
+                <span
+                  class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#10265e]"
+                ></span>
+                <div class="min-w-0">
+                  <p class="text-[11px]">
+                    <span class="font-bold uppercase text-[#10265e]"
+                      >Pickup</span
+                    >
+                    <span class="ml-1.5 font-semibold text-[#10265e]"
+                      >Sony FX3</span
+                    >
+                  </p>
+                  <p class="mt-1 text-[11px] text-[#8a97ad]">
+                    Tunde A. (Owner) · Aug 04 · 01:00 PM
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ---------- Wallet + quick actions ---------- -->
+
+          <div class="grid gap-4 lg:col-span-2 xl:col-span-1">
+            <div class="rounded-[16px] bg-white p-5 shadow-sm">
+              <h2
+                class="mb-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+              >
+                My Wallet
+              </h2>
+
+              <div class="rounded-[12px] bg-[#10265e] px-4 py-4 text-white">
+                <p class="text-[11px] text-white/70">Wallet Balance</p>
+                <p class="mt-1 text-[22px] font-bold leading-none">₦65,079</p>
+                <a
+                  href="wallet.html"
+                  class="mt-3 block rounded-[8px] bg-[#ffc43d] px-4 py-2 text-center text-[11px] font-semibold text-[#10265e] transition hover:bg-[#eeb236]"
+                  >Add Funds</a
+                >
+              </div>
+            </div>
+
+            <div class="rounded-[16px] bg-white p-5 shadow-sm">
+              <h2
+                class="mb-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+              >
+                Quick Actions
+              </h2>
+
+              <div class="grid gap-2.5">
+                <a
+                  href="dashboard.html#booking-history"
+                  class="rounded-[8px] bg-[#10265e] px-4 py-2.5 text-center text-[11px] font-semibold text-white transition hover:bg-[#173a86]"
+                  >View All Rentals</a
+                >
+                <a
+                  href="rentalProfile.html"
+                  class="rounded-[8px] bg-[#ffc43d] px-4 py-2.5 text-center text-[11px] font-semibold text-[#10265e] transition hover:bg-[#eeb236]"
+                  >Edit Profile</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= Recommended ================= -->
+
+        <section class="mt-5 rounded-[16px] bg-white p-5 shadow-sm">
+          <h2
+            class="mb-4 text-[11px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+          >
+            Recommended For You
+          </h2>
+
+          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <article>
+              <img
+                src="../images/sony-fx3.png"
+                alt="Sony FX3"
+                class="h-[110px] w-full rounded-[12px] object-cover"
+              />
+              <p class="mt-2.5 text-[13px] font-semibold text-[#10265e]">
+                Sony FX3
+              </p>
+              <p class="mt-0.5 text-[11px] text-[#8a97ad]">Owner: Tunde A.</p>
+              <div class="mt-1.5 flex items-center gap-2">
+                <span class="text-[12px] font-bold text-[#10265e]"
+                  >₦20,000<span class="font-normal text-[#8a97ad]">/day</span>
+                </span>
+                <span class="text-[11px] text-[#8a97ad]">
+                  <i class="fa-solid fa-star text-[10px] text-[#ffc43d]"></i>
+                  4.8 (32)
+                </span>
+              </div>
+            </article>
+
+            <article>
+              <img
+                src="../images/laptops 1.png"
+                alt="MacBook Pro M2"
+                class="h-[110px] w-full rounded-[12px] object-cover"
+              />
+              <p class="mt-2.5 text-[13px] font-semibold text-[#10265e]">
+                MacBook Pro M2
+              </p>
+              <p class="mt-0.5 text-[11px] text-[#8a97ad]">Owner: Emeka O.</p>
+              <div class="mt-1.5 flex items-center gap-2">
+                <span class="text-[12px] font-bold text-[#10265e]"
+                  >₦30,000<span class="font-normal text-[#8a97ad]">/day</span>
+                </span>
+                <span class="text-[11px] text-[#8a97ad]">
+                  <i class="fa-solid fa-star text-[10px] text-[#ffc43d]"></i>
+                  4.9 (18)
+                </span>
+              </div>
+            </article>
+
+            <article>
+              <img
+                src="../images/hero-gear.png"
+                alt="JBL PartyBox 310"
+                class="h-[110px] w-full rounded-[12px] object-cover"
+              />
+              <p class="mt-2.5 text-[13px] font-semibold text-[#10265e]">
+                JBL PartyBox 310
+              </p>
+              <p class="mt-0.5 text-[11px] text-[#8a97ad]">Owner: Daniel T.</p>
+              <div class="mt-1.5 flex items-center gap-2">
+                <span class="text-[12px] font-bold text-[#10265e]"
+                  >₦15,000<span class="font-normal text-[#8a97ad]">/day</span>
+                </span>
+                <span class="text-[11px] text-[#8a97ad]">
+                  <i class="fa-solid fa-star text-[10px] text-[#ffc43d]"></i>
+                  4.7 (27)
+                </span>
+              </div>
+            </article>
+
+            <article>
+              <img
+                src="../images/litheli-drill.png"
+                alt="Dewalt Drill Set"
+                class="h-[110px] w-full rounded-[12px] object-cover"
+              />
+              <p class="mt-2.5 text-[13px] font-semibold text-[#10265e]">
+                Dewalt Drill Set
+              </p>
+              <p class="mt-0.5 text-[11px] text-[#8a97ad]">Owner: Ahmed B.</p>
+              <div class="mt-1.5 flex items-center gap-2">
+                <span class="text-[12px] font-bold text-[#10265e]"
+                  >₦15,000<span class="font-normal text-[#8a97ad]">/day</span>
+                </span>
+                <span class="text-[11px] text-[#8a97ad]">
+                  <i class="fa-solid fa-star text-[10px] text-[#ffc43d]"></i>
+                  4.6 (14)
+                </span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================= Booking history ================= -->
+
+        <section
+          id="booking-history"
+          class="mt-5 rounded-[16px] bg-white p-5 shadow-sm"
+        >
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <h2
+              class="text-[11px] font-bold uppercase tracking-[0.08em] text-[#10265e]"
+            >
+              Booking History
+            </h2>
+
+            <!--
+              Selection rides on aria-pressed and is styled by .tl-chip in
+              style.css. The old markup gave three chips three different
+              looks with no way to tell which was active.
+            -->
+            <div class="flex flex-wrap gap-2" data-filter-group="bookings">
+              <button type="button" class="tl-chip" data-filter="all" aria-pressed="true">
+                All
+              </button>
+              <button type="button" class="tl-chip" data-filter="active" aria-pressed="false">
+                Active
+              </button>
+              <button type="button" class="tl-chip" data-filter="completed" aria-pressed="false">
+                Completed
+              </button>
+              <button type="button" class="tl-chip" data-filter="cancelled" aria-pressed="false">
+                Cancelled
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[640px] border-collapse text-left">
+              <thead>
+                <tr class="border-b border-[#e7edf9]">
+                  <th class="pb-2 text-[11px] font-semibold text-[#8a97ad]">
+                    Item
+                  </th>
+                  <th class="pb-2 text-[11px] font-semibold text-[#8a97ad]">
+                    Owner
+                  </th>
+                  <th class="pb-2 text-[11px] font-semibold text-[#8a97ad]">
+                    Dates
+                  </th>
+                  <th class="pb-2 text-[11px] font-semibold text-[#8a97ad]">
+                    Duration
+                  </th>
+                  <th class="pb-2 text-[11px] font-semibold text-[#8a97ad]">
+                    AMOUNT
+                  </th>
+                  <th class="pb-2 text-[11px] font-semibold text-[#8a97ad]">
+                    Status
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody id="bookingsBody">
+                <tr class="border-b border-[#f0f4fb]" data-status="active">
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/generator 1.png"
+                        alt=""
+                        class="h-7 w-9 rounded-[6px] object-cover"
+                      />
+                      <span class="text-[12px] font-semibold text-[#10265e]"
+                        >Generator 5KVA</span
+                      >
+                    </div>
+                  </td>
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/Profile Pic.png"
+                        alt=""
+                        class="h-5 w-5 rounded-full object-cover"
+                      />
+                      <span class="text-[12px] text-[#556587]">Emeka A.</span>
+                    </div>
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">
+                    May 20, 2026
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">1 Day</td>
+                  <td class="py-2.5 text-[12px] font-semibold text-[#10265e]">
+                    ₦25,000
+                  </td>
+                  <td class="py-2.5">
+                    <span
+                      class="inline-block rounded-full bg-[#10265e] px-3 py-1 text-[10px] font-semibold text-white"
+                      >Active</span
+                    >
+                  </td>
+                </tr>
+
+                <tr class="border-b border-[#f0f4fb]" data-status="completed">
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/excavator.png"
+                        alt=""
+                        class="h-7 w-9 rounded-[6px] object-cover"
+                      />
+                      <span class="text-[12px] font-semibold text-[#10265e]"
+                        >Concrete Mixer</span
+                      >
+                    </div>
+                  </td>
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/Profile Pic.png"
+                        alt=""
+                        class="h-5 w-5 rounded-full object-cover"
+                      />
+                      <span class="text-[12px] text-[#556587]">Emeka A.</span>
+                    </div>
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">
+                    May 16, 2026
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">1 Day</td>
+                  <td class="py-2.5 text-[12px] font-semibold text-[#10265e]">
+                    ₦20,000
+                  </td>
+                  <td class="py-2.5">
+                    <span
+                      class="inline-block rounded-full bg-[#ffc43d] px-3 py-1 text-[10px] font-semibold text-[#10265e]"
+                      >Completed</span
+                    >
+                  </td>
+                </tr>
+
+                <tr class="border-b border-[#f0f4fb]" data-status="completed">
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/canon eos r50 2 1.png"
+                        alt=""
+                        class="h-7 w-9 rounded-[6px] object-cover"
+                      />
+                      <span class="text-[12px] font-semibold text-[#10265e]"
+                        >Canon EOS R50</span
+                      >
+                    </div>
+                  </td>
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/woman-profile.png"
+                        alt=""
+                        class="h-5 w-5 rounded-full object-cover"
+                      />
+                      <span class="text-[12px] text-[#556587]">Peace O.</span>
+                    </div>
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">
+                    May 12, 2026
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">1 Day</td>
+                  <td class="py-2.5 text-[12px] font-semibold text-[#10265e]">
+                    ₦20,000
+                  </td>
+                  <td class="py-2.5">
+                    <span
+                      class="inline-block rounded-full bg-[#ffc43d] px-3 py-1 text-[10px] font-semibold text-[#10265e]"
+                      >Completed</span
+                    >
+                  </td>
+                </tr>
+
+                <tr class="border-b border-[#f0f4fb]" data-status="completed">
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/canon eos r50 3 1.png"
+                        alt=""
+                        class="h-7 w-9 rounded-[6px] object-cover"
+                      />
+                      <span class="text-[12px] font-semibold text-[#10265e]"
+                        >Nikon Z30</span
+                      >
+                    </div>
+                  </td>
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/woman-profile.png"
+                        alt=""
+                        class="h-5 w-5 rounded-full object-cover"
+                      />
+                      <span class="text-[12px] text-[#556587]">Bukky B.</span>
+                    </div>
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">
+                    May 12, 2026
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">1 Day</td>
+                  <td class="py-2.5 text-[12px] font-semibold text-[#10265e]">
+                    ₦20,000
+                  </td>
+                  <td class="py-2.5">
+                    <span
+                      class="inline-block rounded-full bg-[#ffc43d] px-3 py-1 text-[10px] font-semibold text-[#10265e]"
+                      >Completed</span
+                    >
+                  </td>
+                </tr>
+
+                <tr data-status="cancelled">
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/sony-fx3.png"
+                        alt=""
+                        class="h-7 w-9 rounded-[6px] object-cover"
+                      />
+                      <span class="text-[12px] font-semibold text-[#10265e]"
+                        >Sony FX3</span
+                      >
+                    </div>
+                  </td>
+                  <td class="py-2.5">
+                    <div class="flex items-center gap-2">
+                      <img
+                        src="../images/Profile Pic.png"
+                        alt=""
+                        class="h-5 w-5 rounded-full object-cover"
+                      />
+                      <span class="text-[12px] text-[#556587]">Tunde B.</span>
+                    </div>
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">
+                    May 12, 2026
+                  </td>
+                  <td class="py-2.5 text-[12px] text-[#556587]">1 Day</td>
+                  <td class="py-2.5 text-[12px] font-semibold text-[#10265e]">
+                    ₦20,000
+                  </td>
+                  <td class="py-2.5">
+                    <span
+                      class="inline-block rounded-full bg-[#e7ebf2] px-3 py-1 text-[10px] font-semibold text-[#8a97ad]"
+                      >Cancelled</span
+                    >
+                  </td>
+                </tr>
+
+                <!-- Shown by the filter when nothing matches. -->
+                <tr id="bookingsEmpty" style="display: none">
+                  <td
+                    colspan="6"
+                    class="py-6 text-center text-[12px] text-[#8a97ad]"
+                  >
+                    No bookings match this filter.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= Footer ================= -->
+
+    <footer
+      class="relative z-[80] bg-[#0b2555] px-6 pb-7 pt-12 text-white sm:px-10"
+    >
+      <div
+        class="grid gap-8 pb-9 sm:grid-cols-2 lg:grid-cols-[1.8fr_1fr_1fr_1fr] lg:gap-x-12"
+      >
+        <div>
+          <img
+            src="../images/SVG 2.png"
+            alt="TrustLend logo"
+            class="mb-3 h-9 w-9 object-contain"
+          />
+          <p class="mb-3 text-base font-bold text-white">
+            Borrow with Confidence. Lend with Trust
+          </p>
+          <p class="max-w-[320px] text-sm leading-relaxed text-white/70">
+            TrustLend is a secure marketplace connecting people and businesses
+            to rent and lend equipment with confidence.
+          </p>
+
+          <div class="mt-5 flex items-center gap-2.5">
+            <a
+              href="#"
+              aria-label="Instagram"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="X"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-x-twitter"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-full bg-[#1877f2] text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-md bg-[#0a66c2] text-[12px] text-white transition hover:-translate-y-0.5"
+            >
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-[15px] font-bold text-[#ffc43d]">QUICK LINKS</h4>
+          <a
+            href="equipment.html"
+            class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Browse Equipments</a
+          >
+          <a
+            href="equipment.html"
+            class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >List Your Equipments</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >How It Works</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Trust &amp; Safety</a
+          >
+          <a href="#" class="block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Pricing</a
+          >
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-[15px] font-bold text-[#ffc43d]">COMPANY</h4>
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >About</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Careers</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Blog</a
+          >
+          <a href="#" class="block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Contact</a
+          >
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-[15px] font-bold text-[#ffc43d]">SUPPORT</h4>
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Help Center</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >FAQs</a
+          >
+          <a href="#" class="mb-2.5 block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Terms of Service</a
+          >
+          <a href="#" class="block text-sm text-white/70 hover:text-[#ffc43d]"
+            >Privacy Policy</a
+          >
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-4 text-[13px] text-white/60">
+        <small>© 2026 TrustLend Technologies Ltd. All rights reserved</small>
+        <!-- Demo affordance: wipes saved state and reseeds. -->
+        <button
+          type="button"
+          data-action="reset-demo"
+          class="text-[11px] text-white/40 underline transition hover:text-white/70"
+        >
+          Reset demo data
+        </button>
+      </div>
+    </footer>
+
+    <!--
+      Plain deferred scripts, not modules: `type="module"` is blocked by CORS
+      when a page is opened straight from disk, and these need to work both
+      ways. Order matters — data, then store, then shared UI, then the page.
+    -->
+    <script defer src="js/tl-data.js"></script>
+    <script defer src="js/tl-store.js"></script>
+    <script defer src="js/tl-ui.js"></script>
+    <script defer src="js/page-dashboard.js"></script>
+  </body>
+</html>
