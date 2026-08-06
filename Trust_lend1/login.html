@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | TrustLend</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -19,24 +18,20 @@
 
     <div class="w-full max-w-5xl bg-white rounded-2xl shadow-xl overflow-hidden relative">
 
-        <!-- Banner -->
         <div>
             <img src="/Trust_lend1/images/login(renter & owner).png"
                  class="w-full h-56 object-cover"
                  alt="Banner">
         </div>
 
-        <!-- Logo -->
         <div class="absolute top-8 left-8">
             <img src="/Trust_lend1/images/logo.png"
                  class="h-10"
                  alt="Logo">
         </div>
 
-        <!-- Content -->
         <div class="py-10 px-8">
 
-            <!-- Heading -->
             <h1 class="text-4xl font-bold text-center text-[#0E2B63]">
                 Welcome
                 <span class="text-yellow-500">back!</span>
@@ -48,10 +43,8 @@
 
             <div class="w-40 h-2 bg-[#0E2B63] rounded-full mx-auto mt-3"></div>
 
-            <!-- Login Cards -->
             <div class="grid md:grid-cols-2 gap-10 mt-16">
 
-                <!-- Renter -->
                 <div class="text-center">
 
                     <img src="/Trust_lend1/images/sony-fx3.png"
@@ -82,7 +75,6 @@
 
                 </div>
 
-                <!-- Owner -->
                 <div class="text-center">
 
                     <img src="/Trust_lend1/images/excavator(2).png"
@@ -115,7 +107,6 @@
 
             </div>
 
-            <!-- Signup Link -->
             <div class="text-center mt-14">
                 <p class="text-gray-500">
                     Don't have an account?
@@ -129,7 +120,7 @@
 
 <script>
 function loginRole(role) {
-    localStorage.setItem("role", role);
+    localStorage.setItem("userRole", role);
 
     // Get the clicked card
     const card = document.getElementById(role + 'Card');

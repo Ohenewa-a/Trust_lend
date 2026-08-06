@@ -6,62 +6,80 @@
 
     <title>TrustLend Profile</title>
 
-    <!-- Tailwind (Play CDN — no build step) -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
 
-    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <style>
+      .highlight-match {
+        background-color: #fef08a;
+        color: #854d0e;
+        padding: 0 2px;
+        border-radius: 2px;
+      }
+    </style>
   </head>
 
-  <body class="bg-[#F4F7FB] text-[#0F172A] antialiased flex flex-col min-h-screen">
+  <body class="bg-[#F4F7FB] text-[#0F172A] antialiased flex flex-col min-h-screen relative">
 
-    <!-- ============ MAIN CONTAINER (SIDEBAR + CONTENT AREA) ============ -->
+    <div id="toastContainer" class="fixed top-5 right-5 z-[100] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
     <div class="flex-1 flex flex-col lg:flex-row">
 
-      <!-- SIDEBAR -->
+      <div
+        id="sidebarBackdrop"
+        class="hidden fixed inset-0 bg-black/40 z-40 lg:hidden transition-opacity"
+      ></div>
+
       <aside id="sidebar" class="w-full lg:w-64 bg-[#0B2545] text-white flex-shrink-0">
         <div class="p-6">
-          <!-- Logo -->
-          <div class="flex items-center gap-2 mb-8">
-            <div class="flex items-center justify-center">
-              <div>
-                <img src="../images/SVG 2.png" alt="logo">
+          <div class="flex items-center justify-between gap-2 mb-8">
+            <div class="flex items-center gap-2">
+              <div class="flex items-center justify-center">
+                <div>
+                  <img src="../images/SVG 2.png" alt="TrustLend logo" class="h-8 w-auto">
+                </div>
               </div>
+              <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
             </div>
-            <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
+
+            <button
+              id="closeSidebar"
+              aria-label="Close menu"
+              class="lg:hidden grid h-9 w-9 place-items-center rounded-lg text-slate-300 hover:bg-white/10">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
           </div>
 
           <hr class="border-white/10 mb-6" />
 
-          <!-- Navigation Menu -->
           <nav class="space-y-6 text-xs font-medium">
             <div>
               <ul class="space-y-1">
                 <li>
-                  <a href="o-dashboard.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <a href="o-dashboard.html" class="nav-link flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
                     <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                     Dashboard
                   </a>
                 </li>
                 <li>
-                  <a href="my-equipment.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <a href="my-equipment.html" class="nav-link flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
                     <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                     My Equipment
                   </a>
                 </li>
                 <li>
-                  <a href="booking-r.html" class="flex items-center justify-between px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <a href="booking-r.html" class="nav-link flex items-center justify-between px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
                     <span class="flex items-center gap-2.5">
                       <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                       Bookings
@@ -70,82 +88,109 @@
                   </a>
                 </li>
                 <li>
-                  <a href="rental-inspection.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <a href="rental-inspection.html" class="nav-link flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
                     <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                     Return Inspection
                   </a>
                 </li>
 
-            <!-- FINANCE -->
                 <li>
-                  <a href="owner-wallet.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
+                  <a href="owner-wallet.html" class="nav-link flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
                     <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
                     Wallet
                   </a>
                 </li>
 
-            <!-- ACCOUNT -->
                 <li>
-                  <a href="profile.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
-                    <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                  <a href="profile.html" class="nav-link flex items-center gap-2.5 px-3 py-2 rounded-lg text-[#0B2545] bg-amber-500">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0B2545]"></span>
                     Profile
                   </a>
                 </li>
-
               </ul>
             </div>
           </nav>
         </div>
       </aside>
 
-      <!-- ================= MAIN CONTENT AREA ================= -->
-      <main class="flex-1 flex flex-col p-6 overflow-hidden">
+      <main class="flex-1 flex flex-col p-4 sm:p-6 overflow-hidden">
 
         <button
-         id="menuBtn"  
-        class="lg:hidden mb-4 w-10 h-10 rounded-lg bg-[#10265e] text-white">
-        <i class="fa-solid fa-bars"></i>
+          id="menuBtn"
+          aria-label="Open menu"
+          aria-expanded="false"
+          class="lg:hidden mb-4 w-10 h-10 rounded-lg bg-[#10265e] text-white flex items-center justify-center">
+          <i class="fa-solid fa-bars"></i>
         </button>
 
-        <!-- Top Bar Header -->
         <header class="mb-6 flex flex-col items-start justify-between gap-5 lg:flex-row lg:items-center">
           <div>
-            <h2 class="text-[28px] font-bold text-[#10265e]">Profile</h2>
+            <h2 class="text-[24px] sm:text-[28px] font-bold text-[#10265e]">Profile</h2>
             <p class="text-sm text-[#777]">
               Manage your rental activity and account information
             </p>
           </div>
 
-          <div class="flex w-full items-center gap-5 lg:w-auto">
+          <div class="flex w-full items-center gap-4 sm:gap-5 lg:w-auto relative">
             <div class="flex w-full items-center rounded-full bg-white px-[18px] py-3 shadow-[0_3px_10px_rgba(0,0,0,0.08)] lg:w-[300px]">
               <i class="fa-solid fa-search text-[#555]"></i>
               <input
                 id="searchInput"
                 type="text"
-                placeholder="Search"
-                class="ml-2.5 w-full border-none outline-none"
+                placeholder="Search entire profile & activity..."
+                class="ml-2.5 w-full min-w-0 border-none outline-none bg-transparent text-xs sm:text-sm"
               />
+              <button
+                id="clearSearch"
+                type="button"
+                aria-label="Clear search"
+                class="hidden ml-2 shrink-0 text-[#9aa6bf] hover:text-[#10265e]">
+                <i class="fa-solid fa-circle-xmark"></i>
+              </button>
             </div>
 
-            <i id="bell" class="fa-regular fa-bell cursor-pointer text-xl text-[#555]"></i>
+            <div class="relative">
+              <div id="bell" class="relative cursor-pointer p-2">
+                <i class="fa-regular fa-bell text-xl text-[#555]"></i>
+                <span id="notifBadge" class="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500"></span>
+              </div>
+
+              <div id="notifDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-100 z-50 overflow-hidden">
+                <div class="p-3 bg-[#10265e] text-white flex items-center justify-between">
+                  <span class="text-xs font-bold">Notifications</span>
+                  <button id="markReadBtn" class="text-[10px] text-amber-400 hover:underline">Mark all read</button>
+                </div>
+                <div class="max-h-64 overflow-y-auto divide-y divide-slate-100 text-xs">
+                  <div class="p-3 hover:bg-slate-50 cursor-pointer">
+                    <p class="font-semibold text-slate-800">Return request received</p>
+                    <p class="text-slate-500 text-[11px]">Canon EOS R50 rental pending review.</p>
+                    <span class="text-[9px] text-slate-400">10 mins ago</span>
+                  </div>
+                  <div class="p-3 hover:bg-slate-50 cursor-pointer">
+                    <p class="font-semibold text-slate-800">Payment Processed</p>
+                    <p class="text-slate-500 text-[11px]">Received #45,000 for DJI Drone.</p>
+                    <span class="text-[9px] text-slate-400">2 hours ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <img
-              src="../images/woman-profile.png" alt="logo">
-
+              id="avatarImgTop"
+              src="../images/woman-profile.png"
+              alt="Jane Smith avatar"
+              class="h-10 w-10 rounded-full object-cover shrink-0 border border-slate-200">
           </div>
         </header>
 
-        <!-- ================= Profile Card Content ================= -->
-        <div class="rounded-xl bg-white p-6 shadow-[0_5px_12px_rgba(0,0,0,0.04)]">
+        <div class="rounded-xl bg-white p-4 sm:p-6 shadow-[0_5px_12px_rgba(0,0,0,0.04)]">
           <section class="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_300px]">
             
-            <!-- ============ Left column ============ -->
             <div class="flex min-w-0 flex-col gap-5">
-              <!-- Identity banner -->
-              <div class="flex flex-col items-start gap-7 rounded-[18px] bg-[#10265e] px-8 py-7 text-white shadow-[0_12px_30px_rgba(16,38,94,0.18)] sm:flex-row sm:items-center">
+              <div class="flex flex-col items-start gap-7 rounded-[18px] bg-[#10265e] px-5 sm:px-8 py-7 text-white shadow-[0_12px_30px_rgba(16,38,94,0.18)] sm:flex-row sm:items-center">
                 <div class="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-[#ffc43d]">
-                 <img src="../images/woman-profile.png"
-                  alt="profile"
+                 <img id="profileImage" src="../images/woman-profile.png"
+                  alt="Jane Smith profile photo"
                   class="w-full h-full object-cover">
 
                   <button id="changePhoto" aria-label="Change profile photo" class="absolute bottom-1.5 right-0.5 grid h-8 w-8 place-items-center rounded-full border-2 border-[#10265e] bg-white text-[13px] text-[#10265e] transition hover:bg-[#ffc43d]">
@@ -159,32 +204,32 @@
                     class="hidden">
                 </div>
 
-                <div class="min-w-0">
+                <div class="min-w-0 flex-1">
                   <div class="flex flex-wrap items-center gap-3">
-                    <h2 class="text-[26px] font-bold text-white">Jane Smith</h2>
+                    <h2 id="userNameDisplay" class="text-[22px] sm:text-[26px] font-bold text-white searchable">Jane Smith</h2>
                     <span class="inline-flex items-center gap-1.5 rounded-full bg-[#ffc43d] px-3.5 py-[5px] text-xs font-bold text-[#10265e]">
                       <i class="fa-solid fa-circle-check"></i> Verified Renter
                     </span>
                   </div>
 
-                  <p class="mt-1.5 text-sm text-white/70">
+                  <p class="mt-1.5 text-sm text-white/70 searchable">
                     Manage your rental activity and account information
                   </p>
 
                   <ul class="mt-4 flex flex-wrap gap-x-7 gap-y-2.5">
-                    <li class="flex items-center gap-2 text-[13px] text-white/85">
+                    <li class="flex items-center gap-2 text-[13px] text-white/85 searchable">
                       <i class="fa-regular fa-envelope text-[13px] text-[#ffc43d]"></i>
-                      johndoe@gmail.com
+                      <span id="userEmailDisplay">johndoe@gmail.com</span>
                     </li>
-                    <li class="flex items-center gap-2 text-[13px] text-white/85">
+                    <li class="flex items-center gap-2 text-[13px] text-white/85 searchable">
                       <i class="fa-solid fa-phone text-[13px] text-[#ffc43d]"></i>
-                      +234 801 234 5678
+                      <span id="userPhoneDisplay">+234 801 234 5678</span>
                     </li>
-                    <li class="flex items-center gap-2 text-[13px] text-white/85">
+                    <li class="flex items-center gap-2 text-[13px] text-white/85 searchable">
                       <i class="fa-solid fa-location-dot text-[13px] text-[#ffc43d]"></i>
-                      Lagos, Nigeria
+                      <span id="userLocationDisplay">Lagos, Nigeria</span>
                     </li>
-                    <li class="flex items-center gap-2 text-[13px] text-white/85">
+                    <li class="flex items-center gap-2 text-[13px] text-white/85 searchable">
                       <i class="fa-regular fa-calendar text-[13px] text-[#ffc43d]"></i>
                       Joined on May 12, 2025
                     </li>
@@ -192,99 +237,95 @@
                 </div>
               </div>
 
-              <!-- Payment / Rental information -->
               <div class="grid gap-5 lg:grid-cols-2">
-                <!-- Payment method -->
-                <div class="rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)] transition hover:-translate-y-[3px] hover:shadow-[0_10px_22px_rgba(0,0,0,0.08)]">
+                <div class="hover-card searchable-card rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)] transition">
                   <div class="mb-3.5 flex items-center justify-between">
                     <h3 class="text-base font-bold text-[#10265e]">Payment Method</h3>
-                    <button class="text-[13px] font-semibold text-[#2f5bd0] hover:underline">Edit</button>
+                    <button type="button" id="editPaymentBtn" class="edit-btn text-[13px] font-semibold text-[#2f5bd0] hover:underline">Edit</button>
                   </div>
 
-                  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <form id="paymentForm" class="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div class="rounded-xl border border-[#e6ecf8] bg-[#f4f7fd] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Preferred Payment Method</span>
-                      <strong class="text-[13px] text-[#10265e]">Visa **** 2506</strong>
+                      <strong id="prefPayment" class="text-[13px] text-[#10265e] searchable">Visa **** 2506</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Payment Status</span>
-                      <strong class="text-[13px] text-[#10265e]">Verified</strong>
+                      <strong class="text-[13px] text-[#10265e] searchable">Verified</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#e6ecf8] bg-[#f4f7fd] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Card Holder</span>
-                      <strong class="text-[13px] text-[#10265e]">John Doe</strong>
+                      <strong id="cardHolder" class="text-[13px] text-[#10265e] searchable">John Doe</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Expiry Date</span>
-                      <strong class="text-[13px] text-[#10265e]">08/28</strong>
+                      <strong id="expiryDate" class="text-[13px] text-[#10265e] searchable">08/28</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#e6ecf8] bg-[#f4f7fd] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Billing Address</span>
-                      <strong class="text-[13px] text-[#10265e]">Lagos, Nigeria</strong>
+                      <strong id="billingAddress" class="text-[13px] text-[#10265e] searchable">Lagos, Nigeria</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Default Card</span>
-                      <strong class="text-[13px] text-[#10265e]">Vista</strong>
+                      <strong id="defaultCard" class="text-[13px] text-[#10265e] searchable">Vista</strong>
                     </div>
-                  </div>
+                  </form>
                 </div>
 
-                <!-- Business information -->
-                <div class="rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)] transition hover:-translate-y-[3px] hover:shadow-[0_10px_22px_rgba(0,0,0,0.08)]">
+                <div class="hover-card searchable-card rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)] transition">
                   <div class="mb-3.5 flex items-center justify-between">
                     <h3 class="text-base font-bold text-[#10265e]">Business Information</h3>
-                    <button class="text-[13px] font-semibold text-[#2f5bd0] hover:underline">Edit</button>
+                    <button type="button" id="editBusinessBtn" class="edit-btn text-[13px] font-semibold text-[#2f5bd0] hover:underline">Edit</button>
                   </div>
 
-                  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <form id="businessForm" class="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div class="rounded-xl border border-[#e6ecf8] bg-[#f4f7fd] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Business Name</span>
-                      <strong class="text-[13px] text-[#10265e]">Smith Rentals Limited</strong>
+                      <strong id="bizName" class="text-[13px] text-[#10265e] searchable">Smith Rentals Limited</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Address</span>
-                      <strong class="text-[13px] text-[#10265e]">12 Adekunle Street, Surulere, Lagos</strong>
+                      <strong id="bizAddress" class="text-[13px] text-[#10265e] searchable">12 Adekunle Street, Surulere, Lagos</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#e6ecf8] bg-[#f4f7fd] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Business Type</span>
-                      <strong class="text-[13px] text-[#10265e]">Rental Servce</strong>
+                      <strong id="bizType" class="text-[13px] text-[#10265e] searchable">Rental Service</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">CAC Number</span>
-                     <strong class="text-[13px] text-[#10265e]">RC1234567</strong>
+                     <strong id="cacNumber" class="text-[13px] text-[#10265e] searchable">RC1234567</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#e6ecf8] bg-[#f4f7fd] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Year in business</span>
-                      <strong class="text-[13px] text-[#10265e]">3+ Years</strong>
+                      <strong id="bizYears" class="text-[13px] text-[#10265e] searchable">3+ Years</strong>
                     </div>
 
                     <div class="rounded-xl border border-[#ffe6ad] bg-[#fff8e6] px-3.5 py-3">
                       <span class="mb-1.5 block text-[11px] text-[#7b88a4]">Tax Identification Number</span>
-                      <strong class="text-[13px] text-[#10265e]">12345678901</strong>
+                      <strong id="tinNumber" class="text-[13px] text-[#10265e] searchable">12345678901</strong>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
 
-              <!-- business overview -->
-              <div class="rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)] transition hover:-translate-y-[3px] hover:shadow-[0_10px_22px_rgba(0,0,0,0.08)]">
+              <div class="hover-card searchable-card rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)] transition">
                 <div class="mb-3.5 flex items-center justify-between">
                   <h3 class="text-base font-bold text-[#10265e]">Business Overview</h3>
-                  <a href="#" class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#10265e] hover:text-[#2f5bd0]">
+                  <a href="o-dashboard.html" class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#10265e] hover:text-[#2f5bd0]">
                     View All <i class="fa-solid fa-chevron-right text-[11px]"></i>
                   </a>
                 </div>
 
-                <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
+                <div class="grid gap-3.5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
                   <div class="flex items-center gap-3">
                     <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#e8effd] text-[15px] text-[#2f5bd0]">
                      <i class="fa-solid fa-rotate"></i>
@@ -323,7 +364,7 @@
                      <i class="fa-solid fa-money-bill-wave"></i>
                     </span>
                     <div>
-                      <strong class="block text-xl leading-tight text-[#10265e]">#550,000</strong>
+                      <strong class="block text-xl leading-tight text-[#10265e]">₦550,000</strong>
                       <span class="block text-xs text-[#556587]">Total Earnings</span>
                       <small class="block text-[11px] text-[#9aa6bf]">All time</small>
                     </div>
@@ -340,7 +381,7 @@
                     </div>
                   </div>
 
-                     <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-3">
                     <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#fdeaef] text-[15px] text-[#d13a63]">
                       <i class="fa-solid fa-location-dot"></i>
                     </span>
@@ -354,147 +395,149 @@
                 </div>
               </div>
 
-              <!-- Recent activity -->
-              <div class="overflow-x-auto rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)]">
+              <div class="searchable-card rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)]">
                 <div class="mb-3.5 flex items-center justify-between">
                   <h3 class="text-base font-bold text-[#10265e]">Recent Activity</h3>
-                  <a href="#" class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#10265e] hover:text-[#2f5bd0]">
+                  <a href="#" id="viewAllActivity" class="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#10265e] hover:text-[#2f5bd0]">
                     View All <i class="fa-solid fa-chevron-right text-[11px]"></i>
                   </a>
                 </div>
 
-                <table class="w-full min-w-[620px] border-collapse">
-                  <thead>
-                    <tr class="border-b border-[#eef2fa] text-left text-[11px] font-bold uppercase tracking-[0.08em] text-[#7b88a4]">
-                      <th class="px-3 py-2.5">Activity</th>
-                      <th class="px-3 py-2.5">Details</th>
-                      <th class="px-3 py-2.5">Dates</th>
-                      <th class="px-3 py-2.5">Status</th>
-                    </tr>
-                  </thead>
+                <div class="overflow-x-auto">
+                  <table class="w-full min-w-[620px] border-collapse">
+                    <thead>
+                      <tr class="border-b border-[#eef2fa] text-left text-[11px] font-bold uppercase tracking-[0.08em] text-[#7b88a4]">
+                        <th class="px-3 py-2.5">Activity</th>
+                        <th class="px-3 py-2.5">Details</th>
+                        <th class="px-3 py-2.5">Dates</th>
+                        <th class="px-3 py-2.5">Status</th>
+                      </tr>
+                    </thead>
 
-                  <tbody class="text-[13px] text-[#556587]">
-                    <tr class="border-b border-[#f2f5fb] hover:bg-[#f9fbff]">
-                      <td class="px-3 py-4">
-                        <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
-                          <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#e8effd] text-xs text-[#2f5bd0]">
-                            <i class="fa-regular fa-file-lines"></i>
-                          </span>
-                          Return request received
-                        </div>
-                      </td>
-                      <td class="px-3 py-4">Canon EOS R50 rental</td>
-                      <td class="px-3 py-4">20 May 2026, 10:35 AM</td>
-                      <td class="px-3 py-4">
-                        <span class="inline-block rounded-full bg-[#fff4d9] px-3.5 py-1.5 text-[11px] font-bold text-[#96690a]">Pending</span>
-                      </td>
-                    </tr>
+                    <tbody id="activityTableBody" class="text-[13px] text-[#556587]">
+                      <tr class="border-b border-[#f2f5fb] hover:bg-[#f9fbff]">
+                        <td class="px-3 py-4">
+                          <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
+                            <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#e8effd] text-xs text-[#2f5bd0]">
+                              <i class="fa-regular fa-file-lines"></i>
+                            </span>
+                            <span class="searchable">Return request received</span>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 searchable">Canon EOS R50 rental</td>
+                        <td class="px-3 py-4 searchable">20 May 2026, 10:35 AM</td>
+                        <td class="px-3 py-4">
+                          <span class="inline-block rounded-full bg-[#fff4d9] px-3.5 py-1.5 text-[11px] font-bold text-[#96690a] searchable">Pending</span>
+                        </td>
+                      </tr>
 
-                    <tr class="border-b border-[#f2f5fb] hover:bg-[#f9fbff]">
-                      <td class="px-3 py-4">
-                        <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
-                          <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#e5f7ee] text-xs text-[#1e9c63]">
-                            <i class="fa-solid fa-credit-card"></i>
-                          </span>
-                          Payment Received
-                        </div>
-                      </td>
-                      <td class="px-3 py-4">Payment for DJI Mini 3 Drone rental</td>
-                      <td class="px-3 py-4">22 Jul 2026, 02:18 PM</td>
-                      <td class="px-3 py-4">
-                        <span class="inline-block rounded-full bg-[#e5f7ee] px-3.5 py-1.5 text-[11px] font-bold text-[#12764a]">Completed</span>
-                      </td>
-                    </tr>
+                      <tr class="border-b border-[#f2f5fb] hover:bg-[#f9fbff]">
+                        <td class="px-3 py-4">
+                          <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
+                            <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#e5f7ee] text-xs text-[#1e9c63]">
+                              <i class="fa-solid fa-credit-card"></i>
+                            </span>
+                            <span class="searchable">Payment Received</span>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 searchable">Payment for DJI Mini 3 Drone rental</td>
+                        <td class="px-3 py-4 searchable">22 Jul 2026, 02:18 PM</td>
+                        <td class="px-3 py-4">
+                          <span class="inline-block rounded-full bg-[#e5f7ee] px-3.5 py-1.5 text-[11px] font-bold text-[#12764a] searchable">Completed</span>
+                        </td>
+                      </tr>
 
-                    <tr class="border-b border-[#f2f5fb] hover:bg-[#f9fbff]">
-                      <td class="px-3 py-4">
-                        <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
-                          <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#fff4d9] text-xs text-[#b47f06]">
-                            <i class="fa-regular fa-message"></i>
-                          </span>
-                          New Message from Peace D.
-                        </div>
-                      </td>
-                      <td class="px-3 py-4">Enquiry about Canon EOS R50 rental</td>
-                      <td class="px-3 py-4">21 Jul 2026, 11:42 AM</td>
-                      <td class="px-3 py-4">
-                        <span class="inline-block rounded-full bg-[#fdeaef] px-3.5 py-1.5 text-[11px] font-bold text-[#b32a52]">Unread</span>
-                      </td>
-                    </tr>
+                      <tr class="border-b border-[#f2f5fb] hover:bg-[#f9fbff]">
+                        <td class="px-3 py-4">
+                          <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
+                            <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#fff4d9] text-xs text-[#b47f06]">
+                              <i class="fa-regular fa-message"></i>
+                            </span>
+                            <span class="searchable">New Message from Peace D.</span>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 searchable">Enquiry about Canon EOS R50 rental</td>
+                        <td class="px-3 py-4 searchable">21 Jul 2026, 11:42 AM</td>
+                        <td class="px-3 py-4">
+                          <span class="inline-block rounded-full bg-[#fdeaef] px-3.5 py-1.5 text-[11px] font-bold text-[#b32a52] searchable">Unread</span>
+                        </td>
+                      </tr>
 
-                    <tr class="border-b border-[#f2f5fb] hover:bg-[#f9fbff]">
-                      <td class="px-3 py-4">
-                        <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
-                          <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#efeafc] text-xs text-[#6b46d6]">
-                            <i class="fa-solid fa-circle-check"></i>
-                          </span>
-                          Rental Approved
-                        </div>
-                      </td>
-                      <td class="px-3 py-4">Nikon Z30 rental</td>
-                      <td class="px-3 py-4">23 Jul 2026, 8:36 PM</td>
-                      <td class="px-3 py-4">
-                        <span class="inline-block rounded-full bg-[#e5f7ee] px-3.5 py-1.5 text-[11px] font-bold text-[#12764a]">Completed</span>
-                      </td>
-                    </tr>
+                      <tr class="border-b border-[#f2f5fb] hover:bg-[#f9fbff]">
+                        <td class="px-3 py-4">
+                          <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
+                            <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#efeafc] text-xs text-[#6b46d6]">
+                              <i class="fa-solid fa-circle-check"></i>
+                            </span>
+                            <span class="searchable">Rental Approved</span>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 searchable">Nikon Z30 rental</td>
+                        <td class="px-3 py-4 searchable">23 Jul 2026, 8:36 PM</td>
+                        <td class="px-3 py-4">
+                          <span class="inline-block rounded-full bg-[#e5f7ee] px-3.5 py-1.5 text-[11px] font-bold text-[#12764a] searchable">Completed</span>
+                        </td>
+                      </tr>
 
-                    <tr class="hover:bg-[#f9fbff]">
-                      <td class="px-3 py-4">
-                        <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
-                          <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#fdeaef] text-xs text-[#d13a63]">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-                          </span>
-                          Damage report under review
-                        </div>
-                      </td>
-                      <td class="px-3 py-4">Generator 5KVA</td>
-                      <td class="px-3 py-4">18 Jul 2026, 04:15 PM</td>
-                      <td class="px-3 py-4">
-                        <span class="inline-block rounded-full bg-[#efeafc] px-3.5 py-1.5 text-[11px] font-bold text-[#5738bd]">Reviewing</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                      <tr class="hover:bg-[#f9fbff]">
+                        <td class="px-3 py-4">
+                          <div class="flex items-center gap-2.5 font-semibold text-[#10265e]">
+                            <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[9px] bg-[#fdeaef] text-xs text-[#d13a63]">
+                              <i class="fa-solid fa-triangle-exclamation"></i>
+                            </span>
+                            <span class="searchable">Damage report under review</span>
+                          </div>
+                        </td>
+                        <td class="px-3 py-4 searchable">Generator 5KVA</td>
+                        <td class="px-3 py-4 searchable">18 Jul 2026, 04:15 PM</td>
+                        <td class="px-3 py-4">
+                          <span class="inline-block rounded-full bg-[#efeafc] px-3.5 py-1.5 text-[11px] font-bold text-[#5738bd] searchable">Reviewing</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <p id="noResults" class="hidden px-3 py-6 text-center text-[13px] text-[#9aa6bf]">
+                    No search results found matching your query.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <!-- ============ Right column ============ -->
             <aside class="flex flex-col gap-5 xl:sticky xl:top-5">
-              <!-- Account summary -->
-              <div class="rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)]">
+              <div class="searchable-card rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)]">
                 <h3 class="mb-1.5 border-b border-[#eef2fa] pb-3 text-sm font-bold text-[#10265e]">
                   Account Summary
                 </h3>
 
                 <ul>
-                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
+                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px] searchable">
                     <span>Total Rentals</span>
                     <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">18</b>
                   </li>
-                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
+                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px] searchable">
                     <span>Completed Rentals</span>
                     <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">16</b>
                   </li>
-                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
+                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px] searchable">
                     <span>Average Rating</span>
                     <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">4.5</b>
                   </li>
-                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
+                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px] searchable">
                     <span>Total Earnings</span>
                     <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">550,000</b>
                   </li>
-                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
+                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px] searchable">
                     <span>Disputes</span>
                     <b class="whitespace-nowrap rounded-full bg-[#10265e] px-3 py-[3px] text-xs font-semibold text-white">04</b>
                   </li>
-                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
+                  <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px] searchable">
                     <span>Reports</span>
                     <b class="whitespace-nowrap rounded-full bg-[#ffc43d] px-3 py-[3px] text-xs font-semibold text-[#10265e]">NIL</b>
                   </li>
                 </ul>
               </div>
 
-              <!-- Quick actions -->
               <div class="rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)]">
                 <h3 class="mb-1.5 border-b border-[#eef2fa] pb-3 text-sm font-bold text-[#10265e]">
                   Quick Actions
@@ -502,44 +545,43 @@
 
                 <ul>
                   <li>
-                    <a href="#" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
+                    <a href="my-equipment.html" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
                       <i class="fa-regular fa-bookmark w-4 text-center text-[#2f5bd0]"></i>
                       <span class="flex-1">View My Listing</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
+                    <a href="owner-wallet.html" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
                       <i class="fa-regular fa-calendar-check w-4 text-center text-[#2f5bd0]"></i>
                       <span class="flex-1">Payout Accounts</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
+                    <button id="securityModalBtn" class="w-full flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e] text-left">
                       <i class="fa-regular fa-credit-card w-4 text-center text-[#2f5bd0]"></i>
                       <span class="flex-1">Security Settings</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
-                    </a>
+                    </button>
                   </li>
                   <li>
-                    <a href="#" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
+                    <button id="verificationBtn" class="w-full flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e] text-left">
                       <i class="fa-solid fa-shield-halved w-4 text-center text-[#2f5bd0]"></i>
-                      <span class="flex-1">Verifications Centers</span>
+                      <span class="flex-1">Verifications Center</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
-                    </a>
+                    </button>
                   </li>
                   <li>
-                    <a href="#" class="flex items-center gap-3 py-2.5 text-[13px] hover:text-[#10265e]">
+                    <button id="downloadDataBtn" class="w-full flex items-center gap-3 py-2.5 text-[13px] hover:text-[#10265e] text-left">
                       <i class="fa-solid fa-download w-4 text-center text-[#2f5bd0]"></i>
-                      <span class="flex-1">Download Settings</span>
+                      <span class="flex-1">Download Account Data</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
 
-              <!-- Help & support -->
               <div class="rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)]">
                 <h3 class="mb-1.5 border-b border-[#eef2fa] pb-3 text-sm font-bold text-[#10265e]">
                   Help &amp; Support
@@ -547,36 +589,35 @@
 
                 <ul>
                   <li>
-                    <a href="#" class="flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e]">
+                    <button id="helpCenterBtn" class="w-full flex items-center gap-3 border-b border-[#f4f7fd] py-2.5 text-[13px] hover:text-[#10265e] text-left">
                       <i class="fa-regular fa-circle-question w-4 text-center text-[#2f5bd0]"></i>
                       <span class="flex-1">Visit Help Center</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
-                    </a>
+                    </button>
                   </li>
                   <li>
-                    <a href="#" class="flex items-center gap-3 py-2.5 text-[13px] hover:text-[#10265e]">
+                    <button id="contactSupportBtn" class="w-full flex items-center gap-3 py-2.5 text-[13px] hover:text-[#10265e] text-left">
                       <i class="fa-regular fa-comments w-4 text-center text-[#2f5bd0]"></i>
                       <span class="flex-1">Contact Support</span>
                       <i class="fa-solid fa-chevron-right text-[11px] text-[#9aa6bf]"></i>
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </div>
 
-              <!-- Account security -->
-              <div class="rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)]">
+              <div class="searchable-card rounded-[14px] bg-white p-5 shadow-[0_5px_12px_rgba(0,0,0,0.06)]">
                 <h3 class="mb-1.5 border-b border-[#eef2fa] pb-3 text-sm font-bold text-[#10265e]">
                   Account Security
                 </h3>
 
                 <ul>
                   <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
-                    <span>Two-Factor Authentication</span>
-                    <b class="whitespace-nowrap rounded-full bg-[#e5f7ee] px-3 py-[3px] text-xs font-semibold text-[#12764a]">Enabled</b>
+                    <span class="searchable">Two-Factor Authentication</span>
+                    <button id="toggle2fa" class="whitespace-nowrap rounded-full bg-[#e5f7ee] px-3 py-[3px] text-xs font-semibold text-[#12764a]">Enabled</button>
                   </li>
                   <li class="flex items-center justify-between gap-2.5 py-2.5 text-[13px]">
-                    <span>Last login</span>
-                    <b class="text-right text-xs font-semibold text-[#10265e]">May 10, 2025 09:10 AM</b>
+                    <span class="searchable">Last login</span>
+                    <b class="text-right text-xs font-semibold text-[#10265e] searchable">May 10, 2025 09:10 AM</b>
                   </li>
                 </ul>
               </div>
@@ -586,16 +627,24 @@
       </main>
     </div>
 
-    <!-- ================= FOOTER ================= -->
+    <div id="appModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative animate-fade-in">
+        <button id="closeModal" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+        <div id="modalContent">
+          </div>
+      </div>
+    </div>
+
     <footer class="bg-[#102A4A] text-white pt-12 pb-8 px-6 border-t border-slate-800">
       <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
         
-        <!-- Brand Info -->
         <div class="lg:col-span-2 space-y-4">
           <div class="flex items-center gap-2">
             <div class="flex items-center justify-center">
               <div>
-                <img src="../images/SVG 2.png" alt="logo">
+                <img src="../images/SVG 2.png" alt="TrustLend logo" class="h-8 w-auto">
               </div>
             </div>
             <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
@@ -607,24 +656,22 @@
             TrustLend is a secure marketplace connecting people and businesses to rent and lend equipment with confidence.
           </p>
 
-          <!-- Social Icons -->
           <div class="flex items-center gap-3 pt-2">
-            <a href="#" class="w-6 h-6 rounded-md bg-pink-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
-              <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
+            <a href="#" aria-label="Instagram" class="w-6 h-6 rounded-md bg-pink-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
+              <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="#" class="w-6 h-6 rounded-md bg-slate-800 flex items-center justify-center text-xs text-white hover:bg-slate-700 transition">
-              <i data-lucide="twitter" class="w-3.5 h-3.5"></i>
+            <a href="#" aria-label="Twitter / X" class="w-6 h-6 rounded-md bg-slate-800 flex items-center justify-center text-xs text-white hover:bg-slate-700 transition">
+              <i class="fa-brands fa-x-twitter"></i>
             </a>
-            <a href="#" class="w-6 h-6 rounded-md bg-blue-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
-              <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
+            <a href="#" aria-label="Facebook" class="w-6 h-6 rounded-md bg-blue-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
+              <i class="fa-brands fa-facebook-f"></i>
             </a>
-            <a href="#" class="w-6 h-6 rounded-md bg-sky-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
-              <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+            <a href="#" aria-label="LinkedIn" class="w-6 h-6 rounded-md bg-sky-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
+              <i class="fa-brands fa-linkedin-in"></i>
             </a>
           </div>
         </div>
 
-        <!-- Quick Links -->
         <div class="space-y-3">
           <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">Quick Links</h4>
           <ul class="space-y-2 text-xs text-slate-300">
@@ -636,7 +683,6 @@
           </ul>
         </div>
 
-        <!-- Company Links -->
         <div class="space-y-3">
           <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">Company</h4>
           <ul class="space-y-2 text-xs text-slate-300">
@@ -647,7 +693,6 @@
           </ul>
         </div>
 
-        <!-- Support Links -->
         <div class="space-y-3">
           <h4 class="text-xs font-bold uppercase tracking-wider text-amber-400">Support</h4>
           <ul class="space-y-2 text-xs text-slate-300">
@@ -660,219 +705,342 @@
 
       </div>
 
-      <!-- Copyright -->
       <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800/60 text-xs text-slate-400">
         © 2026 TrustLend Technologies Ltd. All rights reserved
       </div>
     </footer>
 
-
     <script>
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-const sidebar=document.getElementById("sidebar");
-const menuBtn=document.getElementById("menuBtn");
-const searchInput=document.getElementById("searchInput");
-const bell=document.getElementById("bell");
-const changePhoto=document.getElementById("changePhoto");
-const photoInput=document.getElementById("photoInput");
-const profileImage=document.querySelector(".relative img");
-
-
-
-/*=========================
-MOBILE SIDEBAR
-==========================*/
-
-if(window.innerWidth<1024){
-
-sidebar.classList.add(
-"fixed",
-"top-0",
-"left-0",
-"h-full",
-"z-50",
-"-translate-x-full",
-"transition-transform",
-"duration-300"
-);
-
-}
-
-menuBtn?.addEventListener("click",()=>{
-
-sidebar.classList.toggle("-translate-x-full");
-
-});
-
-
-window.addEventListener("resize",()=>{
-
-if(window.innerWidth>=1024){
-
-sidebar.classList.remove(
-"fixed",
-"-translate-x-full"
-);
-
-}else{
-
-sidebar.classList.add(
-"fixed",
-"-translate-x-full"
-);
-
-}
-
-});
-
-
-
-/*=========================
-SEARCH RECENT ACTIVITY
-==========================*/
-
-searchInput?.addEventListener("keyup",function(){
-
-const keyword=this.value.toLowerCase();
-
-document.querySelectorAll("tbody tr").forEach(row=>{
-
-const text=row.innerText.toLowerCase();
-
-row.style.display=text.includes(keyword)
-?"table-row"
-:"none";
-
-});
-
-});
-
-
-
-/*=========================
-NOTIFICATION
-==========================*/
-
-bell?.addEventListener("click",()=>{
-
-bell.classList.add("fa-shake");
-
-setTimeout(()=>{
-
-bell.classList.remove("fa-shake");
-
-},800);
-
-alert("No new notifications");
-
-});
-
-
-
-/*=========================
-EDIT BUTTONS
-==========================*/
-
-document.querySelectorAll("button").forEach(btn=>{
-
-if(btn.innerText==="Edit"){
-
-btn.addEventListener("click",()=>{
-
-alert("Edit feature coming soon.");
-
-});
-
-}
-
-});
-
-
-
-/*=========================
-PROFILE PHOTO
-==========================*/
-
-changePhoto?.addEventListener("click",()=>{
-
-photoInput.click();
-
-});
-
-photoInput?.addEventListener("change",function(){
-
-const file=this.files[0];
-
-if(!file)return;
-
-const reader=new FileReader();
-
-reader.onload=function(e){
-
-profileImage.src=e.target.result;
-
-}
-
-reader.readAsDataURL(file);
-
-});
-
-
-
-/*=========================
-CARD HOVER
-==========================*/
-
-document.querySelectorAll(".rounded-\\[14px\\]").forEach(card=>{
-
-card.addEventListener("mouseenter",()=>{
-
-card.style.transform="translateY(-4px)";
-card.style.transition=".3s";
-
-});
-
-card.addEventListener("mouseleave",()=>{
-
-card.style.transform="translateY(0)";
-
-});
-
-});
-
-
-
-/*=========================
-SMOOTH SCROLL
-==========================*/
-
-document.querySelectorAll('a[href^="#"]').forEach(link=>{
-
-link.addEventListener("click",function(e){
-
-e.preventDefault();
-
-const target=document.querySelector(this.getAttribute("href"));
-
-if(target){
-
-target.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-}
-
-});
-
-});
-
-});
-
-</script>
-
+      document.addEventListener("DOMContentLoaded", () => {
+        
+        // --- TOAST NOTIFICATIONS ---
+        function showToast(message, type = 'success') {
+          const container = document.getElementById("toastContainer");
+          const toast = document.createElement("div");
+          const bgColor = type === 'success' ? 'bg-emerald-600' : 'bg-red-600';
+          const icon = type === 'success' ? 'fa-circle-check' : 'fa-triangle-exclamation';
+
+          toast.className = `${bgColor} text-white text-xs px-4 py-3 rounded-lg shadow-xl flex items-center gap-2 pointer-events-auto transition-all duration-300 transform translate-y-2 opacity-0`;
+          toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+          
+          container.appendChild(toast);
+          
+          setTimeout(() => {
+            toast.classList.remove("translate-y-2", "opacity-0");
+          }, 10);
+
+          setTimeout(() => {
+            toast.classList.add("opacity-0", "translate-y-2");
+            setTimeout(() => toast.remove(), 300);
+          }, 3500);
+        }
+
+        // --- LOCAL STORAGE MANAGER ---
+        const DB = {
+          save(key, data) {
+            localStorage.setItem(`trustlend_${key}`, JSON.stringify(data));
+          },
+          get(key, fallback) {
+            const data = localStorage.getItem(`trustlend_${key}`);
+            return data ? JSON.parse(data) : fallback;
+          }
+        };
+
+        // --- INIT STATE ---
+        const paymentData = DB.get('payment', {
+          prefPayment: 'Visa **** 2506',
+          cardHolder: 'Jane Smith',
+          expiryDate: '08/28',
+          billingAddress: 'Lagos, Nigeria',
+          defaultCard: 'Vista'
+        });
+
+        const businessData = DB.get('business', {
+          bizName: 'Smith Rentals Limited',
+          bizAddress: '12 Adekunle Street, Surulere, Lagos',
+          bizType: 'Rental Service',
+          cacNumber: 'RC1234567',
+          bizYears: '3+ Years',
+          tinNumber: '12345678901'
+        });
+
+        function syncDataToDOM() {
+          Object.keys(paymentData).forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.textContent = paymentData[id];
+          });
+
+          Object.keys(businessData).forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.textContent = businessData[id];
+          });
+
+          const savedPhoto = localStorage.getItem('trustlend_profile_photo');
+          if(savedPhoto) {
+            document.getElementById("profileImage").src = savedPhoto;
+            document.getElementById("avatarImgTop").src = savedPhoto;
+          }
+        }
+
+        syncDataToDOM();
+
+        // --- GLOBAL SEARCH ENGINE ---
+        const searchInput = document.getElementById("searchInput");
+        const clearSearch = document.getElementById("clearSearch");
+        const noResults = document.getElementById("noResults");
+
+        function executeSearch() {
+          const query = searchInput.value.trim().toLowerCase();
+          clearSearch.classList.toggle("hidden", query.length === 0);
+
+          let matchesFound = 0;
+
+          // Search Activity Table
+          const tableRows = document.querySelectorAll("#activityTableBody tr");
+          tableRows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            const match = text.includes(query);
+            row.style.display = match ? "" : "none";
+            if(match) matchesFound++;
+          });
+
+          // Search Card Sections
+          const searchableCards = document.querySelectorAll(".searchable-card");
+          searchableCards.forEach(card => {
+            if(query === "") {
+              card.style.display = "";
+            } else {
+              const text = card.textContent.toLowerCase();
+              const match = text.includes(query);
+              card.style.display = match ? "" : "none";
+              if(match) matchesFound++;
+            }
+          });
+
+          noResults.classList.toggle("hidden", query === "" || matchesFound > 0);
+        }
+
+        searchInput.addEventListener("input", executeSearch);
+        clearSearch.addEventListener("click", () => {
+          searchInput.value = "";
+          executeSearch();
+          searchInput.focus();
+        });
+
+        // --- EDIT FORM MODALS AND INLINE EDITING ---
+        function enableEditForm(formId, dataObj, storageKey) {
+          const form = document.getElementById(formId);
+          const fields = form.querySelectorAll("strong");
+          
+          fields.forEach(strong => {
+            const fieldId = strong.id;
+            const currentVal = strong.textContent;
+            strong.innerHTML = `<input type="text" id="input_${fieldId}" value="${currentVal}" class="w-full text-xs p-1 border border-amber-400 rounded outline-none focus:ring-1 focus:ring-amber-500 bg-white text-slate-800">`;
+          });
+
+          const btnContainer = document.createElement("div");
+          btnContainer.id = `${formId}_controls`;
+          btnContainer.className = "col-span-full flex justify-end gap-2 mt-2";
+          btnContainer.innerHTML = `
+            <button type="button" class="cancel-edit bg-slate-200 text-slate-700 text-xs px-3 py-1.5 rounded-lg hover:bg-slate-300">Cancel</button>
+            <button type="button" class="save-edit bg-[#10265e] text-white text-xs px-3 py-1.5 rounded-lg hover:bg-[#1a3882]">Save Changes</button>
+          `;
+          
+          form.appendChild(btnContainer);
+
+          btnContainer.querySelector(".cancel-edit").addEventListener("click", () => {
+            syncDataToDOM();
+            btnContainer.remove();
+          });
+
+          btnContainer.querySelector(".save-edit").addEventListener("click", () => {
+            fields.forEach(strong => {
+              const fieldId = strong.id;
+              const input = document.getElementById(`input_${fieldId}`);
+              if(input) {
+                dataObj[fieldId] = input.value;
+              }
+            });
+            DB.save(storageKey, dataObj);
+            syncDataToDOM();
+            btnContainer.remove();
+            showToast("Information updated successfully!");
+          });
+        }
+
+        document.getElementById("editPaymentBtn").addEventListener("click", (e) => {
+          if(!document.getElementById("paymentForm_controls")) {
+            enableEditForm("paymentForm", paymentData, "payment");
+          }
+        });
+
+        document.getElementById("editBusinessBtn").addEventListener("click", (e) => {
+          if(!document.getElementById("businessForm_controls")) {
+            enableEditForm("businessForm", businessData, "business");
+          }
+        });
+
+        // --- PROFILE PHOTO UPLOAD persistence ---
+        const changePhoto = document.getElementById("changePhoto");
+        const photoInput = document.getElementById("photoInput");
+
+        changePhoto.addEventListener("click", () => photoInput.click());
+        photoInput.addEventListener("change", function () {
+          const file = this.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              const imgData = e.target.result;
+              document.getElementById("profileImage").src = imgData;
+              document.getElementById("avatarImgTop").src = imgData;
+              localStorage.setItem("trustlend_profile_photo", imgData);
+              showToast("Profile picture updated!");
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+        // --- NOTIFICATIONS TOGGLE ---
+        const bell = document.getElementById("bell");
+        const notifDropdown = document.getElementById("notifDropdown");
+        const notifBadge = document.getElementById("notifBadge");
+
+        bell.addEventListener("click", (e) => {
+          e.stopPropagation();
+          notifDropdown.classList.toggle("hidden");
+        });
+
+        document.addEventListener("click", () => {
+          notifDropdown.classList.add("hidden");
+        });
+
+        document.getElementById("markReadBtn").addEventListener("click", () => {
+          notifBadge.classList.add("hidden");
+          showToast("All notifications marked as read.");
+        });
+
+        // --- MODAL ENGINE ---
+        const modal = document.getElementById("appModal");
+        const modalContent = document.getElementById("modalContent");
+        const closeModal = document.getElementById("closeModal");
+
+        function openModal(htmlContent) {
+          modalContent.innerHTML = htmlContent;
+          modal.classList.remove("hidden");
+        }
+
+        closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+        modal.addEventListener("click", (e) => {
+          if(e.target === modal) modal.classList.add("hidden");
+        });
+
+        // Modal Action Triggers
+        document.getElementById("securityModalBtn").addEventListener("click", () => {
+          openModal(`
+            <h3 class="text-lg font-bold text-[#10265e] mb-2">Security Settings</h3>
+            <p class="text-xs text-slate-500 mb-4">Manage your authentication and password preferences.</p>
+            <div class="space-y-3">
+              <button class="w-full text-left p-3 rounded-lg border text-xs font-semibold flex items-center justify-between hover:bg-slate-50">
+                <span>Change Password</span>
+                <i class="fa-solid fa-chevron-right text-slate-400"></i>
+              </button>
+              <button class="w-full text-left p-3 rounded-lg border text-xs font-semibold flex items-center justify-between hover:bg-slate-50">
+                <span>Active Login Sessions</span>
+                <i class="fa-solid fa-chevron-right text-slate-400"></i>
+              </button>
+            </div>
+          `);
+        });
+
+        document.getElementById("verificationBtn").addEventListener("click", () => {
+          openModal(`
+            <h3 class="text-lg font-bold text-[#10265e] mb-2">Verification Center</h3>
+            <p class="text-xs text-slate-500 mb-4">Your current platform trust metrics.</p>
+            <div class="space-y-2 text-xs">
+              <div class="p-3 bg-emerald-50 text-emerald-800 rounded-lg flex justify-between items-center">
+                <span>Government ID (NIN/BVN)</span>
+                <span class="font-bold">Verified</span>
+              </div>
+              <div class="p-3 bg-emerald-50 text-emerald-800 rounded-lg flex justify-between items-center">
+                <span>Business Registration (CAC)</span>
+                <span class="font-bold">Verified</span>
+              </div>
+            </div>
+          `);
+        });
+
+        document.getElementById("downloadDataBtn").addEventListener("click", () => {
+          showToast("Preparing account data export file...");
+          setTimeout(() => {
+            showToast("Account summary downloaded.");
+          }, 2000);
+        });
+
+        document.getElementById("helpCenterBtn").addEventListener("click", () => {
+          openModal(`
+            <h3 class="text-lg font-bold text-[#10265e] mb-2">Help Center</h3>
+            <p class="text-xs text-slate-500 mb-4">Frequently Asked Questions</p>
+            <div class="space-y-2 text-xs">
+              <details class="p-2 border rounded cursor-pointer">
+                <summary class="font-semibold text-slate-700">How do rental returns work?</summary>
+                <p class="mt-2 text-slate-500">Owners inspect equipment upon return and confirm completeness in the app.</p>
+              </details>
+              <details class="p-2 border rounded cursor-pointer">
+                <summary class="font-semibold text-slate-700">When do I receive payouts?</summary>
+                <p class="mt-2 text-slate-500">Payouts are disbursed within 24 hours after return inspection.</p>
+              </details>
+            </div>
+          `);
+        });
+
+        document.getElementById("contactSupportBtn").addEventListener("click", () => {
+          openModal(`
+            <h3 class="text-lg font-bold text-[#10265e] mb-2">Contact Support</h3>
+            <p class="text-xs text-slate-500 mb-4">Send a direct message to support.</p>
+            <textarea id="supportMsg" placeholder="Describe your issue..." class="w-full text-xs p-3 border rounded-lg h-24 mb-3 outline-none focus:border-[#10265e]"></textarea>
+            <button id="sendSupport" class="w-full py-2 bg-[#10265e] text-white rounded-lg text-xs font-bold">Submit Ticket</button>
+          `);
+          document.getElementById("sendSupport").addEventListener("click", () => {
+            modal.classList.add("hidden");
+            showToast("Support ticket submitted. Reference ID: #TR-" + Math.floor(Math.random()*10000));
+          });
+        });
+
+        // --- 2FA TOGGLE ---
+        const toggle2fa = document.getElementById("toggle2fa");
+        toggle2fa.addEventListener("click", () => {
+          const enabled = toggle2fa.textContent === "Enabled";
+          if(enabled) {
+            toggle2fa.textContent = "Disabled";
+            toggle2fa.className = "whitespace-nowrap rounded-full bg-slate-100 px-3 py-[3px] text-xs font-semibold text-slate-600";
+            showToast("Two-Factor Authentication disabled.", "danger");
+          } else {
+            toggle2fa.textContent = "Enabled";
+            toggle2fa.className = "whitespace-nowrap rounded-full bg-[#e5f7ee] px-3 py-[3px] text-xs font-semibold text-[#12764a]";
+            showToast("Two-Factor Authentication enabled.");
+          }
+        });
+
+        // --- MOBILE SIDEBAR ---
+        const sidebar = document.getElementById("sidebar");
+        const sidebarBackdrop = document.getElementById("sidebarBackdrop");
+        const menuBtn = document.getElementById("menuBtn");
+        const closeSidebarBtn = document.getElementById("closeSidebar");
+
+        function openSidebar() {
+          sidebar.classList.remove("-translate-x-full");
+          sidebarBackdrop.classList.remove("hidden");
+        }
+
+        function closeSidebar() {
+          sidebar.classList.add("-translate-x-full");
+          sidebarBackdrop.classList.add("hidden");
+        }
+
+        menuBtn?.addEventListener("click", openSidebar);
+        closeSidebarBtn?.addEventListener("click", closeSidebar);
+        sidebarBackdrop?.addEventListener("click", closeSidebar);
+      });
+    </script>
   </body>
 </html>
