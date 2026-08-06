@@ -38,8 +38,6 @@
       },
     }
   </script>
-
-  
 </head>
 <body>           
     <section class="flex flex-row ">
@@ -50,7 +48,7 @@
         <div class="flex items-center gap-2 mb-8">
           <div class=" flex items-center justify-center ">
             <div >
-              <img src="images/SVG 2.png" alt="logo">
+              <img src="/Trust_lend/Trust_lend1/images/SVG 2.png" alt="logo">
             </div>
           </div>
           <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
@@ -62,7 +60,6 @@
         <nav class="space-y-6 text-xs font-medium">
           <!-- MANAGE -->
           <div>
-            <!-- <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Manage</p> -->
             <ul class="space-y-1">
               <li>
                 <a href="o-dashboard.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
@@ -92,12 +89,8 @@
                 </a>
               </li>
             </ul>
-        
 
-          <!-- FINANCE -->
-          
-            <!-- <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Finance</p> -->
-            <ul class="space-y-1">
+            <ul class="space-y-1 mt-6">
               <li>
                 <a href="owner-wallet.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
                   <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
@@ -106,37 +99,7 @@
               </li>
             </ul>
 
-          <!-- ACTIVITY -->
-          <!--<div>
-            <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Activity</p>
-            <ul class="space-y-1">
-              <li>
-                <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
-                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-                  Messages
-                </a>
-              </li>
-              <li>
-                <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
-                  <span class="flex items-center gap-2.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-                    Notifications
-                  </span>
-                  <span class="bg-amber-400 text-[#0B2545] text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">5</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
-                  <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
-                  Reviews
-                </a>
-              </li>
-            </ul>
-          </div>--!
-
-          <!-- ACCOUNT -->
-            <!-- <p class="text-slate-400 font-semibold mb-2 px-3 uppercase tracking-wider text-[10px]">Account</p> -->
-            <ul class="space-y-1">
+            <ul class="space-y-1 mt-6">
               <li>
                 <a href="profile.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-[#0B2545] hover:bg-amber-500 transition">
                   <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
@@ -144,6 +107,7 @@
                 </a>
               </li>
             </ul>
+          </div>
         </nav>
       </div>
     </aside>
@@ -158,16 +122,16 @@
                     <p class="text-sm text-[#1a1a1a]">Review the returned item and confirm its condition</p>
                 </div>
                 <div class="flex flex-row px-8 py-4 gap-3 items-center">
-                    <input type="text" class="rounded-2xl border border[#9e9e9e] w-76 h-10 px-4 inline-block py-3" placeholder="Search">
+                    <input id="searchInput" type="text" class="rounded-2xl border border-[#9e9e9e] w-76 h-10 px-4 inline-block py-3 focus:outline-none focus:border-brand" placeholder="Search">
 
-                    <button class=" hover:text-slate-600 text-black relative">
+                    <button id="notificationBtn" class="hover:text-slate-600 text-black relative focus:outline-none transition-transform active:scale-95" title="Notifications">
                         <i class="fa-regular fa-bell fa-2x"></i>
-                        <span class="absolute bg-red-500 text-white rounded-full flex items-center justify-center w-3.5 h-3.5 -top-1 -right-1 text-xs">5</span>
+                        <span id="notifBadge" class="absolute bg-red-500 text-white rounded-full flex items-center justify-center w-3.5 h-3.5 -top-1 -right-1 text-xs">5</span>
                     </button>
 
-                    <div class="w-8 h-8 overflow-hidden rounded-full">
-                        <img src="images/woman-profile.png" alt="profile picture " class="w-full h-full object-cover">
-                    </div>
+                    <button id="profileBtn" class="w-8 h-8 overflow-hidden rounded-full focus:ring-2 focus:ring-brand">
+                        <img src="/Trust_lend/Trust_lend1/images/woman-profile.png" alt="profile picture" class="w-full h-full object-cover">
+                    </button>
                 </div>
             </header>
 
@@ -179,7 +143,7 @@
                     <!-- returned today -->
                     <div class="flex flex-row bg-white mx-4 px-4 my-2 items-center rounded-2xl">
                         <div>
-                            <img src="images/canon.png" alt="">
+                            <img src="/Trust_lend/Trust_lend1/images/canon.png" alt="">
                         </div>
                         <div class="flex flex-col items-center px-8 py-8 text-sm">
                             <div class="flex flex-row items-center ">
@@ -215,24 +179,24 @@
                                 <div class=" ml-10  w-0.5 h-36 bg-slate-200 rounded-2xl"></div>
 
                                 <div class="flex-col flex px-8  pb-9 rounded-2xl">
-                                   <h3 font-sm>RENTER</h3>
+                                   <h3 class="text-sm font-semibold mb-2">RENTER</h3>
 
-                                   <div class="flex flex-row ">
-                                    <img src="images/Profile Pic.png" alt="profile " class="w-10 h-10 object-cover overflow-hidden">
+                                   <div class="flex flex-row items-center">
+                                    <img src="/Trust_lend/Trust_lend1/images/Profile Pic.png" alt="profile " class="w-10 h-10 object-cover overflow-hidden rounded-full">
                                     <div class="pl-2 flex flex-col">
-                                        <h2 class=" px-1">Peace D.</h2>
-                                        <div class="flex flex-row  text-xs bg-accent rounded-3xl px-2 py-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <h2 class=" px-1 font-medium">Peace D.</h2>
+                                        <div class="flex flex-row items-center text-xs bg-amber-100 text-amber-800 rounded-3xl px-2 py-0.5 gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
                                             <path d="m9 12 2 2 4-4"/>
                                             </svg>
-                                            <p >verified renter</p>
+                                            <span>verified renter</span>
                                         </div>
                                     </div>
 
                                    </div>
 
-                                   <div class="flex flex-col items-center justify-center text-sm pt-1">
+                                   <div class="flex flex-col items-center justify-center text-sm pt-2 text-slate-600">
                                     <p>+2348012345678</p>
                                    <p>Lagos, Nigeria</p>
                                    </div>
@@ -248,79 +212,88 @@
 
                     <!-- condition -->
                     <div class="mx-4 px-4 py-4 my-4 bg-white text-sm rounded-2xl">
-                        <h3 class="font-semibold tracking-widest text-brand py-2">Condition Checklist</h3>
+                        <div class="flex justify-between items-center mb-2">
+                          <h3 class="font-semibold tracking-widest text-brand py-2">Condition Checklist</h3>
+                          <button id="selectAllBtn" type="button" class="text-xs text-brand hover:underline font-medium">Select All</button>
+                        </div>
                         <div class="grid grid-cols-2 gap-y-4 gap-x-6 px-1 ">
-                            <label class="flex items-center gap-4">
-                                <input type="checkbox" class=" rounded border-text-slate-300">
+                            <label class="flex items-center gap-4 cursor-pointer">
+                                <input type="checkbox" class="checklist-item rounded border-slate-300 accent-brand w-4 h-4">
                                 <span>Physical body / casing intact</span>
                             </label>
 
-                            <label class="flex items-center gap-4">
-                                <input type="checkbox" class="rounded border-text-slate-300">
+                            <label class="flex items-center gap-4 cursor-pointer">
+                                <input type="checkbox" class="checklist-item rounded border-slate-300 accent-brand w-4 h-4">
                                 <span>Lens / glass surfaces clean</span>
                             </label>
 
-                            <label class="flex items-center gap-4">
-                                <input type="checkbox" class="rounded border-text-slate-300">
+                            <label class="flex items-center gap-4 cursor-pointer">
+                                <input type="checkbox" class="checklist-item rounded border-slate-300 accent-brand w-4 h-4">
                                 <span>All accessories included</span>
                             </label>
 
-                            <label class="flex items-center gap-4">
-                                <input type="checkbox" class="rounded border-text-slate-300">
+                            <label class="flex items-center gap-4 cursor-pointer">
+                                <input type="checkbox" class="checklist-item rounded border-slate-300 accent-brand w-4 h-4">
                                 <span>Battery & charger present</span>
                             </label>
 
-                            <label class="flex items-center gap-4">
-                                <input type="checkbox" class="rounded border-text-slate-300">
+                            <label class="flex items-center gap-4 cursor-pointer">
+                                <input type="checkbox" class="checklist-item rounded border-slate-300 accent-brand w-4 h-4">
                                 <span>Memory cards / cables returned</span>
                             </label>
 
-                            <label class="flex items-center gap-4">
-                                <input type="checkbox" class="rounded-lg border-text-slate-300">
+                            <label class="flex items-center gap-4 cursor-pointer">
+                                <input type="checkbox" class="checklist-item rounded border-slate-300 accent-brand w-4 h-4">
                                 <span>No visible scratches or dents</span>
                             </label>
 
-                            <label class="flex items-center gap-4">
-                                <input type="checkbox" class="rounded border-text-slate-300">
+                            <label class="flex items-center gap-4 cursor-pointer">
+                                <input type="checkbox" class="checklist-item rounded border-slate-300 accent-brand w-4 h-4">
                                 <span>Viewfinder / LCD screen undamaged</span>
                             </label>
 
-                            <label class="flex items-center gap-4">
-                                <input type="checkbox" class="rounded border-text-slate-300">
+                            <label class="flex items-center gap-4 cursor-pointer">
+                                <input type="checkbox" class="checklist-item rounded border-slate-300 accent-brand w-4 h-4">
                                 <span>Original packaging / bag</span>
                             </label>
-
-
                         </div>
                     </div>
 
                     <!-- photo evidence -->
-                    <div class="mx-4 px-4 my-6 bg-white flex flex-col rounded-2xl">
+                    <div class="mx-4 px-4 my-6 bg-white flex flex-col rounded-2xl py-4">
                         <h3 class="font-semibold tracking-widest text-brand py-2">PHOTOS EVIDENCE</h3>
-                        <div class="flex flex-row gap-2 ">
-                            <img src="images/2-cam.png" alt="cammera">
-                            <img src="images/4-cam.png" alt="cammera">
-                            <img src="images/3-cam.png" alt="cammera">
-                            <img src="images/4-cam.png" alt="cammera">
-                            <img src="images/2-cam.png" alt="cammera">
-                            <input type="file"  class="hidden" id="inputfile">
-                            <label for="inputfile" class="cursor-pointer border px-4 py-4 w-28 flex justify-center items-center">
-                                <i class="fa-solid fa-plus"></i>
+                        <div class="flex flex-row gap-2 flex-wrap items-center" id="photoGallery">
+                            <img src="/Trust_lend/Trust_lend1/images/2-cam.png" alt="camera" class="w-20 h-20 object-cover rounded-lg border border-slate-200">
+                            <img src="/Trust_lend/Trust_lend1/images/4-cam.png" alt="camera" class="w-20 h-20 object-cover rounded-lg border border-slate-200">
+                            <img src="/Trust_lend/Trust_lend1/images/3-cam.png" alt="camera" class="w-20 h-20 object-cover rounded-lg border border-slate-200">
+                            <img src="/Trust_lend/Trust_lend1/images/4-cam.png" alt="camera" class="w-20 h-20 object-cover rounded-lg border border-slate-200">
+                            <img src="/Trust_lend/Trust_lend1/images/2-cam.png" alt="camera" class="w-20 h-20 object-cover rounded-lg border border-slate-200">
+                            
+                            <input type="file" multiple accept="image/*" class="hidden" id="inputfile">
+                            <label for="inputfile" class="cursor-pointer border-2 border-dashed border-slate-300 hover:border-brand hover:bg-slate-50 transition rounded-lg h-20 w-20 flex flex-col justify-center items-center text-slate-500">
+                                <i class="fa-solid fa-plus text-xl"></i>
+                                <span class="text-[10px] mt-1 font-medium">Add Photo</span>
                             </label>
                         </div>
-                            <p class="text-slate-500 text-xs pt-1">Upload photos taken during inspection. These are stored with the rental record.</p>
+                        <p class="text-slate-500 text-xs pt-2">Upload photos taken during inspection. These are stored with the rental record.</p>
                     </div>
 
-
-                    <div class="mx-4 px-4 my-6 bg-white flex flex-col rounded-2xl ">
+                    <!-- inspection notes -->
+                    <div class="mx-4 px-4 my-6 bg-white flex flex-col rounded-2xl py-4">
                         <h3 class="font-semibold tracking-widest text-brand py-2">Inspection notes</h3>
-                        <textarea name="inspection notes" class="w-full border rounded-2xl h-[71px] px-4 py-2" placeholder="Type a message..."></textarea>
+                        <textarea id="inspectionNotes" name="inspection notes" class="w-full border rounded-2xl h-[71px] px-4 py-2 focus:outline-none focus:border-brand text-sm" placeholder="Type a message..."></textarea>
                         <p class="text-slate-500 py-2 text-xs">Optional — visible to the renter if a dispute is filed.</p>
                     </div>
-                    <div class="flex flex-col px-8 py-8 bg-white mx-4 rounded-2xl ">
-                        <button class="bg-brand text-white w-[220px] h-[56px] rounded-2xl px-1">Confirm Return</button>
-                        <button class="bg-accent text-white w-[220px] h-[56px] rounded-2xl my-2">Report Damage</button>
-                        <p class="text-sm text-slate-500">This action is final and notifies the renter.</p>
+
+                    <!-- Actions -->
+                    <div class="flex flex-col px-8 py-8 bg-white mx-4 rounded-2xl mb-6">
+                        <button id="confirmReturnBtn" type="button" class="bg-brand hover:bg-brandLight text-white font-medium w-[220px] h-[56px] rounded-2xl px-1 transition active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                            <span>Confirm Return</span>
+                        </button>
+                        <button id="reportDamageBtn" type="button" class="bg-accent hover:bg-amber-600 text-white font-medium w-[220px] h-[56px] rounded-2xl my-2 transition active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                            <span>Report Damage</span>
+                        </button>
+                        <p class="text-sm text-slate-500 mt-1">This action is final and notifies the renter.</p>
                     </div>
 
                 </main>
@@ -330,92 +303,88 @@
                     <div class="mx-4 px-4 py-2 my-2 bg-white flex flex-col rounded-2xl">
                         <h3 class="font-semibold tracking-widest text-brand py-2">Overall Condition</h3>
 
-                            <label class="flex items-center gap-4 w-[212px] h-[59px] border-text-slate-300 border border-text-slate-300 px-2  py-8 rounded-2xl my-1">
-                            <input type="radio" class="w-4 h-4">
-                            <div class=" flex flex-col">
-                            <p class="font-semibold text-brand ">Good</p>
-                            <p class="text-xs font-light text-slate-500"> No issues found</p>
+                            <label class="condition-card flex items-center gap-4 w-full h-[59px] border border-slate-300 hover:border-brand px-3 py-8 rounded-2xl my-1 cursor-pointer transition">
+                            <input type="radio" name="overallCondition" value="Good" class="w-4 h-4 accent-brand" checked>
+                            <div class="flex flex-col">
+                            <p class="font-semibold text-brand">Good</p>
+                            <p class="text-xs font-light text-slate-500">No issues found</p>
                             </div>
                             </label>
 
-                            <label class="flex items-center gap-4 w-[212px] h-[59px] border-text-slate-300 border border-text-slate-300 px-2 py-8 rounded-2xl my-1 ">
-                            <input type="radio" class="w-4 h-4">
-                            <div class=" flex flex-col">
-                            <p class="font-semibold text-brand ">Fair</p>
-                            <p class="text-xs font-light text-slate-500"> Minor wear, acceptable</p>
+                            <label class="condition-card flex items-center gap-4 w-full h-[59px] border border-slate-300 hover:border-brand px-3 py-8 rounded-2xl my-1 cursor-pointer transition">
+                            <input type="radio" name="overallCondition" value="Fair" class="w-4 h-4 accent-brand">
+                            <div class="flex flex-col">
+                            <p class="font-semibold text-brand">Fair</p>
+                            <p class="text-xs font-light text-slate-500">Minor wear, acceptable</p>
                             </div>
                             </label>
 
-                            <label class="flex items-center gap-4 w-[212px] h-[59px] border-text-slate-300 border border-text-slate-300 px-2 py-8 rounded-2xl my-1 p ">
-                            <input type="radio" class="w-4 h-4">
-                            <div class=" flex flex-col">
-                            <p class="font-semibold text-brand ">Damaged</p>
-                            <p class="text-xs font-light text-slate-500"> Visible damage present</p>
+                            <label class="condition-card flex items-center gap-4 w-full h-[59px] border border-slate-300 hover:border-brand px-3 py-8 rounded-2xl my-1 cursor-pointer transition">
+                            <input type="radio" name="overallCondition" value="Damaged" class="w-4 h-4 accent-brand">
+                            <div class="flex flex-col">
+                            <p class="font-semibold text-brand">Damaged</p>
+                            <p class="text-xs font-light text-slate-500">Visible damage present</p>
                             </div>
                             </label>
-
                     </div>
 
                     <!-- security deposit -->
-                    <div class="mx-4 px-4 my-6 bg-white flex flex-col rounded-2xl">
+                    <div class="mx-4 px-4 my-6 bg-white flex flex-col rounded-2xl py-4">
                         <h3 class="font-semibold tracking-widest text-brand py-2">SECURITY DEPOSIT</h3>
                         <div>
                             <div class="flex flex-row justify-between my-2">
                                 <p class="text-sm text-slate-500">Held amount</p>
-                                <p class="font-bold text-sm text-brand">XXXX NGN</p>
+                                <p class="font-bold text-sm text-brand">50,000 NGN</p>
                             </div>
-
 
                             <div class="flex flex-row justify-between my-2">
                                 <p class="text-sm text-slate-500">Status</p>
-                                <p class="font-bold text-sm text-brand">Pending release</p>
+                                <p class="font-bold text-sm text-brand" id="depositStatus">Pending release</p>
                             </div>
 
                             <div class="flex flex-row justify-between my-2">
                                 <p class="text-sm text-slate-500">Release date</p>
                                 <p class="font-bold text-sm text-brand">In 48 hrs</p>
                             </div>
-                            <div class="w-6 h-px text-slate-300"></div>
+                            <div class="w-full h-px bg-slate-200 my-3"></div>
 
-                            <p class="text-xs text-slate-500 font-light px-1">Deposit is released to the renter automatically unless a damage claim is filed within 48 hours.</p>
+                            <p class="text-xs text-slate-500 font-light">Deposit is released to the renter automatically unless a damage claim is filed within 48 hours.</p>
                         </div>
                     </div>
 
-                        <!-- actvity log -->
-                        <div class="mr-4 ml-2 px-2 my-2  bg-white flex   flex-col rounded-2xl">
-                            <h3 class="font-semibold tracking-widest text-brand py-2">ACTIVITY LOG</h3>
+                    <!-- activity log -->
+                    <div class="mr-4 ml-2 px-4 my-2 bg-white flex flex-col rounded-2xl py-4">
+                        <h3 class="font-semibold tracking-widest text-brand py-2">ACTIVITY LOG</h3>
 
-                            <div class="flex flex-row items-center relative">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#e0e0e0] mb-5 mr-2"></span>
-                                <div class="flex flex-col pr-1 rounded-lg py-2  ">
-                                    <p class="text-xs" >Renter initiated return</p>
-                                    <p class="text-[#bdbdbd]  text-xs">Jul 22 · 10:04</p> 
-                                </div>
+                        <div class="flex flex-row items-center relative py-1">
+                            <span class="w-2 h-2 rounded-full bg-slate-300 mr-3 shrink-0"></span>
+                            <div class="flex flex-col">
+                                <p class="text-xs font-medium text-slate-700">Renter initiated return</p>
+                                <p class="text-slate-400 text-[11px]">Jul 22 · 10:04</p> 
                             </div>
-                                
+                        </div>
 
-                            <div class="flex flex row items-center py-2 relative ">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#e0e0e0] mb-5 mr-2"></span>
-                                <div class="flex flex-col ">
-                                    <p class="text-xs">Renter submitted photos</p>
-                                    <p class="text-[#bdbdbd] text-xs">Jul 22 · 09:51</p> 
-                                </div>
+                        <div class="flex flex-row items-center relative py-1">
+                            <span class="w-2 h-2 rounded-full bg-slate-300 mr-3 shrink-0"></span>
+                            <div class="flex flex-col">
+                                <p class="text-xs font-medium text-slate-700">Renter submitted photos</p>
+                                <p class="text-slate-400 text-[11px]">Jul 22 · 09:51</p> 
                             </div>
+                        </div>
 
-                            <div class="flex flex-row items-center py-2 relative">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#e0e0e0] mb-5 mr-2"></span>
-                                <div class="flex flex-col pr-1 rounded-lg  ">
-                                    <p class="text-xs" >Item picked up</p>
-                                    <p class="text-[#bdbdbd]  text-xs">Jul 18 · 08:30</p> 
-                                </div>
+                        <div class="flex flex-row items-center relative py-1">
+                            <span class="w-2 h-2 rounded-full bg-slate-300 mr-3 shrink-0"></span>
+                            <div class="flex flex-col">
+                                <p class="text-xs font-medium text-slate-700">Item picked up</p>
+                                <p class="text-slate-400 text-[11px]">Jul 18 · 08:30</p> 
                             </div>
+                        </div>
 
-                            <div class="flex flex-row items-center py-2 relative">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#e0e0e0] mb-5 mr-2 "></span>
-                                <div class="flex flex-col pr-1 rounded-lg  ">
-                                    <p class="text-xs" >Rental confirmed</p>
-                                    <p class="text-[#bdbdbd]  text-xs">Jul 17 · 14:00</p> 
-                                </div>
+                        <div class="flex flex-row items-center relative py-1">
+                            <span class="w-2 h-2 rounded-full bg-slate-300 mr-3 shrink-0"></span>
+                            <div class="flex flex-col">
+                                <p class="text-xs font-medium text-slate-700">Rental confirmed</p>
+                                <p class="text-slate-400 text-[11px]">Jul 17 · 14:00</p> 
                             </div>
                         </div>
                     </div>
@@ -426,7 +395,7 @@
     </section>
 
     <!-- Footer -->
-      <footer class="bg-[#102A4A] text-white pt-12 pb-8 px-6 border-t border-slate-800">
+    <footer class="bg-[#102A4A] text-white pt-12 pb-8 px-6 border-t border-slate-800">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
       
       <!-- Brand Info -->
@@ -434,7 +403,7 @@
         <div class="flex items-center gap-2">
           <div class="flex items-center justify-center">
             <div>
-              <img src="images/SVG 2.png" alt="logo">
+              <img src="/Trust_lend/Trust_lend1/images/SVG 2.png" alt="logo">
             </div>
           </div>
           <span class="text-xl font-bold tracking-tight">Trust<span class="text-amber-400">Lend</span></span>
@@ -447,19 +416,11 @@
         </p>
 
         <!-- Social Icons -->
-        <div class="flex items-center gap-3 pt-2">
-          <a href="#" class="w-6 h-6 rounded-md bg-pink-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
-            <i data-lucide="instagram" class="w-3.5 h-3.5"></i>
-          </a>
-          <a href="#" class="w-6 h-6 rounded-md bg-slate-800 flex items-center justify-center text-xs text-white hover:bg-slate-700 transition">
-            <i data-lucide="twitter" class="w-3.5 h-3.5"></i>
-          </a>
-          <a href="#" class="w-6 h-6 rounded-md bg-blue-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
-            <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
-          </a>
-          <a href="#" class="w-6 h-6 rounded-md bg-sky-600 flex items-center justify-center text-xs text-white hover:opacity-80 transition">
-            <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
-          </a>
+        <div class="flex gap-4 mt-5">
+            <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/instagram.png" alt="" class="w-6 h-6"></a>
+            <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/twitter.png" alt="" class="w-6 h-6"></a>
+            <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/communication.png" alt="" class="w-6 h-6"></a>
+            <a href="#" class="text-white/60 hover:text-accent transition text-xs"><img src="/Trust_lend/Trust_lend1/images/linkedin.png" alt="" class="w-6 h-6"></a>
         </div>
       </div>
 
@@ -505,8 +466,109 @@
     </div>
   </footer>
 
-    
+  <!-- Interactivity Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Notification Toggle
+      const notifBtn = document.getElementById('notificationBtn');
+      const notifBadge = document.getElementById('notifBadge');
+      if (notifBtn && notifBadge) {
+        notifBtn.addEventListener('click', () => {
+          alert('Notification Tray: You have 5 unread rental alerts.');
+          notifBadge.classList.add('hidden');
+        });
+      }
+
+      // 2. Select All Checkboxes
+      const selectAllBtn = document.getElementById('selectAllBtn');
+      const checkboxes = document.querySelectorAll('.checklist-item');
+      if (selectAllBtn) {
+        selectAllBtn.addEventListener('click', () => {
+          const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+          checkboxes.forEach(cb => cb.checked = !allChecked);
+          selectAllBtn.textContent = allChecked ? 'Select All' : 'Deselect All';
+        });
+      }
+
+      // 3. Dynamic Photo Upload Preview
+      const fileInput = document.getElementById('inputfile');
+      const photoGallery = document.getElementById('photoGallery');
+      if (fileInput && photoGallery) {
+        fileInput.addEventListener('change', (e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            Array.from(files).forEach(file => {
+              const reader = new FileReader();
+              reader.onload = (event) => {
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.alt = 'Uploaded evidence';
+                img.className = 'w-20 h-20 object-cover rounded-lg border border-slate-200 animate-fade-in';
+                photoGallery.insertBefore(img, fileInput.nextElementSibling);
+              };
+              reader.readAsDataURL(file);
+            });
+          }
+        });
+      }
+
+      // 4. Condition Card Highlighting
+      const radioInputs = document.querySelectorAll('input[name="overallCondition"]');
+      function updateRadioCardStyles() {
+        radioInputs.forEach(input => {
+          const card = input.closest('.condition-card');
+          if (input.checked) {
+            card.classList.add('ring-2', 'ring-brand', 'border-transparent', 'bg-blue-50/50');
+          } else {
+            card.classList.remove('ring-2', 'ring-brand', 'border-transparent', 'bg-blue-50/50');
+          }
+        });
+      }
+      radioInputs.forEach(input => input.addEventListener('change', updateRadioCardStyles));
+      updateRadioCardStyles();
+
+      // 5. Confirm Return Button
+      const confirmBtn = document.getElementById('confirmReturnBtn');
+      confirmBtn.addEventListener('click', () => {
+        const selectedCondition = document.querySelector('input[name="overallCondition"]:checked').value;
+        const checkedCount = document.querySelectorAll('.checklist-item:checked').length;
+        
+        if (confirmBtn.disabled) return;
+
+        if (confirmBtn.classList.contains('bg-emerald-600')) {
+          alert('Return process has already been confirmed.');
+          return;
+        }
+
+        const confirmMsg = `Confirm return for Canon EOS R50?\n- Condition: ${selectedCondition}\n- Checked Items: ${checkedCount}/8`;
+        if (confirm(confirmMsg)) {
+          confirmBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Confirmed';
+          confirmBtn.className = 'bg-emerald-600 text-white font-medium w-[220px] h-[56px] rounded-2xl px-1 transition cursor-not-allowed flex items-center justify-center gap-2';
+          document.getElementById('depositStatus').textContent = 'Released';
+          document.getElementById('depositStatus').className = 'font-bold text-sm text-emerald-600';
+          alert('Return successfully confirmed! Security deposit release initiated.');
+        }
+      });
+
+      // 6. Report Damage Button
+      const reportBtn = document.getElementById('reportDamageBtn');
+      reportBtn.addEventListener('click', () => {
+        const notes = document.getElementById('inspectionNotes').value;
+        if (!notes.trim()) {
+          alert('Please enter inspection notes describing the damage before filing a claim.');
+          document.getElementById('inspectionNotes').focus();
+          return;
+        }
+
+        if (confirm('Are you sure you want to flag this item for damage? This will withhold the security deposit.')) {
+          reportBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Claim Filed';
+          reportBtn.className = 'bg-red-600 text-white font-medium w-[220px] h-[56px] rounded-2xl my-2 transition cursor-not-allowed flex items-center justify-center gap-2';
+          document.getElementById('depositStatus').textContent = 'Held for Claim';
+          document.getElementById('depositStatus').className = 'font-bold text-sm text-red-600';
+          alert('Damage report submitted to support and renter notified.');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
-                                                                                                                                                                                                                                                                       
